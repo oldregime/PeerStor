@@ -1353,7 +1353,7 @@ general usage:
 on macos, connect from finder:
 * [Go] -> [Connect to Server...] -> http://192.168.123.1:3923/
 
-in order to grant full write-access to webdav clients, the volflag `daw` must be set and the account must also have delete-access (otherwise the client won't be allowed to replace the contents of existing files, which is how webdav works)
+to upload or edit files with WebDAV clients, enable the `daw` volflag (because most WebDAV clients expect this) and give your account the delete-permission. This avoids getting several copies of the same file on the server. HOWEVER: This will also make all PUT-uploads overwrite existing files if the user has delete-access, so use with caution.
 
 > note: if you have enabled [IdP authentication](#identity-providers) then that may cause issues for some/most webdav clients; see [the webdav section in the IdP docs](https://github.com/9001/copyparty/blob/hovudstraum/docs/idp.md#connecting-webdav-clients)
 
