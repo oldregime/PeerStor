@@ -1220,6 +1220,7 @@ def add_upload(ap):
     ap2.add_argument("--chmod-d", metavar="UGO", type=u, default="755", help="unix file permissions to use when creating directories; see --help-chmod. Examples: [\033[32m755\033[0m] = owner-RW + all-R, [\033[32m777\033[0m] = full-yolo (volflag=chmod_d)")
     ap2.add_argument("--uid", metavar="N", type=int, default=-1, help="unix user-id to chown new files/folders to; default = -1 = do-not-change (volflag=uid)")
     ap2.add_argument("--gid", metavar="N", type=int, default=-1, help="unix group-id to chown new files/folders to; default = -1 = do-not-change (volflag=gid)")
+    ap2.add_argument("--wram", action="store_true", help="allow uploading even if a volume is inside a ramdisk, meaning that all data will be lost on the next server reboot (volflag=wram)")
     ap2.add_argument("--dedup", action="store_true", help="enable symlink-based upload deduplication (volflag=dedup)")
     ap2.add_argument("--safe-dedup", metavar="N", type=int, default=50, help="how careful to be when deduplicating files; [\033[32m1\033[0m] = just verify the filesize, [\033[32m50\033[0m] = verify file contents have not been altered (volflag=safededup)")
     ap2.add_argument("--hardlink", action="store_true", help="enable hardlink-based dedup; will fallback on symlinks when that is impossible (across filesystems) (volflag=hardlink)")

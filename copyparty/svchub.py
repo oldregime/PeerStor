@@ -30,6 +30,7 @@ from .__init__ import ANYWIN, EXE, MACOS, PY2, TYPE_CHECKING, E, EnvParams, unic
 from .authsrv import BAD_CFG, AuthSrv, n_du_who, n_ver_who
 from .bos import bos
 from .cert import ensure_cert
+from .fsutil import ramdisk_chk
 from .mtag import HAVE_FFMPEG, HAVE_FFPROBE, HAVE_MUTAGEN
 from .pwhash import HAVE_ARGON2
 from .tcpsrv import TcpSrv
@@ -310,6 +311,7 @@ class SvcHub(object):
 
         # initiate all services to manage
         self.asrv = AuthSrv(self.args, self.log, dargs=self.dargs)
+        ramdisk_chk(self.asrv)
 
         if args.cgen:
             self.asrv.cgen()
@@ -1359,6 +1361,7 @@ class SvcHub(object):
         with self.reload_mutex:
             self.log("root", "reloading config")
             self.asrv.reload(9 if up2k else 4)
+            ramdisk_chk(self.asrv)
             if up2k:
                 self.up2k.reload(rescan_all_vols)
                 t += "; volumes are now reinitializing"
