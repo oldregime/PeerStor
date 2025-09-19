@@ -1499,6 +1499,7 @@ class Up2k(object):
 
         th_cvd = self.args.th_coversd
         th_cvds = self.args.th_coversd_set
+        scan_pr_s = self.args.scan_pr_s
 
         assert self.pp and self.mem_cur  # !rm
         self.pp.msg = "a%d %s" % (self.pp.n, cdir)
@@ -1711,7 +1712,7 @@ class Up2k(object):
             if nohash or not sz:
                 wark = up2k_wark_from_metadata(self.salt, sz, lmod, rd, fn)
             else:
-                if sz > 1024 * 1024:
+                if sz > 1024 * 1024 * scan_pr_s:
                     self.log("file: %r" % (abspath,))
 
                 try:

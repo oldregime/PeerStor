@@ -1578,6 +1578,9 @@ def add_logging(ap):
     ap2.add_argument("--ihead", metavar="HEADER", type=u, action='append', help="print request \033[33mHEADER\033[0m; [\033[32m*\033[0m]=all")
     ap2.add_argument("--ohead", metavar="HEADER", type=u, action='append', help="print response \033[33mHEADER\033[0m; [\033[32m*\033[0m]=all")
     ap2.add_argument("--lf-url", metavar="RE", type=u, default=r"^/\.cpr/|[?&]th=[wjp]|/\.(_|ql_|DS_Store$|localized$)", help="dont log URLs matching regex \033[33mRE\033[0m")
+    ap2.add_argument("--scan-st-r", metavar="SEC", type=float, default=0.1, help="fs-indexing: wait \033[33mSEC\033[0m between each status-message")
+    ap2.add_argument("--scan-pr-r", metavar="SEC", type=float, default=10, help="fs-indexing: wait \033[33mSEC\033[0m between each 'progress:' message")
+    ap2.add_argument("--scan-pr-s", metavar="MiB", type=float, default=1, help="fs-indexing: say 'file: <name>' when a file larger than \033[33mMiB\033[0m is about to be hashed")
 
 
 def add_admin(ap):

@@ -1121,16 +1121,18 @@ class ProgressPrinter(threading.Thread):
         sigblock()
         tp = 0
         msg = None
-        no_stdout = self.args.q
+        slp_pr = self.args.scan_pr_r
+        slp_ps = min(slp_pr, self.args.scan_st_r)
+        no_stdout = self.args.q or slp_pr == slp_ps
         fmt = " {}\033[K\r" if VT100 else " {} $\r"
         while not self.end:
-            time.sleep(0.1)
+            time.sleep(slp_ps)
             if msg == self.msg or self.end:
                 continue
 
             msg = self.msg
             now = time.time()
-            if msg and now - tp > 10:
+            if msg and now - tp >= slp_pr:
                 tp = now
                 self.log("progress: %r" % (msg,), 6)
 
