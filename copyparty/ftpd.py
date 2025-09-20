@@ -279,6 +279,10 @@ class FtpFs(AbstractedFS):
     def chdir(self, path: str) -> None:
         nwd = join(self.cwd, path)
         vfs, rem = self.hub.asrv.vfs.get(nwd, self.uname, False, False)
+        if not vfs.realpath:
+            self.cwd = nwd
+            return
+
         ap = vfs.canonical(rem)
         try:
             st = bos.stat(ap)
@@ -288,12 +292,9 @@ class FtpFs(AbstractedFS):
             # returning 550 is library-default and suitable
             raise FSE("No such file or directory")
 
-        if vfs.realpath:
-            avfs = vfs.chk_ap(ap, st)
-            if not avfs:
-                raise FSE("Permission denied", 1)
-        else:
-            avfs = vfs
+        avfs = vfs.chk_ap(ap, st)
+        if not avfs:
+            raise FSE("Permission denied", 1)
 
         self.cwd = nwd
 
