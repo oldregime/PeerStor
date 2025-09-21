@@ -1274,7 +1274,7 @@ class HttpCli(object):
         if not self.can_read and not self.can_write and not self.can_get:
             t = "@%s has no access to %r"
 
-            if "on403" in self.vn.flags:
+            if self.vn.realpath and "on403" in self.vn.flags:
                 t += " (on403)"
                 self.log(t % (self.uname, "/" + self.vpath))
                 ret = self.on40x(self.vn.flags["on403"], self.vn, self.rem)
@@ -1307,6 +1307,9 @@ class HttpCli(object):
                     html = self.j2s("msg", h1=zs1, h2=zs2)
                     self.reply(html.encode("utf-8", "replace"), 500)
                     return True
+
+                if "ls" in self.uparam:
+                    return self.tx_ls_vols()
 
                 if self.vpath:
                     ptn = self.args.nonsus_urls
@@ -6115,6 +6118,47 @@ class HttpCli(object):
         self.conn.hsrv.broker.say("up2k.handle_fs_abrt", self.uparam["fs_abrt"])
         self.loud_reply("aborting", status=200)
         return True
+
+    def tx_ls_vols(self) -> bool:
+        e_d = {}
+        eses = ["", ""]
+        rvol = self.rvol
+        wvol = self.wvol
+        if self.args.have_unlistc:
+            allvols = self.asrv.vfs.all_vols
+            rvol = [x for x in rvol if "unlistcr" not in allvols[x[1:-1]].flags]
+            wvol = [x for x in wvol if "unlistcw" not in allvols[x[1:-1]].flags]
+        vols = list(set(rvol + wvol))
+        if self.vpath:
+            zs = "%s/" % (self.vpath,)
+            vols = [x[len(zs) :] for x in vols if x.startswith(zs)]
+        vols = [x.split("/", 1)[0] for x in vols if x]
+        if not vols and self.vpath:
+            return self.tx_404(True)
+        dirs = [
+            {
+                "lead": "",
+                "href": "%s/" % (x,),
+                "ext": "---",
+                "sz": 0,
+                "ts": 0,
+                "tags": e_d,
+                "dt": 0,
+                "name": 0,
+            }
+            for x in sorted(vols)
+        ]
+        ls = {
+            "dirs": dirs,
+            "files": [],
+            "acct": self.uname,
+            "perms": [],
+            "taglist": [],
+            "logues": eses,
+            "readmes": eses,
+            "srvinf": "" if self.args.nih else self.args.name,
+        }
+        return self.tx_ls(ls)
 
     def tx_ls(self, ls: dict[str, Any]) -> bool:
         dirs = ls["dirs"]
