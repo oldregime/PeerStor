@@ -635,6 +635,8 @@ class VFS(object):
         if do_stat and not bos.path.exists(ap):
             return True  # doesn't exist at all; good to go
         dp, fn = os.path.split(ap)
+        if not fn:
+            return True  # filesystem root
         try:
             fns = os.listdir(dp)
         except:
@@ -647,6 +649,8 @@ class VFS(object):
             if lfn == zs.lower():
                 hit = zs
                 break
+        if not hit:
+            return True  # NFC/NFD or something, can't be helped either way
         if self.log:
             t = "returning 404 due to underlying case-insensitive filesystem:\n  http-req: %r\n  local-fs: %r"
             self.log("vfs", t % (fn, hit))
