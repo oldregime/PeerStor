@@ -2181,6 +2181,19 @@ function bchrome() {
 }
 bchrome();
 
+var XC_CMSG = {
+    502: "bad gateway (server offline)",
+    503: "server offline",
+    504: "gateway timeout (server busy)",
+    529: "gateway timeout (server busy)",
+    520: "unknown error from server",
+    521: "server offline",
+    523: "server offline",
+    522: "proxy timeout (server busy)",
+    524: "proxy timeout (server busy)",
+    598: "proxy timeout (server busy)",
+    599: "proxy timeout (server busy)",
+};
 var cf_cha_t = 0;
 function xhrchk(xhr, prefix, e404, lvl, tag) {
     if (xhr.status < 400 && xhr.status >= 200)
@@ -2204,6 +2217,9 @@ function xhrchk(xhr, prefix, e404, lvl, tag) {
 
     if (xhr.status == 404)
         return toast.err(0, prefix + e404 + suf, tag);
+
+    if (XC_CMSG[xhr.status])
+        errtxt = XC_CMSG[xhr.status];
 
     if (!xhr.status && !errtxt)
         return toast.err(0, prefix + L.xhr0);
