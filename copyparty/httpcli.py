@@ -2836,51 +2836,51 @@ class HttpCli(object):
         bail1 = False  # used in sad path to avoid contradicting error-text
         treport = time.time()  # ratelimit up2k reporting to reduce overhead
 
-        if "x-up2k-subc" in self.headers:
-            sc_ofs = int(self.headers["x-up2k-subc"])
-            chash = chashes[0]
-
-            u2sc = self.conn.hsrv.u2sc
-            try:
-                sc_pofs, hasher = u2sc[chash]
-                if not sc_ofs:
-                    t = "client restarted the chunk; forgetting subchunk offset %d"
-                    self.log(t % (sc_pofs,))
-                    raise Exception()
-            except:
-                sc_pofs = 0
-                hasher = hashlib.sha512()
-
-            et = "subchunk protocol error; resetting chunk "
-            if sc_pofs != sc_ofs:
-                u2sc.pop(chash, None)
-                t = "%s[%s]: the expected resume-point was %d, not %d"
-                raise Pebkac(400, t % (et, chash, sc_pofs, sc_ofs))
-            if len(cstarts) > 1:
-                u2sc.pop(chash, None)
-                t = "%s[%s]: only a single subchunk can be uploaded in one request; you are sending %d chunks"
-                raise Pebkac(400, t % (et, chash, len(cstarts)))
-            csize = min(chunksize, fsize - cstart0[0])
-            cstart0[0] += sc_ofs  # also sets cstarts[0][0]
-            sc_next_ofs = sc_ofs + postsize
-            if sc_next_ofs > csize:
-                u2sc.pop(chash, None)
-                t = "%s[%s]: subchunk offset (%d) plus postsize (%d) exceeds chunksize (%d)"
-                raise Pebkac(400, t % (et, chash, sc_ofs, postsize, csize))
-            else:
-                final_subchunk = sc_next_ofs == csize
-                t = "subchunk %s %d:%d/%d %s"
-                zs = "END" if final_subchunk else ""
-                self.log(t % (chash[:15], sc_ofs, sc_next_ofs, csize, zs), 6)
-                if final_subchunk:
-                    u2sc.pop(chash, None)
-                else:
-                    u2sc[chash] = (sc_next_ofs, hasher)
-        else:
-            hasher = None
-            final_subchunk = True
-
         try:
+            if "x-up2k-subc" in self.headers:
+                sc_ofs = int(self.headers["x-up2k-subc"])
+                chash = chashes[0]
+
+                u2sc = self.conn.hsrv.u2sc
+                try:
+                    sc_pofs, hasher = u2sc[chash]
+                    if not sc_ofs:
+                        t = "client restarted the chunk; forgetting subchunk offset %d"
+                        self.log(t % (sc_pofs,))
+                        raise Exception()
+                except:
+                    sc_pofs = 0
+                    hasher = hashlib.sha512()
+
+                et = "subchunk protocol error; resetting chunk "
+                if sc_pofs != sc_ofs:
+                    u2sc.pop(chash, None)
+                    t = "%s[%s]: the expected resume-point was %d, not %d"
+                    raise Pebkac(400, t % (et, chash, sc_pofs, sc_ofs))
+                if len(cstarts) > 1:
+                    u2sc.pop(chash, None)
+                    t = "%s[%s]: only a single subchunk can be uploaded in one request; you are sending %d chunks"
+                    raise Pebkac(400, t % (et, chash, len(cstarts)))
+                csize = min(chunksize, fsize - cstart0[0])
+                cstart0[0] += sc_ofs  # also sets cstarts[0][0]
+                sc_next_ofs = sc_ofs + postsize
+                if sc_next_ofs > csize:
+                    u2sc.pop(chash, None)
+                    t = "%s[%s]: subchunk offset (%d) plus postsize (%d) exceeds chunksize (%d)"
+                    raise Pebkac(400, t % (et, chash, sc_ofs, postsize, csize))
+                else:
+                    final_subchunk = sc_next_ofs == csize
+                    t = "subchunk %s %d:%d/%d %s"
+                    zs = "END" if final_subchunk else ""
+                    self.log(t % (chash[:15], sc_ofs, sc_next_ofs, csize, zs), 6)
+                    if final_subchunk:
+                        u2sc.pop(chash, None)
+                    else:
+                        u2sc[chash] = (sc_next_ofs, hasher)
+            else:
+                hasher = None
+                final_subchunk = True
+
             if self.args.nw:
                 path = os.devnull
 
