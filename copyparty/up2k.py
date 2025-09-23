@@ -3679,14 +3679,15 @@ class Up2k(object):
                     t = t.format(job["name"], nchunks[0][0], coffsets[0][0], cur_sz)
                     raise Pebkac(400, t)
 
-            job["busy"][chash] = 1
+            for chash in chashes:
+                job["busy"][chash] = 1
 
         job["poke"] = time.time()
 
         return chashes, chunksize, coffsets, path, job["lmod"], job["size"], job["sprs"]
 
     def fast_confirm_chunks(
-        self, ptop: str, wark: str, chashes: list[str]
+        self, ptop: str, wark: str, chashes: list[str], locked: list[str]
     ) -> tuple[int, str]:
         if not self.mutex.acquire(False):
             return -1, ""
@@ -3694,7 +3695,7 @@ class Up2k(object):
             self.mutex.release()
             return -1, ""
         try:
-            return self._confirm_chunks(ptop, wark, chashes, chashes)
+            return self._confirm_chunks(ptop, wark, chashes, locked, False)
         finally:
             self.reg_mutex.release()
             self.mutex.release()
@@ -3703,10 +3704,10 @@ class Up2k(object):
         self, ptop: str, wark: str, written: list[str], locked: list[str]
     ) -> tuple[int, str]:
         with self.mutex, self.reg_mutex:
-            return self._confirm_chunks(ptop, wark, written, locked)
+            return self._confirm_chunks(ptop, wark, written, locked, True)
 
     def _confirm_chunks(
-        self, ptop: str, wark: str, written: list[str], locked: list[str]
+        self, ptop: str, wark: str, written: list[str], locked: list[str], final: bool
     ) -> tuple[int, str]:
         if True:
             self.db_act = self.vol_act[ptop] = time.time()
@@ -3718,14 +3719,16 @@ class Up2k(object):
             except Exception as ex:
                 return -2, "confirm_chunk, wark(%r)" % (ex,)  # type: ignore
 
-            for chash in locked:
+            for chash in locked if final else written:
                 job["busy"].pop(chash, None)
 
             try:
                 for chash in written:
                     job["need"].remove(chash)
             except Exception as ex:
-                # dead tcp connections can get here by timeout (OK)
+                for zs in locked:
+                    if job["busy"].pop(zs, None):
+                        self.log("panic-unlock wark(%s) chunk(%s)" % (wark, zs), 1)
                 return -2, "confirm_chunk, chash(%s) %r" % (chash, ex)  # type: ignore
 
             ret = len(job["need"])

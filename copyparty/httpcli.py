@@ -2952,7 +2952,9 @@ class HttpCli(object):
                     if now - treport < 1:
                         continue
                     treport = now
-                    x = broker.ask("up2k.fast_confirm_chunks", ptop, wark, written)
+                    x = broker.ask(
+                        "up2k.fast_confirm_chunks", ptop, wark, written, locked
+                    )
                     num_left, t = x.get()
                     if num_left < -1:
                         self.loud_reply(t, status=500)
