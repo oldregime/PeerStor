@@ -1817,8 +1817,7 @@ class AuthSrv(object):
                     self.log("\n{0}\n{1}{0}".format(t, "\n".join(slns)))
                     raise
 
-        self.args.have_idp_hdrs = bool(self.args.idp_h_usr or self.args.idp_hm_usr)
-        self.args.have_ipu_or_ipr = bool(self.args.ipu or self.args.ipr)
+        derive_args(self.args)
         self.setup_auth_ord()
 
         self.setup_pwhash(acct)
@@ -3633,6 +3632,11 @@ class AuthSrv(object):
             ret.append("")
 
         self.log("generated config:\n\n" + "\n".join(ret))
+
+
+def derive_args(args: argparse.Namespace) -> None:
+    args.have_idp_hdrs = bool(args.idp_h_usr or args.idp_hm_usr)
+    args.have_ipu_or_ipr = bool(args.ipu or args.ipr)
 
 
 def n_du_who(s: str) -> int:

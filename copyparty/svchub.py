@@ -27,7 +27,7 @@ if True:  # pylint: disable=using-constant-test
     from typing import Any, Optional, Union
 
 from .__init__ import ANYWIN, EXE, MACOS, PY2, TYPE_CHECKING, E, EnvParams, unicode
-from .authsrv import BAD_CFG, AuthSrv, n_du_who, n_ver_who
+from .authsrv import BAD_CFG, AuthSrv, derive_args, n_du_who, n_ver_who
 from .bos import bos
 from .cert import ensure_cert
 from .fsutil import ramdisk_chk
@@ -1186,6 +1186,7 @@ class SvcHub(object):
             zi2 = zi
         al.u2sz = ",".join(zsl)
 
+        derive_args(al)
         return True
 
     def _ipa2re(self, txt) -> Optional[re.Pattern]:
