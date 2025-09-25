@@ -18,13 +18,15 @@ from copy import deepcopy
 
 from queue import Queue
 
-from .__init__ import ANYWIN, PY2, TYPE_CHECKING, WINDOWS, E
+from .__init__ import ANYWIN, MACOS, PY2, TYPE_CHECKING, WINDOWS, E
 from .authsrv import LEELOO_DALLAS, SEESLOG, VFS, AuthSrv
 from .bos import bos
 from .cfg import vf_bmap, vf_cmap, vf_vmap
 from .fsutil import Fstab
 from .mtag import MParser, MTag
 from .util import (
+    E_FS_CRIT,
+    E_FS_MEH,
     HAVE_SQLITE3,
     SYMTIME,
     VF_CAREFUL,
@@ -1720,7 +1722,7 @@ class Up2k(object):
                         abspath, "a{}, ".format(self.pp.n)
                     )
                 except Exception as ex:
-                    self.log("hash: %r @ %r" % (ex, abspath))
+                    self._ex_hash(ex, abspath)
                     continue
 
                 if not hashes:
@@ -1981,7 +1983,7 @@ class Up2k(object):
                     try:
                         hashes, _ = self._hashlist_from_file(abspath, pf)
                     except Exception as ex:
-                        self.log("hash: %r @ %r" % (ex, abspath))
+                        self._ex_hash(ex, abspath)
                         continue
 
                     if not hashes:
@@ -5086,6 +5088,16 @@ class Up2k(object):
                 ret.append(ub64enc(digest).decode("ascii"))
 
         return ret, st
+
+    def _ex_hash(self, ex: Exception, ap: str) -> None:
+        eno = getattr(ex, "errno", 0)
+        if eno in E_FS_MEH:
+            return self.log("hashing failed; %r @ %r" % (ex, ap))
+        if eno not in E_FS_CRIT:
+            return self.log("hashing failed; %r @ %r\n%s" % (ex, ap, min_ex()), 3)
+        t = "hashing failed; %r @ %r\n%s\nWARNING: This MAY indicate a serious issue with your harddisk or filesystem! Please investigate %sOS-logs\n"
+        t2 = "" if ANYWIN or MACOS else "dmesg and "
+        return self.log(t % (ex, ap, min_ex(), t2), 1)
 
     def _new_upload(self, job: dict[str, Any], vfs: VFS, depth: int) -> dict[str, str]:
         pdir = djoin(job["ptop"], job["prel"])
