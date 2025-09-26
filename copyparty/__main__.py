@@ -956,7 +956,7 @@ def get_sects():
             \033[36m{{vf.thsize}}   \033[35mthumbnail size
             \033[36m{{srv.itime}}   \033[35mserver time in seconds
             \033[36m{{srv.htime}}   \033[35mserver time as YY-mm-dd, HH:MM:SS (UTC)
-            \033[36m{{hdr.cf_ipcountry}} \033[35mthe "CF-IPCountry" client header (probably blank)
+            \033[36m{{hdr.cf-ipcountry}} \033[35mthe "CF-IPCountry" client header (probably blank)
             \033[0m
             so the following types of placeholders can be added to the lists:
             * any client header can be accessed through {{hdr.*}}
