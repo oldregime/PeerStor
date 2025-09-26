@@ -246,6 +246,7 @@ upload modifiers:
 | `Accept: json` | `want=json` | return upload info as json; same as `?j` |
 | `Rand: 4` | `rand=4` | generate random filename with 4 characters |
 | `Life: 30` | `life=30` | delete file after 30 seconds |
+| `Replace: 1` | `replace` | overwrite file if exists |
 | `CK: no` | `ck` | disable serverside checksum (maybe faster) |
 | `CK: md5` | `ck=md5` | return md5 checksum instead of sha512 |
 | `CK: sha1` | `ck=sha1` | return sha1 checksum |
@@ -254,7 +255,9 @@ upload modifiers:
 | `CK: b2s` | `ck=b2s` | return blake2s checksum |
 
 * `life` only has an effect if the volume has a lifetime, and the volume lifetime must be greater than the file's
-
+* `replace` upload-modifier:
+  * the header `replace: 1` works for both PUT and multipart-post
+  * the url-param `replace` only works for multipart-post
 * server behavior of `msg` can be reconfigured with `--urlform`
 
 ## admin

@@ -2301,7 +2301,11 @@ class HttpCli(object):
 
             if (
                 self.can_delete
-                and (vfs.flags.get("daw") or "x-oc-mtime" in self.headers)
+                and (
+                    vfs.flags.get("daw")
+                    or "replace" in self.headers
+                    or "x-oc-mtime" in self.headers
+                )
             ) or (
                 not bos.path.exists(os.path.join(fdir, tnam))
                 and not bos.path.getsize(path)
@@ -3344,7 +3348,7 @@ class HttpCli(object):
 
                     open_args = {"fdir": fdir, "suffix": suffix, "vf": vfs.flags}
 
-                    if "replace" in self.uparam:
+                    if "replace" in self.uparam or "replace" in self.headers:
                         if not self.can_delete:
                             self.log("user not allowed to overwrite with ?replace")
                         elif bos.path.exists(abspath):
