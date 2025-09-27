@@ -391,7 +391,10 @@ class SvcHub(object):
                 t = "invalid mp3 transcoding quality [%s] specified; only supports [0] to disable, a CBR value such as [192k], or a CQ/CRF value such as [v2]"
                 raise Exception(t % (args.q_mp3,))
         else:
-            args.au_unpk = {}
+            zss = set(args.th_r_ffa.split(",") + args.th_r_ffv.split(","))
+            args.au_unpk = {
+                k: v for k, v in args.au_unpk.items() if v.split(".")[0] not in zss
+            }
 
         args.th_poke = min(args.th_poke, args.th_maxage, args.ac_maxage)
 
