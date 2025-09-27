@@ -1197,21 +1197,21 @@ class MTHash(object):
             for nch in range(nchunks):
                 self.work_q.put(nch)
 
-            ex = ""
+            ex: Optional[Exception] = None
             for nch in range(nchunks):
                 qe = self.done_q.get()
                 try:
                     nch, dig, ofs, csz = qe
                     chunks[nch] = (dig, ofs, csz)
                 except:
-                    ex = ex or str(qe)
+                    ex = ex or qe  # type: ignore
 
                 if pp:
                     mb = (fsz - nch * chunksz) // (1024 * 1024)
                     pp.msg = prefix + str(mb) + suffix
 
             if ex:
-                raise Exception(ex)
+                raise ex
 
             ret = []
             for n in range(nchunks):
@@ -1228,7 +1228,7 @@ class MTHash(object):
             try:
                 v = self.hash_at(ofs)
             except Exception as ex:
-                v = str(ex)  # type: ignore
+                v = ex  # type: ignore
 
             self.done_q.put(v)
 
