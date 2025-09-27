@@ -299,6 +299,8 @@ class TcpSrv(object):
 
         try:
             if tcp:
+                if self.args.http_no_tcp:
+                    return
                 srv.bind((ip, port))
             else:
                 if ANYWIN or self.args.rm_sck:
