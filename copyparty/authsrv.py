@@ -2726,7 +2726,11 @@ class AuthSrv(object):
 
             if "dedup" in zv.flags:
                 have_dedup = True
-                if "e2d" not in zv.flags and "hardlink" not in zv.flags:
+                if (
+                    "e2d" not in zv.flags
+                    and "hardlink" not in zv.flags
+                    and "reflink" not in zv.flags
+                ):
                     unsafe_dedup.append("/" + zv.vpath)
 
             t += "\n"
