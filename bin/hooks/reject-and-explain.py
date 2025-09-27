@@ -41,7 +41,8 @@ def main():
     vdir, fn = os.path.split(inf["vp"])
     print("inf[vp] = %r" % (inf["vp"],), file=sys.stderr)
 
-    # reject upload if the following regex-pattern does not match:
+    # the following is what decides if we'll accept the upload or reject it:
+    # we check if the upload-folder url matches the following regex-pattern:
     ok = re.search(r"(^|/)day[0-9]+$", vdir, re.IGNORECASE)
 
     if ok:
@@ -49,11 +50,9 @@ def main():
         print("{}")
         return
 
-    # the upload was rejected; display the following errortext
-    # (NOTE: you can optionally mention {0!r} anywhere in the message (zero or more times), and it will be replaced with the file's URL)
-
+    # the upload was rejected; display the following errortext:
     errmsg = "Files can only be uploaded into a folder named 'DayN' where N is a number, for example 'Day573'. This file was REJECTED: "
-    errmsg += inf["vp"]  # mention the file's url at the end of the message
+    errmsg += inf["vp"]  # if you want to mention the file's url at the end of the message
     print(json.dumps({"rejectmsg": errmsg}))
 
 
