@@ -5038,7 +5038,7 @@ class Up2k(object):
         for k in cj["hash"]:
             if not self.r_hash.match(k):
                 raise Pebkac(
-                    400, "at least one hash is not according to spec: {}".format(k)
+                    400, "at least one hash is not according to spec: %r" % (k,)
                 )
 
         # try to use client-provided timestamp, don't care if it fails somehow

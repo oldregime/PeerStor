@@ -1770,12 +1770,12 @@ class MultipartParser(object):
                 continue
 
             if m.group(1).lower() != "form-data":
-                raise Pebkac(400, "not form-data: {}".format(ln))
+                raise Pebkac(400, "not form-data: %r" % (ln,))
 
             try:
                 field = self.re_cdisp_field.match(ln).group(1)  # type: ignore
             except:
-                raise Pebkac(400, "missing field name: {}".format(ln))
+                raise Pebkac(400, "missing field name: %r" % (ln,))
 
             try:
                 fn = self.re_cdisp_file.match(ln).group(1)  # type: ignore
@@ -1947,7 +1947,7 @@ def get_boundary(headers: dict[str, str]) -> str:
     ct = headers["content-type"]
     m = re.match(ptn, ct, re.IGNORECASE)
     if not m:
-        raise Pebkac(400, "invalid content-type for a multipart post: {}".format(ct))
+        raise Pebkac(400, "invalid content-type for a multipart post: %r" % (ct,))
 
     return m.group(2)
 

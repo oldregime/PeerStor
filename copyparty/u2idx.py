@@ -267,7 +267,7 @@ class U2idx(object):
                     v = "exists(select 1 from mt where mt.w = mtw and " + vq
 
                 else:
-                    raise Pebkac(400, "invalid key [{}]".format(v))
+                    raise Pebkac(400, "invalid key %r" % (v,))
 
                 q += v + " "
                 continue

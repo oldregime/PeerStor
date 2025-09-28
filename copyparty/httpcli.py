@@ -333,6 +333,7 @@ class HttpCli(object):
                     k, zs = header_line.split(":", 1)
                     self.headers[k.lower()] = zs.strip()
             except:
+                headerlines = [repr(x) for x in headerlines]
                 msg = "#[ " + " ]\n#[ ".join(headerlines) + " ]"
                 raise Pebkac(400, "bad headers", log=msg)
 
@@ -796,7 +797,7 @@ class HttpCli(object):
             elif self.mode in ("MOVE", "COPY"):
                 return self.handle_cpmv() and self.keepalive
             else:
-                raise Pebkac(400, 'invalid HTTP verb "{0}"'.format(self.mode))
+                raise Pebkac(400, "invalid HTTP verb %r" % (self.mode,))
 
         except Exception as ex:
             if not isinstance(ex, Pebkac):
@@ -2124,9 +2125,9 @@ class HttpCli(object):
             if "get" in opt:
                 return self.handle_get()
 
-            raise Pebkac(405, "POST({}) is disabled in server config".format(ctype))
+            raise Pebkac(405, "POST(%r) is disabled in server config" % (ctype,))
 
-        raise Pebkac(405, "don't know how to handle POST({})".format(ctype))
+        raise Pebkac(405, "don't know how to handle POST(%r)" % (ctype,))
 
     def get_xml_enc(self, txt: str) -> str:
         ofs = txt[:512].find(' encoding="')
@@ -2600,7 +2601,7 @@ class HttpCli(object):
         if act == "logout":
             return self.handle_logout()
 
-        raise Pebkac(422, 'invalid action "{}"'.format(act))
+        raise Pebkac(422, "invalid action %r" % (act,))
 
     def handle_zip_post(self) -> bool:
         assert self.parser  # !rm
@@ -3809,7 +3810,7 @@ class HttpCli(object):
         assert self.parser.gen  # !rm
         p_field, _, p_data = next(self.parser.gen)
         if p_field != "body":
-            raise Pebkac(400, "expected body, got {}".format(p_field))
+            raise Pebkac(400, "expected body, got %r" % (p_field,))
 
         if "txt_eol" in vfs.flags:
             p_data = eol_conv(p_data, vfs.flags["txt_eol"])
@@ -5985,7 +5986,7 @@ class HttpCli(object):
                 vp2, fn = zs.rsplit("/", 1)
                 fns.append(fn)
                 if vp != vp2:
-                    t = "mismatching base paths in selection:\n  [%s]\n  [%s]"
+                    t = "mismatching base paths in selection:\n  %r\n  %r"
                     raise Pebkac(400, t % (vp, vp2))
 
         vp = vp.strip("/")
@@ -5994,7 +5995,7 @@ class HttpCli(object):
 
         m = re.search(r"([^0-9a-zA-Z_-])", skey)
         if m:
-            raise Pebkac(400, "sharekey has illegal character [%s]" % (m[1],))
+            raise Pebkac(400, "sharekey has illegal character %r" % (m[1],))
 
         if vp.startswith(self.args.shr1):
             raise Pebkac(400, "yo dawg...")
@@ -6007,7 +6008,7 @@ class HttpCli(object):
         qr = cur.execute(q, (skey,)).fetchall()
         if qr and qr[0]:
             self.log("sharekey taken by %r" % (qr,))
-            raise Pebkac(400, "sharekey [%s] is already in use" % (skey,))
+            raise Pebkac(400, "sharekey %r is already in use" % (skey,))
 
         # ensure user has requested perms
         s_rd = "read" in req["perms"]
@@ -6033,7 +6034,7 @@ class HttpCli(object):
         rfns = set([x[0] for x in reals])
         for fn in fns:
             if fn not in rfns:
-                raise Pebkac(400, "selected file not found on disk: [%s]" % (fn,))
+                raise Pebkac(400, "selected file not found on disk: %r" % (fn,))
 
         pw = req.get("pw") or ""
         pw = self.asrv.ah.hash(pw)
