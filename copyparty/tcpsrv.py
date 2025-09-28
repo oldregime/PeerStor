@@ -59,6 +59,7 @@ class TcpSrv(object):
         self.stopping = False
         self.srv: list[socket.socket] = []
         self.bound: list[tuple[str, int]] = []
+        self.seen_eps: list[tuple[str, int]] = []  # also skipped by uds-only
         self.netdevs: dict[str, Netdev] = {}
         self.netlist = ""
         self.nsrv = 0
@@ -300,6 +301,7 @@ class TcpSrv(object):
         try:
             if tcp:
                 if self.args.http_no_tcp:
+                    self.seen_eps.append((ip, port))
                     return
                 srv.bind((ip, port))
             else:
@@ -411,6 +413,7 @@ class TcpSrv(object):
 
         self.srv = srvs
         self.bound = bound
+        self.seen_eps = list(set(self.seen_eps + bound))
         self.nsrv = len(srvs)
         self._distribute_netdevs()
 
