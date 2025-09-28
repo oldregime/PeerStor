@@ -196,6 +196,7 @@ class U2idx(object):
         is_key = True
         is_size = False
         is_date = False
+        is_wark = False
         field_end = ""  # closing parenthesis or whatever
         kw_key = ["(", ")", "and ", "or ", "not "]
         kw_val = ["==", "=", "!=", ">", ">=", "<", "<=", "like "]
@@ -214,6 +215,8 @@ class U2idx(object):
                     is_key = kw in kw_key
                     uq = uq[len(kw) :]
                     ok = True
+                    if is_wark:
+                        kw = "= "
                     q += kw
                     break
 
@@ -256,6 +259,10 @@ class U2idx(object):
                     if icase:
                         v = "casefold(%s)" % (v,)
 
+                elif v == "w":
+                    v = "substr(up.w,1,16)"
+                    is_wark = True
+
                 elif v == "tags" or ptn_mt.match(v):
                     have_mt = True
                     field_end = ") "
@@ -295,6 +302,14 @@ class U2idx(object):
             elif is_size:
                 is_size = False
                 v = int(float(v) * 1024 * 1024)
+
+            if is_wark:
+                is_wark = False
+                v = v.strip("*")
+                if len(v) > 16:
+                    v = v[:16]
+                if len(v) < 16:
+                    raise Pebkac(400, "w/filehash must be 16+ chars")
 
             else:
                 if v.startswith("*"):

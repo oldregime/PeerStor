@@ -869,6 +869,8 @@ the files will be hashed on the client-side, and each hash is sent to the server
 files go into `[ok]` if they exist (and you get a link to where it is), otherwise they land in `[ng]`
 * the main reason filesearch is combined with the uploader is cause the code was too spaghetti to separate it out somewhere else, this is no longer the case but now i've warmed up to the idea too much
 
+if you have a "wark" (file-identifier/checksum) then you can also search for that in the [🔎] tab by putting `w = kFpDiztbZc8Z1Lzi` in the `raw` field
+
 
 ### unpost
 
