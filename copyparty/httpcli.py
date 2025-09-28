@@ -7124,7 +7124,7 @@ class HttpCli(object):
                     title = str(vn.flags.get("og_title_v") or "")
                     ogh["og:type"] = "video.other"
                     ogh["og:video"] = j2a["og_raw"]
-                    
+
                     tagmap = {
                         "title": "og:title",
                         ".dur": "og:video:duration",

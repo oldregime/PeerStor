@@ -52,7 +52,7 @@ def main():
 
     # the upload was rejected; display the following errortext:
     errmsg = "Files can only be uploaded into a folder named 'DayN' where N is a number, for example 'Day573'. This file was REJECTED: "
-    errmsg += inf["vp"]  # if you want to mention the file's url at the end of the message
+    errmsg += inf["vp"]  # if you want to mention the file's url
     print(json.dumps({"rejectmsg": errmsg}))
 
 
