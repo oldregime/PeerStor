@@ -6802,62 +6802,63 @@ class HttpCli(object):
                     ap = vn.canonical(rem)
                     return self.tx_file(ap)  # is no-cache
 
-        mte = vn.flags.get("mte", {})
-        add_up_at = ".up_at" in mte
-        is_admin = self.can_admin
-        tagset: set[str] = set()
-        rd = vrem
-        for fe in files if icur else []:
-            assert icur  # !rm
-            fn = fe["name"]
-            erd_efn = (rd, fn)
-            q = "select mt.k, mt.v from up inner join mt on mt.w = substr(up.w,1,16) where up.rd = ? and up.fn = ? and +mt.k != 'x'"
-            try:
-                r = icur.execute(q, erd_efn)
-            except Exception as ex:
-                if "database is locked" in str(ex):
-                    break
-
-                try:
-                    erd_efn = s3enc(idx.mem_cur, rd, fn)
-                    r = icur.execute(q, erd_efn)
-                except:
-                    self.log("tag read error, %r / %r\n%s" % (rd, fn, min_ex()))
-                    break
-
-            tags = {k: v for k, v in r}
-
-            if is_admin:
-                q = "select ip, at, un from up where rd=? and fn=?"
-                try:
-                    zs1, zs2, zs3 = icur.execute(q, erd_efn).fetchone()
-                    if zs1:
-                        tags["up_ip"] = zs1
-                    if zs2:
-                        tags[".up_at"] = zs2
-                    if zs3:
-                        tags["up_by"] = zs3
-                except:
-                    pass
-            elif add_up_at:
-                q = "select at from up where rd=? and fn=?"
-                try:
-                    (zs1,) = icur.execute(q, erd_efn).fetchone()
-                    if zs1:
-                        tags[".up_at"] = zs1
-                except:
-                    pass
-
-            _ = [tagset.add(k) for k in tags]
-            fe["tags"] = tags
-
         if icur:
+            mte = vn.flags.get("mte") or {}
+            tagset: set[str] = set()
+            rd = vrem
+            if self.can_admin:
+                up_q = "select substr(w,1,16), ip, at, un from up where rd=? and fn=?"
+                up_m = ["w", "up_ip", ".up_at", "up_by"]
+            elif ".up_at" in mte:
+                if "w" in mte:
+                    up_q = "select substr(w,1,16), at from up where rd=? and fn=?"
+                    up_m = ["w", ".up_at"]
+                else:
+                    up_q = "select at from up where rd=? and fn=?"
+                    up_m = [".up_at"]
+            elif "w" in mte:
+                up_q = "select substr(w,1,16) from up where rd=? and fn=?"
+                up_m = ["w"]
+            else:
+                up_q = ""
+
+            mt_q = "select mt.k, mt.v from up inner join mt on mt.w = substr(up.w,1,16) where up.rd = ? and up.fn = ? and +mt.k != 'x'"
+            for fe in files:
+                fn = fe["name"]
+                erd_efn = (rd, fn)
+                try:
+                    r = icur.execute(mt_q, erd_efn)
+                except Exception as ex:
+                    if "database is locked" in str(ex):
+                        break
+
+                    try:
+                        erd_efn = s3enc(idx.mem_cur, rd, fn)
+                        r = icur.execute(mt_q, erd_efn)
+                    except:
+                        self.log("tag read error, %r / %r\n%s" % (rd, fn, min_ex()))
+                        break
+
+                tags = {k: v for k, v in r}
+
+                if up_q:
+                    try:
+                        up_v = icur.execute(up_q, erd_efn).fetchone()
+                        for zs1, zs2 in zip(up_m, up_v):
+                            if zs2:
+                                tags[zs1] = zs2
+                    except:
+                        pass
+
+                _ = [tagset.add(k) for k in tags]
+                fe["tags"] = tags
+
             for fe in dirs:
                 fe["tags"] = ODict()
 
             lmte = list(mte)
             if self.can_admin:
-                lmte.extend(("up_by", "up_ip", ".up_at"))
+                lmte.extend(("w", "up_by", "up_ip", ".up_at"))
 
             if "nodirsz" not in vf:
                 tagset.add(".files")
@@ -6872,7 +6873,7 @@ class HttpCli(object):
 
             taglist = [k for k in lmte if k in tagset]
         else:
-            taglist = list(tagset)
+            taglist = []
 
         logues, readmes = self._add_logues(vn, abspath, lnames)
         ls_ret["logues"] = j2a["logues"] = logues
