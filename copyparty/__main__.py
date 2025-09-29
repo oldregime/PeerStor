@@ -1776,6 +1776,7 @@ def add_ui(ap, retry: int):
     ap2.add_argument("--js-browser", metavar="L", type=u, default="", help="URL to additional JS to include in the filebrowser html")
     ap2.add_argument("--js-other", metavar="L", type=u, default="", help="URL to additional JS to include in all other pages")
     ap2.add_argument("--html-head", metavar="TXT", type=u, default="", help="text to append to the <head> of all HTML pages (except for basic-browser); can be @PATH to send the contents of a file at PATH, and/or begin with %% to render as jinja2 template (volflag=html_head)")
+    ap2.add_argument("--html-head-s", metavar="T", type=u, default="", help="text to append to the <head> of all HTML pages (except for basic-browser); similar to (and can be combined with) --html-head but only accepts static text (volflag=html_head_s)")
     ap2.add_argument("--ih", action="store_true", help="if a folder contains index.html, show that instead of the directory listing by default (can be changed in the client settings UI, or add ?v to URL for override)")
     ap2.add_argument("--textfiles", metavar="CSV", type=u, default="txt,nfo,diz,cue,readme", help="file extensions to present as plaintext")
     ap2.add_argument("--txt-max", metavar="KiB", type=int, default=64, help="max size of embedded textfiles on ?doc= (anything bigger will be lazy-loaded by JS)")

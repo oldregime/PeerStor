@@ -2493,6 +2493,31 @@ class AuthSrv(object):
                 t = "WARNING: volume [/%s]: invalid value specified for ext-th: %s"
                 self.log(t % (vol.vpath, etv), 3)
 
+            zs = str(vol.flags.get("html_head") or "")
+            if zs and zs[:1] in "%@":
+                vol.flags["html_head_d"] = zs
+                head_s = str(vol.flags.get("html_head_s") or "")
+            else:
+                zs2 = str(vol.flags.get("html_head_s") or "")
+                if zs2 and zs:
+                    head_s = "%s\n%s\n" % (zs2.strip(), zs.strip())
+                else:
+                    head_s = zs2 or zs
+
+            if head_s and not head_s.endswith("\n"):
+                head_s += "\n"
+
+            if "norobots" in vol.flags:
+                head_s += META_NOBOTS
+
+            if head_s:
+                vol.flags["html_head_s"] = head_s
+            else:
+                vol.flags.pop("html_head_s", None)
+
+            if not vol.flags.get("html_head_d"):
+                vol.flags.pop("html_head_d", None)
+
             vol.check_landmarks()
 
             # d2d drops all database features for a volume

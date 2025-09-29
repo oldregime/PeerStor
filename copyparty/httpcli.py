@@ -286,10 +286,9 @@ class HttpCli(object):
             zs += "&" if "?" in zs else "?"
             ka["js"] = zs
 
-        zso = self.vn.flags.get("html_head")
-        if zso:
+        if "html_head_d" in self.vn.flags:
             ka["this"] = self
-            self._build_html_head(zso, ka)
+            self._build_html_head(ka)
 
         ka["html_head"] = self.html_head
         return tpl.render(**ka)  # type: ignore
@@ -758,8 +757,10 @@ class HttpCli(object):
         self.s.settimeout(self.args.s_tbody or None)
 
         if "norobots" in vn.flags:
-            self.html_head += META_NOBOTS
             self.out_headers["X-Robots-Tag"] = "noindex, nofollow"
+
+        if "html_head_s" in vn.flags:
+            self.html_head += vn.flags["html_head_s"]
 
         try:
             cors_k = self._cors()
@@ -931,8 +932,8 @@ class HttpCli(object):
         no304 = self.cookies.get("no304")
         return no304 == "y" or (self.args.no304 == 2 and no304 != "n")
 
-    def _build_html_head(self, maybe_html: Any, kv: dict[str, Any]) -> None:
-        html = str(maybe_html)
+    def _build_html_head(self, kv: dict[str, Any]) -> None:
+        html = str(self.vn.flags["html_head_d"])
         is_jinja = html[:2] in "%@%"
         if is_jinja:
             html = html.replace("%", "", 1)
@@ -5032,10 +5033,9 @@ class HttpCli(object):
             zs += "&" if "?" in zs else "?"
             targs["js"] = zs
 
-        zfv = self.vn.flags.get("html_head")
-        if zfv:
+        if "html_head_d" in self.vn.flags:
             targs["this"] = self
-            self._build_html_head(zfv, targs)
+            self._build_html_head(targs)
 
         targs["html_head"] = self.html_head
         zs = template.render(**targs).encode("utf-8", "replace")
