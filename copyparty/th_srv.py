@@ -381,7 +381,7 @@ class ThumbSrv(object):
             else:
                 ap_unpk = abspath
 
-            if not bos.path.exists(tpath):
+            if ap_unpk and not bos.path.exists(tpath):
                 tex = tpath.rsplit(".", 1)[-1]
                 want_mp3 = tex == "mp3"
                 want_opus = tex in ("opus", "owa", "caf")
@@ -424,12 +424,14 @@ class ThumbSrv(object):
             except:
                 pass
 
+            conv_ok = False
             for fun in funs:
                 try:
                     if not png_ok and tpath.endswith(".png"):
                         raise Exception("png only allowed for waveforms")
 
                     fun(ap_unpk, ttpath, fmt, vn)
+                    conv_ok = True
                     break
                 except Exception as ex:
                     msg = "%s could not create thumbnail of %r\n%s"
@@ -451,16 +453,20 @@ class ThumbSrv(object):
                         except:
                             pass
 
-            if abspath != ap_unpk:
+            if abspath != ap_unpk and ap_unpk:
                 wunlink(self.log, ap_unpk, vn.flags)
 
             try:
                 atomic_move(self.log, ttpath, tpath, vn.flags)
             except Exception as ex:
-                if not os.path.exists(tpath):
+                if conv_ok and not os.path.exists(tpath):
                     t = "failed to move  [%s]  to  [%s]:  %r"
                     self.log(t % (ttpath, tpath, ex), 3)
-                pass
+                elif not conv_ok:
+                    try:
+                        open(tpath, "ab").close()
+                    except:
+                        pass
 
             untemp = []
             with self.mutex:
@@ -682,7 +688,7 @@ class ThumbSrv(object):
             return
 
         c: Union[str, int] = "90"
-        t = "FFmpeg failed (probably a corrupt video file):\n"
+        t = "FFmpeg failed (probably a corrupt file):\n"
         if (
             (not self.args.th_ff_jpg or time.time() - int(self.args.th_ff_jpg) < 60)
             and cmd[-1].lower().endswith(b".webp")

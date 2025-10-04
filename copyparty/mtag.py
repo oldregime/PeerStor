@@ -200,9 +200,10 @@ def au_unpk(
 
     except Exception as ex:
         if ret:
-            t = "failed to decompress audio file %r: %r"
+            t = "failed to decompress file %r: %r"
             log(t % (abspath, ex))
             wunlink(log, ret, vn.flags if vn else VF_CAREFUL)
+            return ""
 
         return abspath
 
@@ -422,10 +423,17 @@ def get_cover_from_epub(log: "NamedLogger", abspath: str) -> Optional[IO[bytes]]
             # This might be an EPUB2 file, try the legacy way of specifying covers
             coverimage_path = _get_cover_from_epub2(log, package_root, package_ns)
 
+        if not coverimage_path:
+            raise Exception("no cover inside epub")
+
         # This url is either absolute (in the .epub) or relative to the package document
         adjusted_cover_path = urljoin(rootfile_path, coverimage_path)
 
-        return z.open(adjusted_cover_path)
+        try:
+            return z.open(adjusted_cover_path)
+        except KeyError:
+            t = "epub: cover specified in package document, but doesn't exist: %s"
+            log(t % (adjusted_cover_path,))
 
 
 def _get_cover_from_epub2(
@@ -643,6 +651,9 @@ class MTag(object):
             return self._get(abspath)
 
         ap = au_unpk(self.log, self.args.au_unpk, abspath)
+        if not ap:
+            return {}
+
         ret = self._get(ap)
         if ap != abspath:
             wunlink(self.log, ap, VF_CAREFUL)
@@ -748,6 +759,9 @@ class MTag(object):
             ap = abspath
 
         ret: dict[str, Any] = {}
+        if not ap:
+            return ret
+
         for tagname, parser in sorted(parsers.items(), key=lambda x: (x[1].pri, x[0])):
             try:
                 cmd = [parser.bin, ap]
