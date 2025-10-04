@@ -2204,7 +2204,6 @@ html.y #bbox-overlay figcaption a {
 	margin-right: -1px;
 }
 #bbox-slider {
-	display: flex;
 	position: fixed;
 	left: 0;
 	top: 0;

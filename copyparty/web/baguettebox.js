@@ -231,7 +231,7 @@ window.baguetteBox = (function () {
         btnNext = ebi('bbox-next');
         btnHelp = ebi('bbox-help');
         btnAnim = ebi('bbox-anim');
-        btnReadDir = ebi('bbox-readdir')
+        btnReadDir = ebi('bbox-readdir');
         btnRotL = ebi('bbox-rotl');
         btnRotR = ebi('bbox-rotr');
         btnSel = ebi('bbox-tsel');
@@ -357,13 +357,8 @@ window.baguetteBox = (function () {
     }
 
     function toggleReadDir() {
-        var o = options;
-        var next;
-        if (options.readDirRtl) {
-            next = "ltr"
-        } else {
-            next = "rtl"
-        }
+        var o = options,
+            next = options.readDirRtl ? "ltr" : "rtl";
         swrite('greaddir', next);
         slider.className = "no-transition";
         options = {};
@@ -601,11 +596,13 @@ window.baguetteBox = (function () {
         if (options.readDirRtl) {
             btnReadDir.innerText = "rtl";
             msg = "browse from right to left";
+            slider.style.display = "flex";
             slider.style.flexDirection = "row-reverse";
         } else {
             btnReadDir.innerText = "ltr";
             msg = "browse from left to right";
-            slider.style.flexDirection = "row";
+            slider.style.flexDirection = "";
+            slider.style.display = "block";
         }
         btnReadDir.setAttribute("tt", msg);
         btnReadDir.setAttribute("aria-label", msg);
@@ -1119,8 +1116,8 @@ window.baguetteBox = (function () {
     }
 
     function updateOffset(noTransition) {
-        var dir = options.readDirRtl ? 1 : -1;
-        var offset = dir * currentIndex * 100 + '%',
+        var dir = options.readDirRtl ? 1 : -1,
+            offset = dir * currentIndex * 100 + '%',
             xform = slider.style.perspective !== undefined;
 
         if (options.animation === 'fadeIn' && !noTransition) {
