@@ -34,8 +34,8 @@ from .__init__ import ANYWIN, RES, TYPE_CHECKING, EnvParams, unicode
 from .__version__ import S_VERSION
 from .authsrv import LEELOO_DALLAS, VFS  # typechk
 from .bos import bos
+from .qrkode import QrCode, qr2svg, qrgen
 from .star import StreamTar
-from .stolen.qrcodegen import QrCode, qr2svg
 from .sutil import StreamArc, gfilter
 from .szip import StreamZip
 from .up2k import up2k_chunksize
@@ -4951,7 +4951,7 @@ class HttpCli(object):
             url += "#" + uhash
 
         self.log("qrcode(%r)" % (url,))
-        ret = qr2svg(QrCode.encode_binary(url.encode("utf-8")), 2)
+        ret = qr2svg(qrgen(url.encode("utf-8")), 2)
         self.reply(ret.encode("utf-8"), mime="image/svg+xml")
         return True
 

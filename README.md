@@ -3000,6 +3000,7 @@ force use of system modules  instead of the vendored versions:
 | -------------------- | ------------ |
 | `PRTY_SYS_ALL`       | all of the below |
 | `PRTY_SYS_IFADDR`    | replace [stolen/ifaddr](./copyparty/stolen/ifaddr) with [upstream](https://pypi.org/project/ifaddr/) |
+| `PRTY_SYS_QRCG`      | replace [stolen/qrcodegen.py](./copyparty/stolen/qrcodegen.py) with [upstream](https://github.com/nayuki/QR-Code-generator/blob/master/python/qrcodegen.py) |
 
 to debug, run copyparty with `PRTY_MODSPEC=1` to see where it's getting each module from
 

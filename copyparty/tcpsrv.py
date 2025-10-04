@@ -9,7 +9,7 @@ import time
 
 from .__init__ import ANYWIN, PY2, TYPE_CHECKING, unicode
 from .cert import gencert
-from .stolen.qrcodegen import QrCode, qr2svg
+from .qrkode import QrCode, qr2png, qr2svg, qr2txt, qrgen
 from .util import (
     E_ACCESS,
     E_ADDR_IN_USE,
@@ -629,7 +629,7 @@ class TcpSrv(object):
 
         pad = self.args.qrp
         zoom = self.args.qrz
-        qrc = QrCode.encode_binary(btxt)
+        qrc = qrgen(btxt)
 
         for zs in self.args.qr_file or []:
             self._qr2file(qrc, zs)
@@ -642,7 +642,7 @@ class TcpSrv(object):
             except:
                 zoom = 1
 
-        qr = qrc.render(zoom, pad)
+        qr = qr2txt(qrc, zoom, pad)
         if self.args.no_ansi:
             return "{}\n{}".format(txt, qr)
 
@@ -683,12 +683,12 @@ class TcpSrv(object):
             if zoom not in (1, 2):
                 raise Exception("invalid zoom for qr.txt; must be 1 or 2")
             with open(ap, "wb") as f:
-                f.write(qrc.render(zoom, pad).encode("utf-8"))
+                f.write(qr2txt(qrc, zoom, pad).encode("utf-8"))
         elif ap.endswith(".svg"):
             with open(ap, "wb") as f:
                 f.write(qr2svg(qrc, pad).encode("utf-8"))
         else:
-            qrc.to_png(zoom, pad, self._h2i(bg), self._h2i(fg), ap)
+            qr2png(qrc, zoom, pad, self._h2i(bg), self._h2i(fg), ap)
 
     def _h2i(self, hs):
         try:
