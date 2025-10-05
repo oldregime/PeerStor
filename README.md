@@ -731,6 +731,10 @@ to show `/icons/exe.png` and `/icons/elf.gif` as the thumbnail for all `.exe` an
 * the supported image formats are [jpg, png, gif, webp, ico](https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Image_types)
   * be careful with svg; chrome will crash if you have too many unique svg files showing on the same page (the limit is 250 or so) -- showing the same handful of svg files thousands of times is ok however
 
+note:
+* heif/heifs/heic/heics images usually require the `libvips` [optional dependency](#optional-dependencies) (available in the `iv` docker image, `withFastThumbnails` in nixos)
+  * technical trivia: FFmpeg has basic support for tiled heic as of v7.0; need `-show_stream_groups` for correct resolution
+
 config file example:
 
 ```yaml
