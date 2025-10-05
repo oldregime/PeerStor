@@ -38,7 +38,7 @@ IMPORTANT NOTE:
 """
 
 
-def main(ka: dict[str, Any]) -> dict[str, str]:
+def main(ka: dict[str, Any]) -> dict[str, Any]:
     # "ka" is a dictionary with info from copyparty...
 
     # but because we are running inside copyparty, we don't need such courtesies;
@@ -47,7 +47,8 @@ def main(ka: dict[str, Any]) -> dict[str, str]:
     cf = inspect.currentframe().f_back.f_back.f_back
     t = "hello from hook; I am able to peek into copyparty's memory like so:\n  function name: %s\n  variables:\n    %s\n"
     t2 = "\n    ".join([("%r: %r" % (k, v))[:99] for k, v in cf.f_locals.items()][:9])
-    print(t % (cf.f_code, t2))
+    logger = ka["log"]
+    logger(t % (cf.f_code, t2))
 
     # must return a dictionary with:
     #  "rc": the retcode; 0 is ok

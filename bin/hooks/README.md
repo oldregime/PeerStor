@@ -28,6 +28,9 @@ these are `--xiu` hooks; unlike `xbu` and `xau` (which get executed on every sin
 * [reject-extension.py](reject-extension.py) rejects uploads if they match a list of file extensions
 * [reloc-by-ext.py](reloc-by-ext.py) redirects an upload to another destination based on the file extension
   * good example of the `reloc` [hook effect](https://github.com/9001/copyparty/blob/hovudstraum/docs/devnotes.md#hook-effects)
+* [reject-and-explain.py](reject-and-explain.py) shows a custom error-message when it rejects an upload
+* [reject-ramdisk.py](reject-ramdisk.py) rejects the upload if the destination is a ramdisk
+  * this hook uses the `I` flag which makes it 140x faster, but if the plugin has a bug it may crash copyparty
 
 
 # on message
@@ -35,3 +38,7 @@ these are `--xiu` hooks; unlike `xbu` and `xau` (which get executed on every sin
 * [qbittorrent-magnet.py](qbittorrent-magnet.py) starts downloading a torrent if you post a magnet url
 * [usb-eject.py](usb-eject.py) adds web-UI buttons to safe-remove usb flashdrives shared through copyparty
 * [msg-log.py](msg-log.py) is a guestbook; logs messages to a doc in the same folder
+
+
+# general concept demos
+* [import-me.py](import-me.py) shows how the `I` flag makes the hook 140x faster (but you need to be Very Careful when writing the plugin)

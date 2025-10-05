@@ -15,6 +15,7 @@
     * [general](#general)
 * [event hooks](#event-hooks) - on writing your own [hooks](../README.md#event-hooks)
     * [hook effects](#hook-effects) - hooks can cause intentional side-effects
+    * [hook import](#hook-import) - the `I` flag runs the hook inside copyparty
 * [assumptions](#assumptions)
     * [mdns](#mdns)
 * [sfx repack](#sfx-repack) - reduce the size of an sfx by removing features
@@ -310,7 +311,7 @@ a subset of effect types are available for a subset of hook types,
 to trigger indexing of files `/foo/1.txt` and `/foo/bar/2.txt`, a hook can `print(json.dumps({"idx":{"vp":["/foo/1.txt","/foo/bar/2.txt"]}}))` (and replace "idx" with "del" to delete instead)
 * note: paths starting with `/` are absolute URLs, but you can also do `../3.txt` relative to the destination folder of each uploaded file
 
-### hook import
+## hook import
 
 the `I` flag runs the hook inside copyparty,  which can be very useful and dangerous:
 

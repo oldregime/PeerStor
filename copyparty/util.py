@@ -3629,7 +3629,7 @@ def retchk(
 
 def _parsehook(
     log: Optional["NamedLogger"], cmd: str
-) -> tuple[str, bool, bool, bool, float, dict[str, Any], list[str]]:
+) -> tuple[str, bool, bool, bool, bool, float, dict[str, Any], list[str]]:
     areq = ""
     chk = False
     fork = False
@@ -3906,6 +3906,7 @@ def _runhook(
             "txt": txt,
         }
         if imp:
+            ja["log"] = log
             mod = loadpy(acmd[0], False)
             return mod.main(ja)
         arg = json.dumps(ja)
@@ -4003,7 +4004,7 @@ def runhook(
                 else:
                     ret[k] = v
         except Exception as ex:
-            (log or print)("hook: {}".format(ex))
+            (log or print)("hook: %r, %s" % (ex, ex))
             if ",c," in "," + cmd:
                 return {}
             break
