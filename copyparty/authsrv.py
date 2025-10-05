@@ -2946,6 +2946,11 @@ class AuthSrv(object):
                 shn.shr_src = (s_vfs, s_rem)
                 shn.realpath = s_vfs.canonical(s_rem)
 
+                o_vn, _ = shn._get_share_src("")
+                shn.flags = o_vn.flags.copy()
+                shn.dbpath = o_vn.dbpath
+                shn.histpath = o_vn.histpath
+
                 # root.all_aps doesn't include any shares, so make a copy where the
                 # share appears in all abspaths it can provide (for example for chk_ap)
                 ap = shn.realpath
