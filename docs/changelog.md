@@ -1,4 +1,40 @@
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
+# 2025-0929-2310  `v1.19.15`  merry christmas
+
+## 🧪 new features
+
+* #184 add various human-readable formats for filesizes 234eddec 
+* search for files by their identifier ("wark"/checksum) 4e38e408
+  * and those are displayed in file-listings now too 456addf2
+* PUT-upload with header `Replace` will overwrite any existing files 397ed565
+* xbu/xau hooks can reject uploads with a custom message df0fa9d1
+* #855 mDNS options to change the announced http/https port a3d95067
+* #473 #383 custom favicons per-volume (.ico/png/gif/svg) 470b5048 
+  * doesn't seem to work in internet explorer... ah whatever, go next
+
+## 🩹 bugfixes
+
+* #849 create IdP-db for `--idp-store` when necessary 80ca7851
+* #859 cbz-thumbnailing had an accidental dependency on FFmpeg 983865d9 
+* docs: misleading markdown-expansion example e187df28
+
+## 🔧 other changes
+
+* #851 show a huge warning when copyparty accidentally detects a failing HDD and/or filesystem-corruption during indexing 6912e867 eb5d767b
+* #870 improved discord video embeds (thx @tsuza!) f0ecb083
+* #858 prefer reflinks (not hardlinks) in the `-ss` security option 57650a21
+* improved controlpanel action-buttons layout 9f46e4db
+
+## 🌠 fun facts
+
+* includes (a tiny bit of) code written at [koie ramen](https://a.ocv.me/pub/g/2025/09/PXL_20250925_151716836.jpg)
+* [according to Biltema](https://a.ocv.me/pub/g/2025/09/PXL_20250927_160446367~2.jpg), september is an excellent time to start decorating for xmas
+
+<img src="https://a.ocv.me/pub/stuff/padoru.gif" alt="padoru" /> <img src="https://a.ocv.me/pub/stuff/padoru.gif" alt="padoru" /> <img src="https://a.ocv.me/pub/stuff/padoru.gif" alt="padoru" />
+
+
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
 # 2025-0923-2247  `v1.19.14`  Voile, the Magic Library
 
 ## 🧪 new features
