@@ -1040,6 +1040,8 @@ url parameters:
 
 * `pw=hunter2` for password auth
   * if you enabled `--usernames` then do `pw=username:password` instead
+* `nopw` disables embedding the password (if provided) into item-URLs in the feed
+* `nopw=a` disables mentioning the password anywhere at all in the feed; may break some readers
 * `recursive` to also include subfolders
 * `title=foo` changes the feed title (default: folder name)
 * `fext=mp3,opus` only include mp3 and opus files (default: all)

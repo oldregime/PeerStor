@@ -1425,10 +1425,10 @@ class HttpCli(object):
 
         hits = idx.run_query(self.uname, [self.vn], uq, uv, False, False, nmax)[0]
 
-        pw = self.ouparam.get("pw")
-        if pw:
-            q_pw = "?pw=%s" % (html_escape(pw, True, True),)
-            a_pw = "&pw=%s" % (html_escape(pw, True, True),)
+        if "pw" in self.ouparam and "nopw" not in self.ouparam:
+            zs = self.ouparam["pw"]
+            q_pw = "?pw=%s" % (quotep(zs),)
+            a_pw = "&pw=%s" % (quotep(zs),)
             for i in hits:
                 i["rp"] += a_pw if "?" in i["rp"] else q_pw
         else:
@@ -1442,6 +1442,8 @@ class HttpCli(object):
             self.host,
         )
         feed = baseurl + self.req[1:]
+        if "pw" in self.ouparam and self.ouparam.get("nopw") == "a":
+            feed = re.sub(r"&pw=[^&]*", "", feed)
         if self.is_vproxied:
             baseurl += self.args.RS
         efeed = html_escape(feed, True, True)
