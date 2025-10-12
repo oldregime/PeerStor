@@ -251,7 +251,7 @@ class FtpFs(AbstractedFS):
 
         if w and need_unlink:
             if td >= -1 and td <= self.args.ftp_wt:
-                # within permitted timeframe; unlink and accept
+                # within permitted timeframe; allow overwrite or resume
                 do_it = True
             elif self.args.no_del or self.args.ftp_no_ow:
                 # file too old, or overwrite not allowed; reject
@@ -268,7 +268,9 @@ class FtpFs(AbstractedFS):
             if not do_it:
                 raise FSE("File already exists")
 
-            wunlink(self.log, ap, VF_CAREFUL)
+            # Don't unlink file for append mode
+            elif "a" not in mode:
+                wunlink(self.log, ap, VF_CAREFUL)
 
         ret = open(fsenc(ap), mode, self.args.iobuf)
         if w and "fperms" in vfs.flags:
