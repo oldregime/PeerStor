@@ -1,3 +1,6 @@
+
+// Les lignes se terminant par //m sont des traductions automatiques non vérifiées
+
 Ls.fra = {
 	"tt": "français",
 
@@ -106,6 +109,7 @@ Ls.fra = {
 	"gou": 'dossier parent">haut',
 	"gon": 'dossier suivant">suivant',
 	"logout": "Déconnexion ",
+	"login": "Se connecter", //m
 	"access": " accès",
 	"ot_close": "fermer le sous-menu",
 	"ot_search": "chercher des fichiers par leurs attributs, chemin / nom, tag musicaux, ou nimporte quelle combinaison de ces options$N$N&lt;code&gt;foo bar&lt;/code&gt; = doit contenir à la fois «foo» et «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = doit contenir «foo» mais pas «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = commence par «yana» et est un fichier «opus»$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = contient exactement «try unite»$N$Nle format de date est iso-8601, comme$N&lt;code&gt;2009-12-31&lt;/code&gt; ou &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -200,6 +204,7 @@ Ls.fra = {
 	"u_nav_b": '<a href="#" id="modal-ok">Fichiers</a><a href="#" id="modal-ng">Un dossier</a>',
 
 	"cl_opts": "options",
+	"cl_hfsz": "taille du fichier", //m
 	"cl_themes": "thème",
 	"cl_langs": "langue",
 	"cl_ziptype": "téléchargement de dossier",
@@ -419,6 +424,7 @@ Ls.fra = {
 	"fcp_ok": "copie OK",
 	"fp_busy": "déplacement de {0} éléments…\n\n{1}",
 	"fcp_busy": "copie de {0} éléments…\n\n{1}",
+	"fp_abrt": "abandon en cours...", //m
 	"fp_err": "deplacement échoué:\n",
 	"fcp_err": "copie échouée:\n",
 	"fp_confirm": "déplacer ces {0} éléments ici ?",
@@ -643,6 +649,11 @@ Ls.fra = {
 		"j1": "activer k304 va déconnecter votre client sur chaque HTTP 304, ce qui peut éviter à certains proxies défectueux de rester bloqués (les pages ne se chargent soudainement plus), <em>mais</em> cela ralentira également les choses en général",
 		"k1": "réinitialiser les paramètres du client",
 		"l1": "connectez-vous pour en savoir plus :",
+		"ls3": "se connecter", //m
+		"lu4": "nom d'utilisateur", //m
+		"lp4": "mot de passe", //m
+		"lo3": "déconnecter “{0}” partout", //m
+		"lo2": "cela mettra fin à la session sur tous les navigateurs", //m
 		"m1": "heureux de vous revoir,",
 		"n1": "404 introuvable &nbsp;┐( ´ -`)┌",
 		"o1": 'ou peut-être que vous n\'y avez pas accès -- essayer un mot de passe ou <a href="' + SR + '/?h">aller à la page d\'accueil</a>',

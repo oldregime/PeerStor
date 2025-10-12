@@ -1,3 +1,6 @@
+
+// Zeilen, die mit //m enden, sind nicht verifizierte maschinelle Übersetzungen
+
 Ls.deu = {
 	"tt": "Deutsch",
 
@@ -106,6 +109,7 @@ Ls.deu = {
 	"gou": 'zum übergeordneter Ordner springen">hoch',
 	"gon": 'zum nächsten Ordner springen">nächst.',
 	"logout": "Abmelden ",
+	"login": "Anmelden", //m
 	"access": " Zugriff",
 	"ot_close": "Submenu schliessen",
 	"ot_search": "Dateien nach Attributen, Pfad/Name, Musiktags oder beliebiger Kombination suchen$N$N&lt;code&gt;foo bar&lt;/code&gt; = muss «foo» und «bar» enthalten,$N&lt;code&gt;foo -bar&lt;/code&gt; = muss «foo» aber nicht «bar» enthalten,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = beginnt mit «yana» und ist «opus»-Datei$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = genau «try unite» enthalten$N$NDatumsformat ist iso-8601, z.B.$N&lt;code&gt;2009-12-31&lt;/code&gt; oder &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -200,6 +204,7 @@ Ls.deu = {
 	"u_nav_b": '<a href="#" id="modal-ok">Dateien</a><a href="#" id="modal-ng">1 Ordner</a>',
 
 	"cl_opts": "Schalter",
+	"cl_hfsz": "Dateigröße", //m
 	"cl_themes": "Themes",
 	"cl_langs": "Sprache",
 	"cl_ziptype": "Ordner Download",
@@ -223,6 +228,7 @@ Ls.deu = {
 	"ct_qdel": 'Nur einmal fragen, wenn mehrere Dateien gelöscht werden">qdel',
 	"ct_dir1st": 'Ordner vor Dateien sortieren">📁 zuerst',
 	"ct_nsort": 'Natürliche Sortierung (für Dateinamen mit führenden Ziffern)">nsort',
+	"ct_utc": 'Verwenden Sie UTC für alle Zeitangaben">UTC', //m
 	"ct_readme": 'README.md in Dateiliste anzeigen">📜 readme',
 	"ct_idxh": 'index.html anstelle von Dateiliste anzeigen">htm',
 	"ct_sbars": 'Scrollbars zeigen">⟊',
@@ -298,6 +304,8 @@ Ls.deu = {
 	"mt_c2owa": "opus-weba, für iOS 17.5 und neuer\">owa",
 	"mt_c2caf": "opus-caf, für iOS 11 bis 17\">caf",
 	"mt_c2mp3": "benutze dieses Format für ältere Geräte\">mp3",
+	"mt_c2flac": "beste Klangqualität, aber große Downloads\">flac", //m
+	"mt_c2wav": "unkomprimierte Wiedergabe (noch größer)\">wav", //m
 	"mt_c2ok": "Gute Wahl, Chef!",
 	"mt_c2nd": "Das ist nicht das empfohlene Ausgabeformat für dein Gerät, aber passt schon",
 	"mt_c2ng": "Dein Gerät scheint dieses Ausgabeformat nicht zu unterstützen, aber lass trotzdem mal probieren",
@@ -416,6 +424,7 @@ Ls.deu = {
 	"fcp_ok": "Kopieren OK",
 	"fp_busy": "Verschiebe {0} Elemente...\n\n{1}",
 	"fcp_busy": "Kopiere {0} Elemente...\n\n{1}",
+	"fp_abrt": "Abbrechen...", //m
 	"fp_err": "Verschieben fehlgeschlagen:\n",
 	"fcp_err": "Kopieren fehlgeschlagen:\n",
 	"fp_confirm": "Diese {0} Elemente hierher verschieben?",
@@ -507,6 +516,7 @@ Ls.deu = {
 	"fu_xe2": "404: Datei nicht gefunden??",
 
 	"fz_tar": "Unkomprimierte GNU TAR-Datei (Linux / Mac)",
+	"fz_pax": "Unkomprimierte pax-format TAR-Datei (etwas langsamer)", //m
 	"fz_targz": "GNU-TAR mit gzip Level 3 Kompression$N$Nüblicherweise recht langsam,$Nbenutze stattdessen ein unkomprimiertes TAR",
 	"fz_tarxz": "GNU-TAR mit xz level 1 Kompression$N$Nüblicherweise recht langsam,$Nbenutze stattdessen ein unkomprimiertes TAR",
 	"fz_zip8": "ZIP mit UTF8-Dateinamen (könnte kaputt gehen auf Windows 7 oder älter)",
@@ -639,6 +649,11 @@ Ls.deu = {
 		"j1": "k304 trennt die Clientverbindung bei jedem HTTP 304, was Bugs mit problematischen Proxies vorbeugen kann (z.B. nicht ladenden Seiten), macht Dinge aber generell langsamer",
 		"k1": "Client-Einstellungen zurücksetzen",
 		"l1": "Melde dich an für mehr:",
+		"ls3": "Anmelden", //m
+		"lu4": "Benutzername", //m
+		"lp4": "Passwort", //m
+		"lo3": "“{0}” überall abmelden", //m
+		"lo2": "Dies beendet die Sitzung in allen Browsern", //m
 		"m1": "Willkommen zurück,",
 		"n1": "404 Nicht gefunden &nbsp;┐( ´ -`)┌",
 		"o1": 'or maybe you don\'t have access -- try a password or <a href="' + SR + '/?h">go home</a>',

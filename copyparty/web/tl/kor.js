@@ -1,3 +1,6 @@
+
+// //m으로 끝나는 줄은 검증되지 않은 기계 번역입니다
+
 Ls.kor = {
 	"tt": "한국어",
 
@@ -106,6 +109,7 @@ Ls.kor = {
 	"gou": '상위 폴더">위로',
 	"gon": '다음 폴더">다음',
 	"logout": "로그아웃 ",
+	"login": "로그인", //m
 	"access": " 액세스",
 	"ot_close": "하위 메뉴 닫기",
 	"ot_search": "속성, 경로/이름, 음악 태그 또는 이들의 조합으로 파일을 검색합니다.$N$N&lt;code&gt;foo bar&lt;/code&gt; = «foo»와 «bar»를 모두 포함해야 함,$N&lt;code&gt;foo -bar&lt;/code&gt; = «foo»는 포함하지만 «bar»는 포함하지 않아야 함,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = «yana»로 시작하고 «opus» 파일이어야 함$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = 정확히 «try unite»를 포함해야 함$N$N날짜 형식은 ISO-8601입니다. 예:$N&lt;code&gt;2009-12-31&lt;/code&gt; 또는 &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -200,6 +204,7 @@ Ls.kor = {
 	"u_nav_b": '<a href="#" id="modal-ok">파일</a><a href="#" id="modal-ng">폴더 하나</a>',
 
 	"cl_opts": "스위치",
+	"cl_hfsz": "파일 크기", //m
 	"cl_themes": "테마",
 	"cl_langs": "언어",
 	"cl_ziptype": "폴더 다운로드",
@@ -644,6 +649,11 @@ Ls.kor = {
 		"j1": "k304를 활성화하면 모든 HTTP 304 응답 시 클라이언트 연결이 끊어집니다. 이는 일부 프록시가 멈추는 현상(갑자기 페이지가 로드되지 않음)을 방지할 수 있지만, <em>대신 전반적인 속도는 느려집니다.</em>",
 		"k1": "클라이언트 설정 초기화",
 		"l1": "로그인하기:",
+		"ls3": "로그인", //m
+		"lu4": "사용자 이름", //m
+		"lp4": "비밀번호", //m
+		"lo3": "{0}을(를) 모든 곳에서 로그아웃", //m
+		"lo2": "이 작업은 모든 브라우저에서 세션을 종료합니다", //m
 		"m1": "또 오셨네요,",
 		"n1": "404 찾을 수 없음 &nbsp;┐( ´ -`)┌",
 		"o1": "또는 접근 권한이 없을 수 있습니다. 비밀번호를 입력하거나 <a href=\"' + SR + '/?h\">홈으로 이동</a>하세요",

@@ -1,3 +1,6 @@
+
+// Linioj finiĝantaj per //m estas nekontrolitaj maŝinaj tradukoj
+
 Ls.epo = {
 	"tt": "Esperanto",
 
@@ -201,6 +204,7 @@ Ls.epo = {
 	"u_nav_b": '<a href="#" id="modal-ok">Dosierojn</a><a href="#" id="modal-ng">Unu dosierujo</a>',
 
 	"cl_opts": "ŝaltiloj",
+	"cl_hfsz": "Dosiergrando", //m
 	"cl_themes": "etoso",
 	"cl_langs": "lingvo",
 	"cl_ziptype": "elŝutado de dosieroj",

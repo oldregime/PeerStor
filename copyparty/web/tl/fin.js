@@ -1,3 +1,6 @@
+
+// Rivut, jotka päättyvät //m, ovat varmentamattomia konekäännöksiä
+
 Ls.fin = {
 	"tt": "Suomi",
 
@@ -106,6 +109,7 @@ Ls.fin = {
 	"gou": 'ylempi hakemisto">ylös',
 	"gon": 'seuraava hakemisto">seur',
 	"logout": "Kirjaudu ulos ",
+	"login": "Kirjaudu sisään", //m
 	"access": " -oikeudet",
 	"ot_close": "sulje alavalikko",
 	"ot_search": "etsi tiedostoja ominaisuuksien, tiedostopolun tai -nimen, musiikkitägien tai näiden yhdistelmän perusteella$N$N&lt;code&gt;foo bar&lt;/code&gt; = täytyy sisältää sekä «foo» että «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = täytyy sisältää «foo» mutta ei «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = alkaa «yana» ja on «opus»-tiedosto$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = sisältää täsmälleen «try unite»$N$Npäivämäärän muoto on iso-8601, kuten$N&lt;code&gt;2009-12-31&lt;/code&gt; tai &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -200,6 +204,7 @@ Ls.fin = {
 	"u_nav_b": '<a href="#" id="modal-ok">Tiedostoja</a><a href="#" id="modal-ng">Yksi hakemisto</a>',
 
 	"cl_opts": "asetukset",
+	"cl_hfsz": "tiedostokoko", //m
 	"cl_themes": "teema",
 	"cl_langs": "kieli",
 	"cl_ziptype": "hakemiston pakkaustyyppi",
@@ -299,6 +304,8 @@ Ls.fin = {
 	"mt_c2owa": "opus-weba, iOS 17.5:lle ja uudemmille\">owa",
 	"mt_c2caf": "opus-caf, iOS 11:lle - 17:lle\">caf",
 	"mt_c2mp3": "käytä tätä erittäin vanhoissa laitteissa\">mp3",
+	"mt_c2flac": "paras äänenlaatu, mutta isot lataukset\">flac", //m
+	"mt_c2wav": "pakkaamaton toisto (vielä suurempi tiedosto)\">wav", //m
 	"mt_c2ok": "hienoa, hyvä valinta",
 	"mt_c2nd": "tuo ei ole suositeltu formaatti laitteellesi, mutta tee miten lystäät",
 	"mt_c2ng": "laitteesi ei näytä tukevan tätä formaattia, mutta yritetään nyt silti",
@@ -417,6 +424,7 @@ Ls.fin = {
 	"fcp_ok": "kopiointi OK",
 	"fp_busy": "siirretään {0} kohdetta...\n\n{1}",
 	"fcp_busy": "kopioidaan {0} kohdetta...\n\n{1}",
+	"fp_abrt": "keskeytetään...", //m
 	"fp_err": "siirto epäonnistui:\n",
 	"fcp_err": "kopiointi epäonnistui:\n",
 	"fp_confirm": "siirrä nämä {0} kohdetta tänne?",
@@ -641,6 +649,11 @@ Ls.fin = {
 		"j1": "k304 katkaisee yhteytesi jokaisella HTTP 304:llä, mikä voi estää joitain bugisia välityspalvelimia jumittumasta/lopettamasta sivujen lataamista, <em>mutta</em> se myös vähentää suorituskykyä",
 		"k1": "nollaa asetukset",
 		"l1": "kirjaudu sisään:",
+		"ls3": "kirjaudu sisään", //m
+		"lu4": "käyttäjätunnus", //m
+		"lp4": "salasana", //m
+		"lo3": "kirjaa “{0}” ulos kaikkialta", //m
+		"lo2": "tämä lopettaa istunnon kaikissa selaimissa", //m
 		"m1": "tervetuloa takaisin,",
 		"n1": "404: ei löytynyt mitään &nbsp;┐( ´ -`)┌",
 		"o1": 'tai ehkä sinulla ei vain ole käyttöoikeuksia? kokeile salasanaa tai <a href="' + SR + '/?h">mene kotiin</a>',

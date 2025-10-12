@@ -1,3 +1,6 @@
+
+// "//m" ile biten satırlar doğrulanmamış makine çevirileridir
+
 Ls.tur = {
 	"tt": "Türkçe",
 
@@ -201,6 +204,7 @@ Ls.tur = {
 	"u_nav_b": '<a href="#" id="modal-ok">Dosyalar</a><a href="#" id="modal-ng">Tek klasör</a>',
 	
 	"cl_opts": "aç / kapat",
+	"cl_hfsz": "dosya boyutu", //m
 	"cl_themes": "tema",
 	"cl_langs": "dil",
 	"cl_ziptype": "klasör indirme",

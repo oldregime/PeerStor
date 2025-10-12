@@ -1,3 +1,6 @@
+
+// Rader som slutar med //m är overifierade maskinöversättningar
+
 Ls.swe = {
 	"tt": "Svenska",
 
@@ -106,6 +109,7 @@ Ls.swe = {
 	"gou": 'överordnad mapp">upp',
 	"gon": 'nästa mapp">nästa',
 	"logout": "Logga ut ",
+	"login": "Logga in", //m
 	"access": "-rättighet",
 	"ot_close": "stäng undermeny",
 	"ot_search": "sök efter filer via attribut, sökväg / namn, musiktaggar, eller någon kombination av dessa$N$N&lt;code&gt;foo bar&lt;/code&gt; = måste innehålla både «foo» och «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = måste innehålla «foo» men inte «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = måste börja med «yana» och vara en «opus»-fil$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = måste innehålla exakt «try unite»$N$Ndatumformatet är iso-8601, t.ex.$N&lt;code&gt;2009-12-31&lt;/code&gt; eller &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -200,6 +204,7 @@ Ls.swe = {
 	"u_nav_b": '<a href="#" id="modal-ok">Filer</a><a href="#" id="modal-ng">En mapp</a>',
 
 	"cl_opts": "växlar",
+	"cl_hfsz": "filstorlek", //m
 	"cl_themes": "tema",
 	"cl_langs": "språk",
 	"cl_ziptype": "mappnedladdning",
@@ -644,6 +649,11 @@ Ls.swe = {
 		"j1": "med k304 aktiverad kommer klienten att koppla bort sig vid varje HTTP 304-fel, vilket kan hindra vissa buggiga proxyservrar från att fastna (sidor slutar ladda), <em>men</em> saker kommer också att bli långsammare i allmänhet",
 		"k1": "återställ klientinställningar",
 		"l1": "logga in för att se mer:",
+		"ls3": "logga in", //m
+		"lu4": "användarnamn", //m
+		"lp4": "lösenord", //m
+		"lo3": "logga ut “{0}” överallt", //m
+		"lo2": "avsluta sessionen i alla webbläsare", //m
 		"m1": "välkommen tillbaka,",
 		"n1": "404 hittades inte &nbsp;┐( ´ -`)┌",
 		"o1": 'eller så har du kanske inte tillgång -- prova ett lösenord eller <a href="' + SR + '/?h">åk hem</a>',

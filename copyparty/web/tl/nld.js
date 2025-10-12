@@ -1,3 +1,6 @@
+
+// Regels die eindigen op //m zijn niet-geverifieerde machinale vertalingen
+
 Ls.nld = {
 	"tt": "Nederlands",
 
@@ -106,6 +109,7 @@ Ls.nld = {
 	"gou": 'Bovenligende map">Omhoog',
 	"gon": 'Volgende map">Volgende',
 	"logout": "Uitloggen ",
+	"login": "Inloggen", //m
 	"access": " Toegang",
 	"ot_close": "Sluit onder-menu",
 	"ot_search": "Zoek voor bestanden bij attributes, pad / naam, muziek tags, of elk andere combinatie tussen$N$N&lt;code&gt;foo bar&lt;/code&gt; = moet beide «foo» en «bar» bevatten,$N&lt;code&gt;foo -bar&lt;/code&gt; = moet «foo» bevatten maar geen «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = start met «yana» en moet een «opus» bestand zijn$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = moet precies «try unite» bevatten$N$Nde datum formaat is iso-8601, zoals$N&lt;code&gt;2009-12-31&lt;/code&gt; of &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -200,6 +204,7 @@ Ls.nld = {
 	"u_nav_b": '<a href="#" id="modal-ok">Bestanden</a><a href="#" id="modal-ng">Een map</a>',
 
 	"cl_opts": "Switches",
+	"cl_hfsz": "Bestandsgrootte", //m
 	"cl_themes": "Thema",
 	"cl_langs": "Taal",
 	"cl_ziptype": "Download map als",
@@ -299,6 +304,8 @@ Ls.nld = {
 	"mt_c2owa": "opus-weba, voor iOS 17.5 en nieuwer\">owa",
 	"mt_c2caf": "opus-caf, voor iOS 11 tot en met iOS 17\">caf",
 	"mt_c2mp3": "Gebruik dit hele oude toestellen\">mp3",
+	"mt_c2flac": "Beste geluidskwaliteit, maar grote downloads\">flac", //m
+	"mt_c2wav": "Ongemprimeerde weergave (nog groter)\">wav", //m
 	"mt_c2ok": "Mooi, goede keuze",
 	"mt_c2nd": "Dat is niet het aanbevolen uitvoerformaat voor uw apparaat, maar dat is prima",
 	"mt_c2ng": "Uw apparaat lijkt dit uitvoerformaat niet te ondersteunen, maar we gaan het toch proberen",
@@ -417,6 +424,7 @@ Ls.nld = {
 	"fcp_ok": "Kopiëren OK",
 	"fp_busy": "{0} items verplaatsen...\n\n{1}",
 	"fcp_busy": "{0} items kopiëren...\n\n{1}",
+	"fp_abrt": "afbreken...", //m
 	"fp_err": "Verplaatsen mislukt:\n",
 	"fcp_err": "Kopieëren mislukt:\n",
 	"fp_confirm": "Verplaats deze {0} items hierheen?",
@@ -641,6 +649,11 @@ Ls.nld = {
 		"j1": "k304 verbreekt de verbinding voor elke HTTP 304. Dit helpt tegen bepaalde proxy servers die kunnen vastlopen/plotseling stoppen met het laden van pagina's, maar het vermindert ook de prestaties aanzienlijk",
 		"k1": "Instellingen resetten",
 		"l1": "Inloggen:",
+		"ls3": "inloggen", //m
+		"lu4": "gebruikersnaam", //m
+		"lp4": "wachtwoord", //m
+		"lo3": "“{0}” overal afmelden", //m
+		"lo2": "dit zal de sessie in alle browsers beëindigen", //m
 		"m1": "Welkom terug,",
 		"n1": "404: bestand bestaat niet &nbsp;┐( ´ -`)┌",
 		"o1": 'of misschien heb je geen toegang? probeer een wachtwoord of <a href="' + SR + '/?h">ga naar startscherm</a>',

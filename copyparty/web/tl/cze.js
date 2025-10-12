@@ -1,3 +1,6 @@
+
+// Řádky končící na //m jsou neověřené strojové překlady
+
 Ls.cze = {
 	"tt": "Čeština",
 
@@ -110,6 +113,7 @@ Ls.cze = {
 	"gou": 'nadřazená složka">nahoru',
 	"gon": 'následující složka">následující',
 	"logout": "Odhlásit ",
+	"login": "Přihlásit se", //m
 	"access": " přístup",
 	"ot_close": "zavřít podnabídku",
 	"ot_search": "hledat soubory podle atributů, cesty / názvu, hudebních tagů nebo jejich kombinace$N$N&lt;code&gt;foo bar&lt;/code&gt; = musí obsahovat jak «foo» tak «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = musí obsahovat «foo» ale ne «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = začíná na «yana» a je to «opus» soubor$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = obsahuje přesně «try unite»$N$Nformát data je iso-8601, jako$N&lt;code&gt;2009-12-31&lt;/code&gt; nebo &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -204,6 +208,7 @@ Ls.cze = {
 	"u_nav_b": '<a href="#" id="modal-ok">Soubory</a><a href="#" id="modal-ng">Jedna složka</a>',
 
 	"cl_opts": "přepínače",
+	"cl_hfsz": "velikost souboru", //m
 	"cl_themes": "téma",
 	"cl_langs": "jazyk",
 	"cl_ziptype": "stahování složky",
@@ -423,6 +428,7 @@ Ls.cze = {
 	"fcp_ok": "kopírování OK",
 	"fp_busy": "přesouvám {0} položek...\n\n{1}",
 	"fcp_busy": "kopíruji {0} položek...\n\n{1}",
+	"fp_abrt": "přerušuji...", //m
 	"fp_err": "přesun selhal:\n",
 	"fcp_err": "kopírování selhalo:\n",
 	"fp_confirm": "přesunout těchto {0} položek sem?",
@@ -647,6 +653,11 @@ Ls.cze = {
 		"j1": "povolení k304 odpojí vašeho klienta při každém HTTP 304, což může zabránit některým chybovým proxy serverům, aby se zasekly (náhle nenačítaly stránky), <em>ale</em> také to obecně zpomalí věci",
 		"k1": "resetovat nastavení klienta",
 		"l1": "přihlaste se pro více:",
+		"ls3": "přihlásit se", //m
+		"lu4": "uživatelské jméno", //m
+		"lp4": "heslo", //m
+		"lo3": "odhlásit “{0}” všude", //m
+		"lo2": "tímto ukončíte relaci ve všech prohlížečích", //m
 		"m1": "vítej zpět,",
 		"n1": "404 nenalezeno &nbsp;┐( ´ -`)┌",
 		"o1": 'nebo možná nemáš přístup -- zkus heslo nebo <a href="' + SR + '/?h">jdi domů</a>',

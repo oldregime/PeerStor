@@ -1,3 +1,6 @@
+
+// Le righe che terminano con //m sono traduzioni automatiche non verificate
+
 Ls.ita = {
 	"tt": "Italiano",
 
@@ -106,6 +109,7 @@ Ls.ita = {
 	"gou": 'cartella genitore">su',
 	"gon": 'prossima cartella">succ',
 	"logout": "Logout ",
+	"login": "Accedi", //m
 	"access": " accesso",
 	"ot_close": "chiudi sottomenu",
 	"ot_search": "cerca file per attributi, percorso / nome, tag musicali, o qualsiasi combinazione di questi$N$N&lt;code&gt;foo bar&lt;/code&gt; = deve contenere sia «foo» che «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = deve contenere «foo» ma non «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = inizia con «yana» ed è un file «opus»$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = contiene esattamente «try unite»$N$Nil formato data è iso-8601, come$N&lt;code&gt;2009-12-31&lt;/code&gt; o &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -200,6 +204,7 @@ Ls.ita = {
 	"u_nav_b": '<a href="#" id="modal-ok">File</a><a href="#" id="modal-ng">Una cartella</a>',
 
 	"cl_opts": "opzioni",
+	"cl_hfsz": "dimensione file", //m
 	"cl_themes": "tema",
 	"cl_langs": "lingua",
 	"cl_ziptype": "download cartella",
@@ -299,6 +304,8 @@ Ls.ita = {
 	"mt_c2owa": "opus-weba, per iOS 17.5 e più recenti\">owa",
 	"mt_c2caf": "opus-caf, per iOS 11 fino a 17\">caf",
 	"mt_c2mp3": "usa questo su dispositivi molto vecchi\">mp3",
+	"mt_c2flac": "qualità audio migliore, ma download pesanti\">flac", //m
+	"mt_c2wav": "riproduzione non compressa (ancora più grande)\">wav", //m
 	"mt_c2ok": "bene, buona scelta",
 	"mt_c2nd": "quello non è il formato di output raccomandato per il tuo dispositivo, ma va bene",
 	"mt_c2ng": "il tuo dispositivo non sembra supportare questo formato di output, ma proviamo comunque",
@@ -417,6 +424,7 @@ Ls.ita = {
 	"fcp_ok": "copia OK",
 	"fp_busy": "spostando {0} elementi...\n\n{1}",
 	"fcp_busy": "copiando {0} elementi...\n\n{1}",
+	"fp_abrt": "annullamento in corso...", //m
 	"fp_err": "spostamento fallito:\n",
 	"fcp_err": "copia fallita:\n",
 	"fp_confirm": "spostare questi {0} elementi qui?",
@@ -641,6 +649,11 @@ Ls.ita = {
 		"j1": "k304 interrompe la connessione per ogni HTTP 304. Questo aiuta contro alcuni proxy difettosi che possono bloccarsi o smettere improvvisamente di caricare pagine, ma riduce notevolmente le prestazioni",
 		"k1": "resetta impostazioni",
 		"l1": "accedi:",
+		"ls3": "accedi", //m
+		"lu4": "nome utente", //m
+		"lp4": "password", //m
+		"lo3": "disconnetti “{0}” ovunque", //m
+		"lo2": "questo terminerà la sessione su tutti i browser", //m
 		"m1": "bentornato,",
 		"n1": "404: file non trovato &nbsp;┐( ´ -`)┌",
 		"o1": "oppure forse non hai accesso? prova una password o <a href=\"SR/?h\">torna alla home</a>",

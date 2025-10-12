@@ -1,3 +1,6 @@
+
+// Las líneas que terminan con //m son traducciones automáticas no verificadas
+
 Ls.spa = {
 	"tt": "Español",
 
@@ -106,6 +109,7 @@ Ls.spa = {
 	"gou": 'carpeta de nivel superior">subir',
 	"gon": 'siguiente carpeta">siguiente',
 	"logout": "Cerrar sesión ",
+	"login": "Iniciar sesión", //m
 	"access": " acceso",
 	"ot_close": "cerrar submenú",
 	"ot_search": "buscar archivos por atributos, ruta / nombre, etiquetas de música, o cualquier combinación$N$N&lt;code&gt;foo bar&lt;/code&gt; = debe contener «foo» y «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = debe contener «foo» pero no «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = empieza con «yana» y es un archivo «opus»$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = contiene exactamente «try unite»$N$Nel formato de fecha es iso-8601, como$N&lt;code&gt;2009-12-31&lt;/code&gt; o &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -199,6 +203,7 @@ Ls.spa = {
 	"u_nav_b": "<a href=\"#\" id=\"modal-ok\">Archivos</a><a href=\"#\" id=\"modal-ng\">Una carpeta</a>",
 
 	"cl_opts": "opciones",
+	"cl_hfsz": "tamaño del archivo", //m
 	"cl_themes": "tema",
 	"cl_langs": "idioma",
 	"cl_ziptype": "descarga de carpeta",
@@ -222,6 +227,7 @@ Ls.spa = {
 	"ct_qdel": 'al eliminar archivos, pedir confirmación solo una vez">elim. rápida',
 	"ct_dir1st": 'ordenar carpetas antes que archivos">📁 primero',
 	"ct_nsort": 'orden natural (para nombres de archivo con dígitos iniciales)">ord. natural',
+	"ct_utc": 'use UTC para todas las horas">UTC', //m
 	"ct_readme": 'mostrar README.md en los listados de carpetas">📜 léeme',
 	"ct_idxh": 'mostrar index.html en lugar del listado de carpetas">htm',
 	"ct_sbars": 'mostrar barra lateral">⟊',
@@ -297,6 +303,8 @@ Ls.spa = {
 	"mt_c2owa": 'opus-weba, para iOS 17.5 y superior">owa',
 	"mt_c2caf": 'opus-caf, para iOS 11 a 17">caf',
 	"mt_c2mp3": 'usar en dispositivos muy antiguos">mp3',
+	"mt_c2flac": "la mejor calidad de sonido,$Npero descargas muy grandes\">flac", //m
+	"mt_c2wav": "reproducción sin comprimir (aún más grande)\">wav", //m
 	"mt_c2ok": "bien, buena elección",
 	"mt_c2nd": "ese no es el formato de salida recomendado para tu dispositivo, pero está bien",
 	"mt_c2ng": "tu dispositivo no parece soportar este formato de salida, pero intentémoslo de todas formas",
@@ -415,6 +423,7 @@ Ls.spa = {
 	"fcp_ok": "copia correcta",
 	"fp_busy": "moviendo {0} elementos...\n\n{1}",
 	"fcp_busy": "copiando {0} elementos...\n\n{1}",
+	"fp_abrt": "cancelando...", //m
 	"fp_err": "fallo al mover:\n",
 	"fcp_err": "fallo al copiar:\n",
 	"fp_confirm": "¿mover estos {0} elementos aquí?",
@@ -639,6 +648,11 @@ Ls.spa = {
 		"j1": "activar k304 desconectará tu cliente en cada HTTP 304, lo que puede evitar que algunos proxies con errores se atasquen (dejando de cargar páginas de repente), <em>pero</em> también ralentizará las cosas en general",
 		"k1": "restablecer config. de cliente",
 		"l1": "inicia sesión para más:",
+		"ls3": "iniciar sesión", //m
+		"lu4": "nombre de usuario", //m
+		"lp4": "contraseña", //m
+		"lo3": "cerrar sesión de “{0}” en todas partes", //m
+		"lo2": "esto finalizará la sesión en todos los navegadores", //m
 		"m1": "bienvenido de nuevo,",
 		"n1": "404 no encontrado &nbsp;┐( ´ -`)┌",
 		"o1": '¿o quizás no tienes acceso? -- prueba con una contraseña o <a href=\"' + SR + '/?h\">vuelve al inicio</a>',

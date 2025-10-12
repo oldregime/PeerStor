@@ -1,3 +1,6 @@
+
+// Linhas que terminam com //m são traduções automáticas não verificadas
+
 Ls.por = {
 	"tt": "Português",
 
@@ -201,6 +204,7 @@ Ls.por = {
 	"u_nav_b": '<a href="#" id="modal-ok">Arquivos</a><a href="#" id="modal-ng">Uma pasta</a>',
 
 	"cl_opts": "interruptores",
+	"cl_hfsz": "tamanho do arquivo", //m
 	"cl_themes": "tema",
 	"cl_langs": "idioma",
 	"cl_ziptype": "download de pasta",

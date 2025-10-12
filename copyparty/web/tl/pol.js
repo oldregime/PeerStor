@@ -1,3 +1,6 @@
+
+// Wiersze kończące się na //m to niezweryfikowane tłumaczenia maszynowe
+
 Ls.pol = {
 	"tt": "Polski",
 
@@ -109,6 +112,7 @@ Ls.pol = {
 	"gou": 'nadrzędny folder">w górę',
 	"gon": 'następny folder">następny',
 	"logout": "Wyloguj ",
+	"login": "Zaloguj się", //m
 	"access": " dostęp",
 	"ot_close": "zamknij pod-menu",
 	"ot_search": "szukaj plików po atrybutach, ścieżce / nazwie, tagach muzyki, bądź dowolnej ich kombinacji$N$N&lt;code&gt;foo bar&lt;/code&gt; = musi zawierać «foo» oraz «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = musi zawierać «foo», lecz nie «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = musi zaczynać się od «yana» i być plikiem «opus»$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = zawierać dokładnie «try unite»$N$Nformatem daty jest iso-8601, czyli$N&lt;code&gt;2009-12-31&lt;/code&gt; lub &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
@@ -203,6 +207,7 @@ Ls.pol = {
 	"u_nav_b": '<a href="#" id="modal-ok">Pliki</a><a href="#" id="modal-ng">Jeden folder</a>',
 
 	"cl_opts": "przełączniki",
+	"cl_hfsz": "rozmiar pliku", //m
 	"cl_themes": "motyw",
 	"cl_langs": "język",
 	"cl_ziptype": "pobieranie folderów",
@@ -302,6 +307,8 @@ Ls.pol = {
 	"mt_c2owa": "opus-weba, dla iOS 17.5 i nowszych\">owa",
 	"mt_c2caf": "opus-caf, dla iOS 11 do 17\">caf",
 	"mt_c2mp3": "używaj na bardzo starych urządzeniach\">mp3",
+	"mt_c2flac": "najlepsza jakość dźwięku, ale ogromne pliki do pobrania\">flac", //m
+	"mt_c2wav": "nieskompresowane odtwarzanie (jeszcze większe)\">wav", //m
 	"mt_c2ok": "cudownie, dobry wybór",
 	"mt_c2nd": "ten format nie jest rekomendowany dla twojego urządzenia, ale nadal jest w porządku",
 	"mt_c2ng": "wygląda na to, że to urządzenie nie wspiera tego formatu, lecz spróbujmy i tak",
@@ -420,6 +427,7 @@ Ls.pol = {
 	"fcp_ok": "przekopiowano",
 	"fp_busy": "przenoszenie {0} elementów...\n\n{1}",
 	"fcp_busy": "kopiowanie {0} elementów...\n\n{1}",
+	"fp_abrt": "przerywanie...", //m
 	"fp_err": "nie udało się przenieść:\n",
 	"fcp_err": "nie udało się skopiować:\n",
 	"fp_confirm": "przenieść tutaj {0} elementy(ów)?",
@@ -644,6 +652,11 @@ Ls.pol = {
 		"j1": "włączenie k304 będzie odłączało klienta przy każdorazowym otrzymaniu kodu HTTP 304, co może zapobiec wieszaniu się wadliwych proxy, <em>ale</em> spowolni ogólne działanie",
 		"k1": "zresetuj ustawienia klienta",
 		"l1": "zaloguj się po więcej:",
+		"ls3": "zaloguj się", //m
+		"lu4": "nazwa użytkownika", //m
+		"lp4": "hasło", //m
+		"lo3": "wyloguj “{0}” wszędzie", //m
+		"lo2": "spowoduje to zakończenie sesji we wszystkich przeglądarkach", //m
 		"m1": "Witaj,",
 		"n1": "404 nie znaleziono &nbsp;┐( ´ -`)┌",
 		"o1": 'lub możesz nie mieć dostępu -- spróbuj wprowadzić hasło lub <a href="' + SR + '/?h">przejdź do strony głównej</a>',
