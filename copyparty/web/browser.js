@@ -3,10 +3,8 @@
 var XHR = XMLHttpRequest,
 	img_re = /\.(a?png|avif|bmp|gif|heif|jpe?g|jfif|svg|webp|webm|mkv|mp4|m4v|mov)(\?|$)/i;
 
-// please add translations in alphabetic order, but keep "eng" and "nor" first
-// (lines ending with //m are machine translations)
-var Ls = {
-	"eng": {
+if (1)
+	Ls.eng = {
 		"tt": "English",
 
 		"cols": {
@@ -26,7 +24,7 @@ var Ls = {
 			"resw": "horizontal resolution",
 			"resh": "vertical resolution",
 			"chs": "audio channels",
-			"hz": "sample rate"
+			"hz": "sample rate",
 		},
 
 		"hks": [
@@ -639,18 +637,43 @@ var Ls = {
 		"lang_set": "refresh to make the change take effect?",
 };
 
-var LANGS = ["eng", "nor", "chi", "cze", "deu", "epo", "fin", "fra", "grc", "ita", "kor", "nld", "nno", "pol", "por", "rus", "spa", "swe", "tur", "ukr"];
+var LANGN = [
+	["eng", "English"],
+	["nor", "Norsk"],
+	["chi", "中文"],
+	["cze", "Čeština"],
+	["deu", "Deutsch"],
+	["epo", "Esperanto"],
+	["fin", "Suomi"],
+	["fra", "français"],
+	["grc", "Ελληνικά"],
+	["ita", "Italiano"],
+	["kor", "한국어"],
+	["nld", "Nederlands"],
+	["nno", "Nynorsk"],
+	["pol", "Polski"],
+	["por", "Português"],
+	["rus", "Русский"],
+	["spa", "Español"],
+	["swe", "Svenska"],
+	["tur", "Türkçe"],
+	["ukr", "Українська"],
+];
 
 if (window.langmod)
 	langmod();
 
-for (var a = LANGS.length; a > 0;)
-	if (!Ls[LANGS[--a]])
-		LANGS.splice(a, 1);
+var L = Ls[lang] || Ls.eng, LANGS = [];
+for (var a = 0; a < LANGN.length; a++)
+	LANGS.push(LANGN[a][0]);
 
-var L = Ls[sread("cpp_lang", LANGS) || lang] ||
-			Ls.eng || Ls.nor || Ls.chi;
 
+function langtest() {
+	var n = LANGS.length - 1;
+	for (var a = 1; a < LANGS.length; a++) 
+		import_js(SR + '/.cpr/tl/' + LANGS[a] + '.js', function () { if (!--n) langtest2(); });
+}
+function langtest2() {
 for (var a = 0; a < LANGS.length; a++) {
 	for (var b = a + 1; b < LANGS.length; b++) {
 		var i1 = Object.keys(Ls[LANGS[a]]).length > Object.keys(Ls[LANGS[b]]).length ? a : b,
@@ -665,8 +688,11 @@ for (var a = 0; a < LANGS.length; a++) {
 			}
 	}
 }
+}
 
-if (!has(LANGS, lang))
+
+
+if (!Ls[lang])
 	alert('unsupported --lang "' + lang + '" specified in server args;\nplease use one of these: ' + LANGS);
 
 modal.load();
@@ -6581,9 +6607,7 @@ var treectl = (function () {
 	bcfg_bind(r, 'csel', 'csel', dgsel);
 	bcfg_bind(r, 'dots', 'dotfiles', see_dots, function (v) {
 		r.goto();
-		var xhr = new XHR();
-		xhr.open('GET', SR + '/?setck=dots=' + (v ? 'y' : ''), true);
-		xhr.send();
+		setck('dots=' + (v ? 'y' : ''));
 	});
 	bcfg_bind(r, 'utctid', 'utctid', dutc, function (v) {
 		window.unix2ui = v ? unix2iso : unix2iso_localtime;
@@ -6620,9 +6644,7 @@ var treectl = (function () {
 		if (!v == !/\bidxh=y\b/.exec('' + document.cookie))
 			return;
 
-		var xhr = new XHR();
-		xhr.open('GET', SR + '/?setck=idxh=' + (v ? 'y' : 'n'), true);
-		xhr.send();
+		setck('idxh=' + (v ? 'y' : 'n'));
 	}
 	setidxh(r.idxh);
 
@@ -7368,10 +7390,7 @@ var treectl = (function () {
 		qsr('#bbsw');
 		srvinf = ebi('srv_info').innerHTML.slice(6, -7);
 		if (ls0 === null) {
-			var xhr = new XHR();
-			xhr.open('GET', SR + '/?setck=js=y', true);
-			xhr.send();
-
+			setck('js=y');
 			r.ls_cb = showfile.addlinks;
 			return r.reqls(get_evpath(), false, undefined, true);
 		}
@@ -8164,11 +8183,9 @@ var setfszf = (function () {
 
 (function () {
 	function freshen() {
-		lang = sread("cpp_lang", LANGS) || lang;
-		var k, cb = ebi('langs'), html = [];
-		for (var a = 0; a < LANGS.length; a++) {
-			k = LANGS[a];
-			html.push('<option value="{0}">{0} ┃ {1}</option>'.format(k, Ls[k].tt));
+		var cb = ebi('langs'), html = [];
+		for (var a = 0; a < LANGN.length; a++) {
+			html.push('<option value="{0}">{0} ┃ {1}</option>'.format(LANGN[a][0], LANGN[a][1]));
 		}
 		cb.innerHTML = html.join('');
 		cb.onchange = setlang;
@@ -8177,11 +8194,10 @@ var setfszf = (function () {
 
 	function setlang(e) {
 		ev(e);
-		var t = L.lang_set;
 		lang = ebi('langs').value;
-		L = Ls[lang];
-		swrite("cpp_lang", lang);
+		setck('cplng=' + lang);
 		freshen();
+		var t = L.tt == 'English' ? '' : Ls.eng.lang_set;
 		modal.confirm(L.lang_set + "\n\n" + t, location.reload.bind(location), null);
 	}
 

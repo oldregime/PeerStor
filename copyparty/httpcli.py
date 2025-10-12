@@ -275,7 +275,7 @@ class HttpCli(object):
         tpl = self.conn.hsrv.j2[name]
         ka["r"] = self.args.SR if self.is_vproxied else ""
         ka["ts"] = self.conn.hsrv.cachebuster()
-        ka["lang"] = self.args.lang
+        ka["lang"] = self.cookies.get("cplng") or self.args.lang
         ka["favico"] = self.args.favico
         ka["s_doctitle"] = self.args.doctitle
         ka["tcolor"] = self.vn.flags["tcolor"]
@@ -5077,7 +5077,7 @@ class HttpCli(object):
             "edit": "edit" in self.uparam,
             "title": html_escape(self.vpath, crlf=True),
             "lastmod": int(ts_md * 1000),
-            "lang": self.args.lang,
+            "lang": self.cookies.get("cplng") or self.args.lang,
             "favico": self.args.favico,
             "have_emp": int(self.args.emp),
             "md_no_br": int(vn.flags.get("md_no_br") or 0),

@@ -481,10 +481,12 @@ rm -f ftp/pyftpdlib/{__main__,prefork}.py
 		langs="eng|$langs"
 		aerr "ERROR: removing english is not supported; will do this instead: $langs"
 	}
-	for f in copyparty/web/{browser.js,splash.js}; do
-		gzip -d "$f.gz" || true
-		iawk '/^\}/{l=0} !l; /^var Ls =/{l=1;next} !l{next} o; /^\t["}]/{o=0} /^\t"'"$langs"'"/{o=1;print}' $f
-	done
+	f=copyparty/web/browser.js
+	gzip -d "$f.gz" || true
+	iawk '/^\]/{s=0} !s; /^var LANGN /{s=1;next} !s{next} /"'"$langs"'"/' $f
+	ls -1 copyparty/web/tl/* >t
+	grep -vE "/($langs)\." <t | xargs -- rm
+	rm t
 }
 
 [ ! $repack ] && {

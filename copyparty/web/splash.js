@@ -1,7 +1,5 @@
-// please add translations in alphabetic order, but keep "nor" and "eng" first
-// (lines ending with //m are machine translations)
-var Ls = {
-	"eng": {
+Ls.eng = {
+	"splash": {
 		"d2": "shows the state of all active threads",
 		"e2": "reload config files (accounts/volumes/volflags),$Nand rescan all e2ds volumes$N$Nnote: any changes to global settings$Nrequire a full restart to take effect",
 		"lo2": "ends the session on all browsers",
@@ -10,14 +8,13 @@ var Ls = {
 		"ta1": "fill in your new password first",
 		"ta2": "repeat to confirm new password:",
 		"ta3": "found a typo; please try again",
-	},
+	}
 };
 
 if (window.langmod)
 	langmod();
 
-var d = Ls[sread("cpp_lang", Object.keys(Ls)) || lang] ||
-			Ls.eng || Ls.nor || Ls.chi;
+var d = (Ls[lang] || Ls.eng).splash;
 
 d.wb = d.w;
 

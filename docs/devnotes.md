@@ -415,6 +415,7 @@ if you are unable to use `build`, you can use the old setuptools approach instea
 ```bash
 python3 setup.py install --user setuptools wheel jinja2
 python3 setup.py build
+python3 setup.py bdist_wheel
 # you now have a wheel which you can install. or extract and repackage:
 python3 setup.py install --skip-build --prefix=/usr --root=$HOME/pe/copyparty
 ```

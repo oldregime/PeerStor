@@ -296,6 +296,10 @@ function ignex(all) {
 window.onerror = vis_exh;
 
 
+if (!window.Ls || !window.langmod)
+    var Ls = {};
+
+
 function noop() { }
 
 
@@ -1307,6 +1311,11 @@ function scfg_bind(obj, oname, cname, defval, cb) {
     return v;
 }
 
+function setck(v) {
+    var xhr = new XHR();
+    xhr.open('GET', SR + '/?setck=' + v, true);
+    xhr.send();
+}
 
 window.unix2ui = (function () {
     var v = sread('utctid');
