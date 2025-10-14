@@ -862,6 +862,16 @@ class HttpCli(object):
             return self.conn.iphash.s(self.ip)
 
     def cbonk(self, g: Garda, v: str, reason: str, descr: str) -> bool:
+        cond = self.args.dont_ban
+        if (
+            cond == "any"
+            or (cond == "auth" and self.uname != "*")
+            or (cond == "aa" and self.avol)
+            or (cond == "av" and self.can_admin)
+            or (cond == "rw" and self.can_read and self.can_write)
+        ):
+            return False
+
         self.conn.hsrv.nsus += 1
         if not g.lim:
             return False
