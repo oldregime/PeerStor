@@ -8624,7 +8624,7 @@ var msel = (function () {
 			ct = 'application/x-www-form-urlencoded;charset=UTF-8';
 
 		for (var a = 0; a < sel.length; a++)
-			msg += "&sel=" + sel[a].vp.split('/').pop();
+			msg += "&sel=" + sel[a].vp;
 
 		xhr.msg = msg;
 		xhr.open('POST', get_evpath(), true);
