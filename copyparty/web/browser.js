@@ -1452,10 +1452,8 @@ var mpl = (function () {
 				}
 			}
 
-			if (cover) {
-				cover = addq(cover, 'th=j');
-				tags.artwork = [{ "src": cover, type: "image/jpeg" }];
-			}
+			cover = addq(cover || mp.au.osrc, 'th=j');
+			tags.artwork = [{ "src": cover, type: "image/jpeg" }];
 		}
 
 		ebi('np_circle').textContent = np.circle || '';
