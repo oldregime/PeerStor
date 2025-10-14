@@ -933,7 +933,7 @@ window.baguetteBox = (function () {
             un_pp = 0;
             return playpause();  // browser undid space hotkey
         }
-        show_buttons(this.paused ? 1 : 0);
+        show_buttons(this.paused ? 0 : 1);
     }
 
     function showRightImage(e) {
