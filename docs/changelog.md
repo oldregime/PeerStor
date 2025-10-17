@@ -1,4 +1,54 @@
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
+# 2025-1005-2259  `v1.19.16`  FULLBURST
+
+## 🧪 new features
+
+* [hooks](https://github.com/9001/copyparty#event-hooks) got some nice upgrades
+  * add flag `I` to run in-process for a **140x** speed boost 41ed559f
+    * bring your own safeguards (if an `I` hook has a bug then it can deadlock copyparty)
+    * (this is where the releasetitle came from btw)
+  * add flag `s` to send info on stdin instead of argv 4542ad3c
+  * new hook: [reject uploads into ramdisks](https://github.com/9001/copyparty/blob/hovudstraum/bin/hooks/reject-ramdisk.py) (granular alternative to `wram`) efd19af7
+    * will be default-enabled in the [bootable copyparty flashdrive image](https://a.ocv.me/pub/stuff/edcd001/enterprise-edition/)
+* show media-tags inside shares 50276c0c
+* #881 manga-mode (RTL) for the image viewer (thx @Scotsguy!) dacc64dd 
+* #872 combining `chpw` and IdP-auth is now supported 3f597102
+* #854 auto-incrementing counters for batch-rename d05a88d2 76e9f23a
+* #882 change to volume-specific favicon on navigation 2ce32e4f
+* #884 option to turn the servername into a link (thx @Morganamilo!) 38cc8098 9b7f933b
+* rss: add option to not embed pw into feed 73ec2d29
+* cbz and epub files can become folder-thumbnails eb173be4
+
+## 🩹 bugfixes
+
+* web-ui: only show generic http errors if nothing better is available 0453b7ac
+* #860 epub-thumbnailer errors are less noisy now 4177c1d9
+* the `ui-filesz` option can have a trailing hyphen now 2248705e
+* hide "create share" button while inside a share c5f12296
+
+## 🔧 other changes
+
+* #460 example config for running the podman images as a systemd service (thx @danloveg!) 7fc379ab
+* #886 nixos: option to specify unix-user/group to run as (thx @2Kaleb!) 31f1b535
+* #895 mention the `?v` suffix to open mediafiles in the mediaplayer f8e19815
+* ignore 403s from `/favicon.png` (samsung-android)
+* docker: shrink the `min` image from 45 to 33 MiB a8f53d5e
+* #887 add missing entries in `--licenses` 805a7054
+* #887 various vendored python libraries can now be ripped out and replaced with system-libs:
+  * `ifaddr` 656f0a6c
+  * `dnslib` 39bd4e5b
+  * `qrcodegen` 08ebb0b4
+  * `surrogateescape` aace711e
+
+## 🌠 fun facts
+
+* today's genre is Techcore (a subgenre of J-core (a subgenre of UKHC))
+  * [FULLBURST](https://www.youtube.com/watch?v=mYqFHZdbawE) by ぱらどっと is an excellent example
+  * omake: [speedrun through 18 other genres](https://www.youtube.com/watch?v=_YnwnxSE2UA) (pick your favorite)
+
+
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
 # 2025-0929-2310  `v1.19.15`  merry christmas
 
 ## 🧪 new features

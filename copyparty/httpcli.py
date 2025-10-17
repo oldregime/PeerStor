@@ -896,7 +896,7 @@ class HttpCli(object):
             0,
             self.ip,
             time.time(),
-            reason,
+            [reason, reason],
         ):
             self.log("client banned: %s" % (descr,), 1)
             self.conn.hsrv.bans[ip] = bonk
@@ -1587,6 +1587,7 @@ class HttpCli(object):
             raise Pebkac(404, "no such file in archive")
         except (zipfile.BadZipfile, RuntimeError):
             raise Pebkac(404, "requested file is not a valid zip file")
+        return True
 
     def handle_propfind(self) -> bool:
         if self.do_log:
