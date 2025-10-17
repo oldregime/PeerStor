@@ -2597,6 +2597,15 @@ class AuthSrv(object):
                     for x in drop:
                         vol.flags.pop(x)
 
+            zi = vol.flags.get("lifetime") or 0
+            zi2 = time.time() // (86400 * 365)
+            zi3 = zi2 * 86400 * 365
+            if zi < 0 or zi > zi3:
+                t = "the lifetime of volume [/%s] (%d) exceeds max value (%d years; %d)"
+                t = t % (vol.vpath, zi, zi2, zi3)
+                self.log(t, 1)
+                raise Exception(t)
+
             # verify tags mentioned by -mt[mp] are used by -mte
             local_mtp = {}
             local_only_mtp = {}
