@@ -6520,6 +6520,7 @@ class HttpCli(object):
 
                     fk_pass = True
                     is_dir = False
+                    add_og = False
                     rem = vjoin(rem, fn)
                     vrem = vjoin(vrem, fn)
                     abspath = ap2
