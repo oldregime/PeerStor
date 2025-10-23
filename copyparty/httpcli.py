@@ -165,6 +165,12 @@ RE_MDV = re.compile(r"(.*)\.([0-9]+\.[0-9]{3})(\.[Mm][Dd])$")
 
 UPARAM_CC_OK = set("doc move tree".split())
 
+PERMS_rwh = [
+    [True, False],
+    [False, True],
+    [False, False, False, False, False, False, True],
+]
+
 
 class HttpCli(object):
     """
@@ -229,6 +235,7 @@ class HttpCli(object):
         self.can_delete = False
         self.can_get = False
         self.can_upget = False
+        self.can_html = False
         self.can_admin = False
         self.can_dot = False
         self.out_headerlist: list[tuple[str, str]] = []
@@ -737,18 +744,21 @@ class HttpCli(object):
         if "bcasechk" in vn.flags and not vn.casechk(rem, True):
             return self.tx_404() and False
 
-        (
-            self.can_read,
-            self.can_write,
-            self.can_move,
-            self.can_delete,
-            self.can_get,
-            self.can_upget,
-            self.can_admin,
-            self.can_dot,
-        ) = (
-            avn.can_access("", self.uname) if avn else [False] * 8
-        )
+        try:
+            (
+                self.can_read,
+                self.can_write,
+                self.can_move,
+                self.can_delete,
+                self.can_get,
+                self.can_upget,
+                self.can_html,
+                self.can_admin,
+                self.can_dot,
+            ) = avn.uaxs[self.uname]
+        except:
+            pass  # default is all-false
+
         self.avn = avn
         self.vn = vn  # note: do not dbv due to walk/zipgen
         self.rem = rem
@@ -5560,7 +5570,7 @@ class HttpCli(object):
                 rem,
                 self.uname,
                 not self.args.no_scandir,
-                [[True, False], [False, True]],
+                PERMS_rwh,
             )
             dots = self.uname in vn.axs.udot
             dk_sz = vn.flags.get("dk")
@@ -5592,7 +5602,13 @@ class HttpCli(object):
         for x in vfs_virt:
             if x != excl:
                 try:
-                    dvn, drem = vfs.get(vjoin(top, x), self.uname, True, False)
+                    dvn, drem = vfs.get(vjoin(top, x), self.uname, False, False)
+                    if (
+                        self.uname not in dvn.axs.uread
+                        and self.uname not in dvn.axs.uwrite
+                        and self.uname not in dvn.axs.uhtml
+                    ):
+                        raise Exception()
                     bos.stat(dvn.canonical(drem, False))
                 except:
                     x += "\n"
@@ -6518,8 +6534,7 @@ class HttpCli(object):
             return self.tx_svg("upload\nonly")
 
         if not self.can_read and self.can_get and self.avn:
-            axs = self.avn.axs
-            if self.uname not in axs.uhtml:
+            if not self.can_html:
                 pass
             elif is_dir:
                 for fn in ("index.htm", "index.html"):
@@ -6734,7 +6749,7 @@ class HttpCli(object):
             rem,
             self.uname,
             not self.args.no_scandir,
-            [[True, False], [False, True]],
+            PERMS_rwh,
             lstat="lt" in self.uparam,
             throw=True,
         )

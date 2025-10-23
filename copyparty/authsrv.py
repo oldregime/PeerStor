@@ -393,11 +393,15 @@ class VFS(object):
         axs: AXS,
         flags: dict[str, Any],
     ) -> None:
+        nss: set[str] = set()
         self.log = log
         self.realpath = realpath  # absolute path on host filesystem
         self.vpath = vpath  # absolute path in the virtual filesystem
         self.vpath0 = vpath0  # original vpath (before idp expansion)
         self.axs = axs
+        self.uaxs: dict[
+            str, tuple[bool, bool, bool, bool, bool, bool, bool, bool, bool]
+        ] = {}
         self.flags = flags  # config options
         self.root = self
         self.dev = 0  # st_dev
@@ -555,29 +559,19 @@ class VFS(object):
 
     def can_access(
         self, vpath: str, uname: str
-    ) -> tuple[bool, bool, bool, bool, bool, bool, bool, bool]:
-        """can Read,Write,Move,Delete,Get,Upget,Admin,Dot"""
+    ) -> tuple[bool, bool, bool, bool, bool, bool, bool, bool, bool]:
+        """can Read,Write,Move,Delete,Get,Upget,Html,Admin,Dot"""
+        # NOTE: only used by get_perms, which is only used by hooks; the lowest of fruits
         if vpath:
             vn, _ = self._find(undot(vpath))
         else:
             vn = self
 
-        c = vn.axs
-        return (
-            uname in c.uread,
-            uname in c.uwrite,
-            uname in c.umove,
-            uname in c.udel,
-            uname in c.uget,
-            uname in c.upget,
-            uname in c.uadmin,
-            uname in c.udot,
-        )
-        # skip uhtml because it's rarely needed
+        return vn.uaxs[uname]
 
     def get_perms(self, vpath: str, uname: str) -> str:
         zbl = self.can_access(vpath, uname)
-        ret = "".join(ch for ch, ok in zip("rwmdgGa.", zbl) if ok)
+        ret = "".join(ch for ch, ok in zip("rwmdgGha.", zbl) if ok)
         if "rwmd" in ret and "a." in ret:
             ret += "A"
         return ret
@@ -772,19 +766,16 @@ class VFS(object):
                     virt_vis[name] = vn2
                     continue
 
-                ok = False
-                zx = vn2.axs
-                axs = [zx.uread, zx.uwrite, zx.umove, zx.udel, zx.uget]
+                u_has = vn2.uaxs.get(uname) or [False] * 9
                 for pset in permsets:
                     ok = True
-                    for req, lst in zip(pset, axs):
-                        if req and uname not in lst:
+                    for req, zb in zip(pset, u_has):
+                        if req and not zb:
                             ok = False
+                            break
                     if ok:
+                        virt_vis[name] = vn2
                         break
-
-                if ok:
-                    virt_vis[name] = vn2
 
         if ".hist" in abspath:
             p = abspath.replace("\\", "/") if WINDOWS else abspath
@@ -1994,6 +1985,23 @@ class AuthSrv(object):
                         umap[usr].append(vp)
                 umap[usr].sort()
             setattr(vfs, "a" + perm, umap)
+
+        for vol in vfs.all_nodes.values():
+            za = vol.axs
+            vol.uaxs = {
+                un: (
+                    un in za.uread,
+                    un in za.uwrite,
+                    un in za.umove,
+                    un in za.udel,
+                    un in za.uget,
+                    un in za.upget,
+                    un in za.uhtml,
+                    un in za.uadmin,
+                    un in za.udot,
+                )
+                for un in unames
+            }
 
         all_users = {}
         missing_users = {}
@@ -3436,7 +3444,7 @@ class AuthSrv(object):
                 raise Exception("volume not found: " + zs)
 
         self.log(str({"users": users, "vols": vols, "flags": flags}))
-        t = "/{}: read({}) write({}) move({}) del({}) dots({}) get({}) upGet({}) uadmin({})"
+        t = "/{}: read({}) write({}) move({}) del({}) dots({}) get({}) upGet({}) html({}) uadmin({})"
         for k, zv in self.vfs.all_vols.items():
             vc = zv.axs
             vs = [
