@@ -5291,7 +5291,7 @@ class HttpCli(object):
             dls.append((perc, hsent, spd, eta, idle, usr, erd, rds, fn))
 
         if self.args.have_unlistc:
-            allvols = self.asrv.vfs.all_vols
+            allvols = self.asrv.vfs.all_nodes
             rvol = [x for x in rvol if "unlistcr" not in allvols[x[1:-1]].flags]
             wvol = [x for x in wvol if "unlistcw" not in allvols[x[1:-1]].flags]
 
