@@ -1487,7 +1487,7 @@ var tt = (function () {
     var r = {
         "tt": mknod("div", 'tt'),
         "th": mknod("div", 'tth'),
-        "en": true,
+        "en": !window.notooltips,
         "el": null,
         "skip": false,
         "lvis": 0

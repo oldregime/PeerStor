@@ -393,7 +393,6 @@ class VFS(object):
         axs: AXS,
         flags: dict[str, Any],
     ) -> None:
-        nss: set[str] = set()
         self.log = log
         self.realpath = realpath  # absolute path on host filesystem
         self.vpath = vpath  # absolute path in the virtual filesystem
@@ -3095,6 +3094,10 @@ class AuthSrv(object):
             zs = "ui_noacci ui_nocpla ui_noctxb ui_nolbar ui_nombar ui_nonav ui_notree ui_norepl ui_nosrvi"
             for zs in zs.split():
                 if vf.get(zs):
+                    js_htm[zs] = 1
+            zs = "notooltips"
+            for zs in zs.split():
+                if getattr(self.args, zs, False):
                     js_htm[zs] = 1
             vn.js_htm = json_hesc(json.dumps(js_htm))
 

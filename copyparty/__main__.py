@@ -1796,6 +1796,7 @@ def add_ui(ap, retry: int):
     ap2.add_argument("--ufavico", metavar="TXT", type=u, default="", help="URL to .ico/png/gif/svg file; \033[33m--favico\033[0m takes precedence unless disabled (volflag=ufavico)")
     ap2.add_argument("--ext-th", metavar="E=VP", type=u, action="append", help="\033[34mREPEATABLE:\033[0m use thumbnail-image \033[33mVP\033[0m for file-extension \033[33mE\033[0m, example: [\033[32mexe=/.res/exe.png\033[0m] (volflag=ext_th)")
     ap2.add_argument("--mpmc", type=u, default="", help=argparse.SUPPRESS)
+    ap2.add_argument("--notooltips", action="store_true", help="tooltips disabled as default")
     ap2.add_argument("--spinner", metavar="TXT", type=u, default="🌲", help="\033[33memoji\033[0m or \033[33memoji,css\033[0m Example: [\033[32m🥖,padding:0\033[0m]")
     ap2.add_argument("--css-browser", metavar="L", type=u, default="", help="URL to additional CSS to include in the filebrowser html")
     ap2.add_argument("--js-browser", metavar="L", type=u, default="", help="URL to additional JS to include in the filebrowser html")
