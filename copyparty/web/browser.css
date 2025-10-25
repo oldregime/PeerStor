@@ -1036,6 +1036,7 @@ html.dz #flogout {
 	box-shadow: 0 .1em 1.2em var(--g-play-sh);
 }
 #files tbody tr.sel td,
+#files tbody tr.sel span,
 #ggrid>a.sel,
 #ggrid>a[tt].sel {
 	color: var(--g-sel-fg);
