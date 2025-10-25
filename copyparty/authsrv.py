@@ -2335,6 +2335,10 @@ class AuthSrv(object):
         free_umask = False
         have_reflink = False
         for vol in vfs.all_nodes.values():
+            if os.path.isfile(vol.realpath):
+                vol.flags["is_file"] = True
+                vol.flags["d2d"] = True
+
             if (self.args.e2ds and vol.axs.uwrite) or self.args.e2dsa:
                 vol.flags["e2ds"] = True
 
@@ -2649,7 +2653,7 @@ class AuthSrv(object):
                     errors = True
 
         for vol in vfs.all_nodes.values():
-            if not vol.realpath or os.path.isfile(vol.realpath):
+            if not vol.realpath or vol.flags.get("is_file"):
                 continue
             ccs = vol.flags["casechk"][:1].lower()
             if ccs in ("y", "n"):
