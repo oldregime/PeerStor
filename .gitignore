@@ -5,5 +5,25 @@ copyparty/
 06_Capstone.code-workspace
 
 # Ignore idea files
+ideamine
 
-ideamine/
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+
+# Virtual envs
+.venv/
+venv/
+
+# Local env/config
+.env
+
+# Databases and storage
+*.db
+peerStor/data/
+peerStor/tmp/
+
+# Logs
+*.log
