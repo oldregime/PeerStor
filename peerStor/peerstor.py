@@ -22,6 +22,8 @@ import sys
 import threading
 import time
 import re
+import json
+import gzip
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler
 try:
@@ -56,6 +58,8 @@ LISTING_HTML = """<!doctype html>
   .btn {{ background:#0366d6; color:#fff; border:none; padding:8px 12px; border-radius:6px; cursor:pointer; }}
   .btn:hover {{ background:#024f9f; }}
   input[type="file"] {{ max-width: 50ch; }}
+  .muted {{ color:#777; font-size:12px; }}
+  progress {{ width: 240px; height: 12px; }}
 </style>
 </head>
 <body>
@@ -66,6 +70,9 @@ LISTING_HTML = """<!doctype html>
 <form class="upload" method="POST" action="/upload{qdir}" enctype="multipart/form-data">
   <input type="file" name="file" required>
   <button class="btn" type="submit">Upload</button>
+  <button class="btn" type="button" id="btn-resume">Upload (resumable)</button>
+  <span id="up-status" class="muted"></span>
+  <progress id="up-progress" max="100" value="0" style="display:none"></progress>
 </form>
 <table>
   <thead>
@@ -76,6 +83,65 @@ LISTING_HTML = """<!doctype html>
   </tbody>
 </table>
 <div class="footer">PeerStor {version} — Download supports resume (Range requests). Upload via browser. No auth (MVP).</div>
+<script>
+(() => {
+  const btn = document.getElementById('btn-resume');
+  const form = document.querySelector('form.upload');
+  const inp = form.querySelector('input[type="file"]');
+  const status = document.getElementById('up-status');
+  const prog = document.getElementById('up-progress');
+  const chunk = 1024 * 1024; // 1 MiB
+  function relPath(){
+    let p = location.pathname;
+    if (p.endsWith('/')) p = p.slice(0, -1);
+    return p; // already relative from root
+  }
+  async function getOffset(dir, name){
+    const r = await fetch(`/api/upload/offset?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(name)}`);
+    if (!r.ok) throw new Error('offset ' + r.status);
+    const j = await r.json();
+    return j.offset || 0;
+  }
+  async function sendChunk(dir, name, offset, blob){
+    const r = await fetch(`/api/upload/chunk?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(name)}&offset=${offset}`, {
+      method: 'POST',
+      body: blob,
+    });
+    if (!r.ok) throw new Error('chunk ' + r.status);
+    return await r.json();
+  }
+  async function complete(dir, name, size){
+    const r = await fetch(`/api/upload/complete?dir=${encodeURIComponent(dir)}&name=${encodeURIComponent(name)}&size=${size}`, { method:'POST' });
+    if (!r.ok) throw new Error('complete ' + r.status);
+    return await r.json();
+  }
+  btn?.addEventListener('click', async () => {
+    try {
+      if (!inp.files || !inp.files[0]) { alert('Select a file first'); return; }
+      const file = inp.files[0];
+      const dir = relPath();
+      let offset = await getOffset(dir, file.name);
+      prog.style.display = '';
+      prog.max = file.size;
+      status.textContent = `Resuming at ${offset} bytes...`;
+      while (offset < file.size) {
+        const end = Math.min(offset + chunk, file.size);
+        const blob = file.slice(offset, end);
+        const j = await sendChunk(dir, file.name, offset, blob);
+        offset = j.nextOffset || end;
+        prog.value = offset;
+        status.textContent = `Uploaded ${offset} / ${file.size}`;
+      }
+      await complete(dir, file.name, file.size);
+      status.textContent = 'Upload complete. Reloading...';
+      location.reload();
+    } catch (e) {
+      console.error(e);
+      status.textContent = 'Error: ' + e.message;
+    }
+  });
+})();
+</script>
 </body>
 </html>"""
 
@@ -114,8 +180,10 @@ def safe_join(base: str, *paths: str) -> str:
 class PeerStorHandler(SimpleHTTPRequestHandler):
     server_version = f"PeerStor/{VERSION}"
 
-    def __init__(self, *args, directory=None, **kwargs):
+    def __init__(self, *args, directory=None, gzip_enabled=True, gzip_threshold=4*1024*1024, **kwargs):
         self._root_directory = directory
+        self._gzip_enabled = bool(gzip_enabled)
+        self._gzip_threshold = int(gzip_threshold)
         try:
             super().__init__(*args, directory=directory, **kwargs)
         except TypeError:
@@ -133,6 +201,10 @@ class PeerStorHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
+        if self.path.startswith('/api/upload/chunk'):
+            return self.handle_api_chunk()
+        if self.path.startswith('/api/upload/complete'):
+            return self.handle_api_complete()
         if self.path.startswith('/upload'):
             return self.handle_upload()
         self.send_error(HTTPStatus.NOT_FOUND, "Unknown POST endpoint")
@@ -270,6 +342,8 @@ class PeerStorHandler(SimpleHTTPRequestHandler):
             f.close()
 
     def do_GET(self):
+        if self.path.startswith('/api/upload/offset'):
+            return self.handle_api_offset()
         if self.path.startswith('/upload'):
             return self.send_error(HTTPStatus.NOT_FOUND, "Unknown endpoint")
         f, rng = self._send_head_with_range()
@@ -283,6 +357,147 @@ class PeerStorHandler(SimpleHTTPRequestHandler):
                 self._copyfile_range(f, start, end)
         finally:
             f.close()
+
+    def send_json(self, code: int, obj: dict):
+        data = json.dumps(obj).encode('utf-8')
+        self.send_response(code)
+        self.send_header('Content-Type', 'application/json; charset=utf-8')
+        self.send_header('Content-Length', str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def _parse_qs(self):
+        from urllib.parse import urlparse, parse_qs
+        parsed = urlparse(self.path)
+        return parse_qs(parsed.query)
+
+    def handle_api_offset(self):
+        qs = self._parse_qs()
+        rel_dir = (qs.get('dir', [''])[0] or '').strip('/')
+        name = (qs.get('name', [''])[0] or '')
+        if not name:
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "missing name"})
+        # sanitize filename
+        name = os.path.basename(name).strip().replace('\x00', '')
+        try:
+            base_dir = safe_join(self._root_directory, rel_dir)
+        except Exception:
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid dir"})
+        final_path = safe_join(base_dir, name)
+        tmp_path = final_path + '.part'
+        offset = 0
+        if os.path.exists(tmp_path):
+            try:
+                offset = os.path.getsize(tmp_path)
+            except OSError:
+                offset = 0
+        elif os.path.exists(final_path):
+            try:
+                offset = os.path.getsize(final_path)
+            except OSError:
+                offset = 0
+        return self.send_json(HTTPStatus.OK, {"offset": offset})
+
+    def handle_api_chunk(self):
+        qs = self._parse_qs()
+        rel_dir = (qs.get('dir', [''])[0] or '').strip('/')
+        name = (qs.get('name', [''])[0] or '')
+        off_s = (qs.get('offset', [''])[0] or '')
+        if not name or off_s == '':
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "missing name/offset"})
+        try:
+            offset = int(off_s)
+        except ValueError:
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid offset"})
+        name = os.path.basename(name).strip().replace('\x00', '')
+        try:
+            base_dir = safe_join(self._root_directory, rel_dir)
+        except Exception:
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid dir"})
+        os.makedirs(base_dir, exist_ok=True)
+        final_path = safe_join(base_dir, name)
+        tmp_path = final_path + '.part'
+
+        cur = 0
+        if os.path.exists(tmp_path):
+            try:
+                cur = os.path.getsize(tmp_path)
+            except OSError:
+                cur = 0
+        # Strict offset match required
+        if offset != cur:
+            return self.send_json(HTTPStatus.CONFLICT, {"nextOffset": cur})
+
+        # Read body
+        length = self.headers.get('Content-Length')
+        if not length:
+            return self.send_json(HTTPStatus.LENGTH_REQUIRED, {"error": "Content-Length required"})
+        try:
+            remaining = int(length)
+        except ValueError:
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid Content-Length"})
+        try:
+            with open(tmp_path, 'ab') as out:
+                bufsize = 64 * 1024
+                while remaining > 0:
+                    chunk = self.rfile.read(min(bufsize, remaining))
+                    if not chunk:
+                        break
+                    out.write(chunk)
+                    remaining -= len(chunk)
+        except Exception as e:
+            return self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"write failed: {e}"})
+
+        try:
+            new_size = os.path.getsize(tmp_path)
+        except OSError:
+            new_size = offset
+        return self.send_json(HTTPStatus.OK, {"nextOffset": new_size})
+
+    def handle_api_complete(self):
+        qs = self._parse_qs()
+        rel_dir = (qs.get('dir', [''])[0] or '').strip('/')
+        name = (qs.get('name', [''])[0] or '')
+        size_s = (qs.get('size', [''])[0] or '')
+        if not name or size_s == '':
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "missing name/size"})
+        try:
+            total_size = int(size_s)
+        except ValueError:
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid size"})
+        name = os.path.basename(name).strip().replace('\x00', '')
+        try:
+            base_dir = safe_join(self._root_directory, rel_dir)
+        except Exception:
+            return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid dir"})
+        final_path = safe_join(base_dir, name)
+        tmp_path = final_path + '.part'
+
+        if os.path.exists(tmp_path):
+            try:
+                cur = os.path.getsize(tmp_path)
+            except OSError:
+                cur = -1
+            if cur != total_size:
+                return self.send_json(HTTPStatus.CONFLICT, {"error": "size mismatch", "have": cur, "want": total_size})
+            try:
+                os.replace(tmp_path, final_path)
+            except Exception as e:
+                return self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"finalize failed: {e}"})
+            return self.send_json(HTTPStatus.OK, {"status": "ok"})
+
+        # If final already exists with expected size, treat as idempotent success
+        if os.path.exists(final_path):
+            try:
+                cur = os.path.getsize(final_path)
+            except OSError:
+                cur = -1
+            if cur == total_size:
+                return self.send_json(HTTPStatus.OK, {"status": "ok"})
+            else:
+                return self.send_json(HTTPStatus.CONFLICT, {"error": "final exists with different size", "have": cur, "want": total_size})
+
+        return self.send_json(HTTPStatus.BAD_REQUEST, {"error": "no upload in progress"})
 
     def _send_head_with_range(self):
         # Directory handling
@@ -319,20 +534,53 @@ class PeerStorHandler(SimpleHTTPRequestHandler):
                 f.close()
                 return None, None
 
+            # Consider gzip when no range
+            comp_buf = None
+            if rng is None and self._gzip_enabled:
+                accept = self.headers.get('Accept-Encoding', '') or ''
+                if 'gzip' in accept:
+                    # Only compress for likely text-ish types and small enough files
+                    if self._should_compress(ctype, size) and size <= self._gzip_threshold:
+                        try:
+                            raw = f.read()
+                            f.close()
+                            bio = io.BytesIO()
+                            with gzip.GzipFile(fileobj=bio, mode='wb', compresslevel=5) as gz:
+                                gz.write(raw)
+                            comp_buf = bio.getvalue()
+                            f = io.BytesIO(comp_buf)
+                        except Exception:
+                            # Fallback to uncompressed if anything fails
+                            try:
+                                f.close()
+                            except Exception:
+                                pass
+                            f = open(path, 'rb')
+                            comp_buf = None
+
             if rng is not None:
                 start, end = rng
                 self.send_response(HTTPStatus.PARTIAL_CONTENT)
                 self.send_header('Content-Range', f'bytes {start}-{end}/{size}')
                 content_length = end - start + 1
+                self.send_header('Content-Type', ctype)
+                self.send_header('Accept-Ranges', 'bytes')
+                self.send_header('Content-Length', str(content_length))
+                self.end_headers()
+                return f, rng
             else:
                 self.send_response(HTTPStatus.OK)
-                content_length = size
-
-            self.send_header('Content-Type', ctype)
-            self.send_header('Accept-Ranges', 'bytes')
-            self.send_header('Content-Length', str(content_length))
-            self.end_headers()
-            return f, rng
+                if comp_buf is not None:
+                    self.send_header('Content-Encoding', 'gzip')
+                    self.send_header('Content-Type', ctype)
+                    self.send_header('Content-Length', str(len(comp_buf)))
+                    # Do not advertise byte ranges for compressed stream
+                else:
+                    self.send_header('Content-Type', ctype)
+                    self.send_header('Accept-Ranges', 'bytes')
+                    self.send_header('Content-Length', str(size))
+                self.end_headers()
+                return f, None
         except Exception:
             f.close()
             raise
@@ -382,6 +630,17 @@ class PeerStorHandler(SimpleHTTPRequestHandler):
             self.wfile.write(chunk)
             remaining -= len(chunk)
 
+    def _should_compress(self, ctype: str, size: int) -> bool:
+        if not ctype:
+            return False
+        if size is not None and size < 1024:
+            return False
+        if ctype.startswith('text/'):
+            return True
+        if ctype in ('application/json', 'application/javascript', 'application/xml', 'image/svg+xml'):
+            return True
+        return False
+
 
 def find_available_port(host: str, start_port: int, max_tries: int = 20) -> int:
     port = start_port
@@ -395,12 +654,12 @@ def find_available_port(host: str, start_port: int, max_tries: int = 20) -> int:
     return 0  # Let OS choose
 
 
-def serve(host: str, port: int, storage: str):
+def serve(host: str, port: int, storage: str, gzip_enabled: bool = True, gzip_threshold: int = 4*1024*1024):
     os.makedirs(storage, exist_ok=True)
 
     # Build handler that serves from storage
     def handler_factory(*args, **kwargs):
-        return PeerStorHandler(*args, directory=storage, **kwargs)
+        return PeerStorHandler(*args, directory=storage, gzip_enabled=gzip_enabled, gzip_threshold=gzip_threshold, **kwargs)
 
     chosen_port = find_available_port(host, port) if port != 0 else 0
     server = ThreadingHTTPServer((host, chosen_port), handler_factory)
@@ -425,6 +684,8 @@ def main(argv=None):
     parser.add_argument("--port", type=int, default=8080, help="Port to bind (default: 8080; auto-increments if busy)")
     parser.add_argument("--storage", default=None, help="Storage directory (default: ./peerStor/data)")
     parser.add_argument("--version", action="store_true", help="Print version and exit")
+    parser.add_argument("--no-gzip", dest="gzip", action="store_false", help="Disable gzip compression for downloads")
+    parser.add_argument("--gzip-threshold", type=int, default=4*1024*1024, help="Max file size to gzip in memory (bytes)")
     args = parser.parse_args(argv)
 
     if args.version:
@@ -435,7 +696,7 @@ def main(argv=None):
     storage = args.storage or os.path.join(script_dir, "data")
 
     try:
-        serve(args.host, args.port, storage)
+        serve(args.host, args.port, storage, gzip_enabled=args.gzip, gzip_threshold=args.gzip_threshold)
     except Exception as e:
         print(f"Fatal error: {e}", file=sys.stderr)
         return 1

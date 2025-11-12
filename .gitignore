@@ -24,6 +24,7 @@ venv/
 *.db
 peerStor/data/
 peerStor/tmp/
+*.part
 
 # Logs
 *.log
