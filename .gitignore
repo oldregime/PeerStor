@@ -1,0 +1,9 @@
+# Ignore copyparty folder
+copyparty/
+
+# Ignore workspace file
+06_Capstone.code-workspace
+
+# Ignore idea files
+
+ideamine/

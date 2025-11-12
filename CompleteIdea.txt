@@ -1,0 +1,250 @@
+# PeerStor - Project Complete Idea & Outline
+
+## Project Vision
+A lightweight, single-file Python application that transforms any device into a decentralized file server with peer-to-peer capabilities, resumable transfers, compression, and distributed storage across a network.
+
+**Key Principles:**
+- **Zero Setup**: Run from terminal with single command - `python peerstor.py` - no installation, no configuration files needed
+- **Python Only Dependency**: Requires only Python 3.8+ installed on system (no external software, databases, or services)
+- **100% Free & Open Source**: Completely free to develop, modify, and use - no licensing fees, no commercial restrictions
+- **Terminal-Native**: Full functionality accessible via CLI and web browser UI
+- **Single File Deployment**: Entire application in one `.py` file (~500-1000 lines optimized)
+
+## Minimum System Requirements
+- **OS**: Windows, Linux, macOS, or any Unix-like system
+- **Python**: 3.8 or higher (download free from python.org)
+- **RAM**: 64MB minimum (typically uses <50MB)
+- **Disk**: 5MB for application + your file storage
+- **Network**: Local network for device discovery (or manual IP entry)
+- **Cost**: $0 - Completely free
+
+## Core Features (Based on Copyparty + Enhancements)
+
+### 1. File Server Functionality
+- **Web Interface**: Browser-based file management (upload, download, delete, preview)
+- **Resumable Transfers**: Support for partial uploads/downloads with resume capability
+- **File Compression**: On-the-fly compression (gzip, brotli, zstd) for bandwidth optimization
+- **Multi-threaded Operations**: Handle concurrent uploads/downloads efficiently
+- **Directory Browsing**: Tree-based or grid view with search and filtering
+
+### 2. Distributed Storage Network
+- **Network Discovery**: Devices auto-discover each other on local network using mDNS/Zeroconf
+- **File Fragmentation**: Break uploaded files into encrypted chunks (256KB-1MB pieces)
+- **Redundancy & Replication**: 3-way replication across devices to ensure data availability
+- **Smart Placement**: Distribute chunks across devices based on available storage
+- **Encryption**: AES-256 encryption per user/file for privacy (only owner can reconstruct)
+
+### 3. Storage Contribution Model
+- **Contribute Storage**: Users dedicate folder as shared storage pool (configurable size limit)
+- **Space Tracking**: Monitor contributed vs. used storage with quotas
+- **Bandwidth Throttling**: Configurable upload/download speed limits
+- **Storage Balancing**: Automatic rebalancing when devices join/leave network
+
+### 4. User & Access Management
+- **Simple Authentication**: Token-based API access, optional password for web UI
+- **User Profiles**: Each user gets unique encryption key + storage quota
+- **Device Registration**: Simple setup - auto-generate shareable device codes
+- **Access Control**: Per-folder sharing with read/write permissions
+
+### 5. Advanced Features
+- **Bandwidth Optimization**: Delta sync for file updates (only sync changes)
+- **Metadata Indexing**: Fast search across all shared files without downloading
+- **Partial File Reconstruction**: Download specific file chunks on-demand
+- **Backup Support**: Automatic backup profiles with scheduling
+- **Health Monitoring**: Dashboard showing network health, chunk distribution, redundancy status
+
+## Technical Architecture
+
+### Stack
+- **Language**: Python 3.8+ (single file deployment)
+- **Web Server**: Flask or FastAPI (lightweight, embedded, free & open source)
+- **File Transfer**: HTTP/2 with chunked encoding, Range request support
+- **Compression**: zstandard (free, high-performance, open source)
+- **Encryption**: cryptography library (free, well-audited, open source)
+- **Network Discovery**: zeroconf/mDNS library (free, open source)
+- **Database**: SQLite (free, embedded, no setup)
+- **Frontend**: Vanilla JS + HTML5 (pure JavaScript, no frameworks needed)
+
+**All dependencies are 100% free and open source - MIT/Apache/BSD licensed**
+
+### Deployment Target Devices
+- Windows/Linux/macOS PCs
+- NAS servers (Synology, QNAP, etc.)
+- Single-board computers (Raspberry Pi, Orange Pi)
+- Embedded systems (ESP32 variant possible with micropython)
+- Any device with Python 3.8+
+
+## Module Breakdown (Single File Structure)
+
+### 1. **Configuration & Setup**
+   - Auto-detect local IP address
+   - Generate unique device ID
+   - Initialize SQLite database schema
+   - Load/save settings (port, storage path, compression level)
+
+### 2. **Web Server & API**
+   - REST API endpoints for file operations
+   - WebSocket for real-time progress updates
+   - Static file serving (HTML/CSS/JS UI)
+   - CORS handling for cross-device requests
+
+### 3. **File Operations**
+   - Upload handler with chunking & resume support
+   - Download handler with compression on-the-fly
+   - Directory listing & file metadata
+   - File preview (text, images, PDFs)
+   - Search & filtering logic
+
+### 4. **Distributed Storage Engine**
+   - Chunk creation (split large files)
+   - Encryption/decryption pipeline
+   - Network device discovery (mDNS)
+   - Peer communication (push/pull chunks)
+   - Redundancy manager (ensure 3-way replication)
+   - Chunk recovery & repair logic
+
+### 5. **Database Layer**
+   - File metadata (name, size, hash, owner, chunks)
+   - Chunk inventory (location, device, status)
+   - Device registry (IP, port, available storage)
+   - User profiles (encryption key, quota, permissions)
+   - Transfer logs & statistics
+
+### 6. **Network & Synchronization**
+   - Device discovery using mDNS
+   - Peer-to-peer chunk transfer
+   - Heartbeat/health check protocol
+   - Automatic rebalancing on device changes
+   - Conflict resolution for duplicate files
+
+### 7. **Security & Encryption**
+   - Per-user encryption keys (generated on first run)
+   - File-level AES-256 encryption
+   - Secure chunk transfer (HTTPS optional)
+   - API token authentication
+   - Permission-based access control
+
+### 8. **Performance Optimization**
+   - Async I/O for file operations
+   - Connection pooling for peer transfers
+   - Chunk caching in memory
+   - Lazy compression (compress on-demand, not pre-compression)
+   - Database indexing on frequently searched fields
+
+### 9. **Monitoring & Admin**
+   - Dashboard showing network topology
+   - Storage usage per device
+   - Chunk distribution visualization
+   - Transfer history & statistics
+   - System health alerts
+
+## User Workflow
+
+### Setup (Zero Steps Required!)
+1. **Install Python**: Download Python 3.8+ from python.org (if not already installed)
+2. **Download**: Get single `peerstor.py` file
+3. **Run**: Open terminal → type `python peerstor.py` → Press Enter
+4. **Done!** Console output shows: `Access at: http://192.168.1.100:8080`
+5. **Optional**: Open browser link or access via web UI
+
+### Terminal Usage (CLI Commands)
+```
+python peerstor.py                  # Start service (default port 8080)
+python peerstor.py --port 9000      # Custom port
+python peerstor.py --storage /path  # Custom storage folder
+python peerstor.py --help           # Show all options
+Ctrl+C                              # Graceful shutdown
+```
+
+### Web Browser Usage
+1. Service shows URL in terminal
+2. Open any browser, paste URL
+3. Full web UI for all operations
+4. No additional software needed
+
+### Usage (via Web UI)
+1. **Contribute Storage**: Select folder to share + set size limit
+2. **Upload File**: Drag-drop file → auto-fragments & distributes across network
+3. **Download File**: Click file → reconstructs from chunks, optionally compressed
+4. **Browse Network**: See all files from all contributing devices
+5. **Share**: Generate shareable link with expiry/access control
+
+## Database Schema (SQLite)
+
+```
+tables:
+- devices (id, ip, port, device_name, available_storage, status)
+- files (id, filename, size, owner_id, hash, created_date, encryption_key)
+- chunks (id, file_id, chunk_index, size, hash, replica_devices, status)
+- users (id, username, encryption_key, storage_quota, created_date)
+- permissions (id, user_id, file_id, access_type)
+```
+
+## Deployment Considerations
+
+### Zero-Setup, Terminal-First Design
+- **One Command Start**: `python peerstor.py` from any terminal (PowerShell, Bash, CMD)
+- **Auto-Everything**: Detects IP, generates configs, creates database on first run
+- **No External Services**: No Docker, no additional software, no accounts needed
+- **No Configuration Files**: All settings handled via CLI flags or web UI (optional)
+- **Automatic Port Finding**: If default port busy, auto-increment to find available port
+- **Self-Contained**: All HTML/CSS/JS embedded - no external CDNs or downloads
+
+### Single File Design
+- Embed all assets (HTML, CSS, JS) as base64 strings or compressed bundles
+- No external dependencies beyond Python stdlib + lightweight pip packages (Flask, cryptography, zeroconf)
+- Self-contained with bundled SQLite (no database installation)
+- All code in single file with clear section comments for modularity
+
+### Free & Open Source
+- **MIT/Apache 2.0 License**: Completely free for personal, commercial, educational use
+- **Open Source Code**: Full transparency - anyone can audit, modify, fork
+- **No Licensing Restrictions**: Use on unlimited devices, no per-seat fees
+- **Community-Driven**: Accept contributions, transparent development
+
+### Minimal Resources
+- Target: <50MB RAM when idle
+- <5MB storage footprint for application binary
+- No background services running (event-driven architecture)
+- Optimize chunk size (256KB-1MB) based on device capabilities
+
+### Cross-Platform
+- Use `pathlib` for path handling (Windows/Unix compatible)
+- Auto-detect network interfaces and local IP
+- Handle firewall rules gracefully
+- Works on: Windows (PowerShell/CMD), Linux (Bash), macOS (Terminal)
+
+## Phase-Based Implementation
+
+### Phase 1 (MVP)
+- Basic file server (upload/download)
+- Web UI (file browser)
+- Single device (no P2P yet)
+
+### Phase 2
+- Resumable transfers
+- Compression support
+- Multi-device discovery
+
+### Phase 3
+- File fragmentation & replication
+- Distributed storage engine
+- Chunk management & redundancy
+
+### Phase 4
+- Advanced UI (progress tracking, search)
+- Backup profiles
+- Health monitoring dashboard
+
+### Phase 5
+- Performance optimizations
+- Delta sync support
+- Full production hardening
+
+## Success Metrics
+- Application runs with single `python peerstor.py` command
+- Works on Windows, Linux, macOS, Raspberry Pi
+- Upload/download speeds comparable to local SMB/NFS
+- Network discovery within 5 seconds
+- Chunk replication automatic & transparent to user
+- Web UI fully functional without additional setup
