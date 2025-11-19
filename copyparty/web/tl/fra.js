@@ -116,7 +116,7 @@ Ls.fra = {
 	"ot_unpost": "unpost: supprimer vos téléchargements récents, ou annuler ceux en cours",
 	"ot_bup": "bup: téléverseur de base, prend même en charge netscape 4.0",
 	"ot_mkdir": "mkdir: créer un nouveau répertoire",
-	"ot_md": "new-md: créer un nouveau document markdown",
+	"ot_md": "new-file: créer un nouveau fichier texte", //m
 	"ot_msg": "msg: envoyer un message au journal du serveur",
 	"ot_mp": "options du lecteur multimedia",
 	"ot_cfg": "options de configuration",
@@ -125,7 +125,7 @@ Ls.fra = {
 	"ot_noie": 'Utilisez Chrome / Firefox / Edge',
 
 	"ab_mkdir": "créer un nouveau répertoire",
-	"ab_mkdoc": "faire un nouveau document markdown",
+	"ab_mkdoc": "nouveau fichier texte", //m
 	"ab_msg": "envoyer un message au journal du serveur",
 
 	"ay_path": "passer aux dossiers",
@@ -437,6 +437,8 @@ Ls.fra = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Copier</a><a href="#" id="modal-ng">Téléverser</a>',
 
 	"mk_noname": "entrez un nom dans le champ de texte à gauche avant de faire ça :p",
+	"nmd_i1": "ajoutez aussi l’extension souhaitée, par exemple <code>.txt</code>", //m
+	"nmd_i2": "vous ne pouvez créer que des fichiers <code>.md</code> car vous n’avez pas la permission d’effacer", //m
 
 	"tv_load": "Chargement du document texte:\n\n{0}\n\n{1}% ({2} de {3} MiB chargés)",
 	"tv_xe1": "impossible de charger le fichier texte:\n\nerreur",

@@ -116,7 +116,7 @@ Ls.ita = {
 	"ot_unpost": "unpost: elimina i tuoi caricamenti recenti, o interrompi quelli non completati",
 	"ot_bup": "bup: uploader di base, supporta anche netscape 4.0",
 	"ot_mkdir": "mkdir: crea una nuova directory",
-	"ot_md": "new-md: crea un nuovo documento markdown",
+	"ot_md": "new-file: crea un nuovo file di testo", //m
 	"ot_msg": "msg: invia un messaggio al log del server",
 	"ot_mp": "opzioni lettore multimediale",
 	"ot_cfg": "opzioni di configurazione",
@@ -125,7 +125,7 @@ Ls.ita = {
 	"ot_noie": 'Perfavore usa Chrome / Firefox / Edge',
 
 	"ab_mkdir": "crea directory",
-	"ab_mkdoc": "nuovo doc markdown",
+	"ab_mkdoc": "nuovo file di testo", //m
 	"ab_msg": "invia msg al log srv",
 
 	"ay_path": "salta alle cartelle",
@@ -437,6 +437,8 @@ Ls.ita = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Copia</a><a href="#" id="modal-ng">Carica</a>',
 
 	"mk_noname": "scrivi un nome nel campo di testo a sinistra prima di farlo :p",
+	"nmd_i1": "puoi anche aggiungere l’estensione che vuoi, per esempio <code>.txt</code>", //m
+	"nmd_i2": "puoi creare solo file <code>.md</code> perché non hai il permesso di eliminare", //m
 
 	"tv_load": "Caricando documento di testo:\n\n{0}\n\n{1}% ({2} di {3} MiB caricati)",
 	"tv_xe1": "impossibile caricare file di testo:\n\nerrore ",

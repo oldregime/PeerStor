@@ -116,7 +116,7 @@ Ls.nld = {
 	"ot_unpost": "unpost: verwijder je recente uploads, of onvoltooide uploads afbreken",
 	"ot_bup": "bup: Basisuploader, supports zelfs netscape 4.0",
 	"ot_mkdir": "mkdir: Maak een nieuwe map",
-	"ot_md": "new-md: Maak een nieuwe markdown bestand",
+	"ot_md": "new-file: Maak een nieuw tekstbestand", //m
 	"ot_msg": "msg: Verstuur een bericht naar de server logs",
 	"ot_mp": "Media speler opties",
 	"ot_cfg": "Configuratie opties",
@@ -125,7 +125,7 @@ Ls.nld = {
 	"ot_noie": 'Gebruik alstublieft Chrome / Firefox / Edge',
 
 	"ab_mkdir": "maak map",
-	"ab_mkdoc": "nieuw markdown doc",
+	"ab_mkdoc": "nieuw tekstbestand", //m
 	"ab_msg": "verstuur msg naar srv log",
 
 	"ay_path": "skip naar mappen",
@@ -437,6 +437,8 @@ Ls.nld = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopieer</a><a href="#" id="modal-ng">Upload</a>',
 
 	"mk_noname": "Voer een naam in het tekstveld aan de linkerkant voordat je verder gaat :p",
+	"nmd_i1": "Voeg ook de gewenste extensie toe, bijvoorbeeld <code>.txt</code>", //m
+	"nmd_i2": "Je kunt alleen <code>.md</code>-bestanden maken omdat je geen verwijderrechten hebt", //m
 
 	"tv_load": "Tekstdocument laden:\n\n{0}\n\n{1}% ({2} van de {3} MiB geladen)",
 	"tv_xe1": "Kon tekstbestand niet laden:\n\nfout ",

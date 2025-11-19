@@ -116,7 +116,7 @@ Ls.chi = {
 	"ot_unpost": "取消发布：删除最近上传的内容，或中止未完成的内容",
 	"ot_bup": "bup：基础上传器，甚至支持 Netscape 4.0",
 	"ot_mkdir": "mkdir：创建新目录",
-	"ot_md": "new-md：创建新 Markdown 文档",
+	"ot_md": "new-file：创建新的文本文件", //m
 	"ot_msg": "msg：向服务器日志发送消息",
 	"ot_mp": "媒体播放器选项",
 	"ot_cfg": "配置选项",
@@ -125,7 +125,7 @@ Ls.chi = {
 	"ot_noie": '请使用 Chrome / Firefox / Edge',
 
 	"ab_mkdir": "创建目录",
-	"ab_mkdoc": "新建 Markdown 文档",
+	"ab_mkdoc": "新建文本文件", //m
 	"ab_msg": "发送消息到服务器日志",
 
 	"ay_path": "跳转到文件夹",
@@ -437,6 +437,8 @@ Ls.chi = {
 	"fcp_both_b": '<a href="#" id="modal-ok">复制</a><a href="#" id="modal-ng">上传</a>', //m
 
 	"mk_noname": "在左侧文本框中输入名称，然后再执行此操作 :p",
+	"nmd_i1": "还可以添加需要的文件扩展名，例如 <code>.txt</code>", //m
+	"nmd_i2": "由于没有删除权限，你只能创建 <code>.md</code> 文件", //m
 
 	"tv_load": "加载文本文件：\n\n{0}\n\n{1}% ({2} 的 {3} MiB 已加载)",
 	"tv_xe1": "无法加载文本文件：\n\n错误 ",

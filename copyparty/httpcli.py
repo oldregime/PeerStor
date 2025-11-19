@@ -3308,9 +3308,9 @@ class HttpCli(object):
         vfs, rem = self.asrv.vfs.get(self.vpath, self.uname, False, True)
         self._assert_safe_rem(rem)
 
-        ext = "" if "." not in new_file else new_file.split(".")[-1]
-        if not ext or len(ext) > 5 or not self.can_delete:
-            new_file += ".md"
+        if not self.can_delete and not new_file.lower().endswith(".md"):
+            t = "you can only create .md files because you don't have the delete-permission"
+            raise Pebkac(400, t)
 
         sanitized = sanitize_fn(new_file, "")
         fdir = vfs.canonical(rem)
@@ -3349,7 +3349,6 @@ class HttpCli(object):
                 raise Pebkac(500, "that file exists already")
 
             with open(fsenc(fn), "wb") as f:
-                f.write(b"`GRUNNUR`\n")
                 if "fperms" in vfs.flags:
                     set_fperms(f, vfs.flags)
 

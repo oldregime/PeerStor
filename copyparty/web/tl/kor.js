@@ -116,7 +116,7 @@ Ls.kor = {
 	"ot_unpost": "주워담기: 최근 업로드한 항목을 삭제하거나 미완료된 업로드를 중단합니다",
 	"ot_bup": "bup: 기본 업로더. 넷스케이프 4.0도 지원합니다",
 	"ot_mkdir": "mkdir: 새 디렉터리를 만듭니다",
-	"ot_md": "new-md: 새 마크다운 문서를 만듭니다",
+	"ot_md": "new-file: 새 텍스트 파일을 만듭니다", //m
 	"ot_msg": "msg: 서버 로그에 메시지를 보냅니다",
 	"ot_mp": "미디어 플레이어 옵션",
 	"ot_cfg": "구성 옵션",
@@ -125,7 +125,7 @@ Ls.kor = {
 	"ot_noie": 'Chrome / Firefox / Edge를 사용해주세요',
 
 	"ab_mkdir": "디렉터리 만들기",
-	"ab_mkdoc": "새 마크다운 문서",
+	"ab_mkdoc": "새 텍스트 파일", //m
 	"ab_msg": "서버 로그에 메시지 보내기",
 
 	"ay_path": "폴더로 건너뛰기",
@@ -437,6 +437,8 @@ Ls.kor = {
 	"fcp_both_b": '<a href="#" id="modal-ok">복사</a><a href="#" id="modal-ng">업로드</a>',
 
 	"mk_noname": "왼쪽 텍스트 필드에 이름을 먼저 입력해주세요 :p",
+	"nmd_i1": "원하는 파일 확장자를 추가할 수 있습니다. 예: <code>.txt</code>", //m
+	"nmd_i2": "삭제 권한이 없어서 <code>.md</code> 파일만 만들 수 있습니다", //m
 
 	"tv_load": "텍스트 문서 불러오는 중:\n\n{0}\n\n{1}% ({3} MiB 중 {2} MiB 로드됨)",
 	"tv_xe1": "텍스트 파일을 불러올 수 없습니다:\n\n오류 ",

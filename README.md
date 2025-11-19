@@ -634,7 +634,7 @@ the main tabs in the ui
 * `[🧯]` [unpost](#unpost): undo/delete accidental uploads
 * `[🚀]` and `[🎈]` are the [uploaders](#uploading)
 * `[📂]` mkdir: create directories
-* `[📝]` new-md: create a new markdown document
+* `[📝]` new-file: create a new textfile
 * `[📟]` send-msg: either to server-log or into textfiles if `--urlform save`
 * `[🎺]` audio-player config options
 * `[⚙️]` general client config options

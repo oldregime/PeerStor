@@ -116,7 +116,7 @@ Ls.por = {
 	"ot_unpost": "despublicar: excluir seus uploads recentes, ou abortar os que não foram concluídos",
 	"ot_bup": "bup: uploader básico, até suporta netscape 4.0",
 	"ot_mkdir": "mkdir: criar um novo diretório",
-	"ot_md": "new-md: criar um novo documento markdown",
+	"ot_md": "new-file: criar um novo ficheiro de texto", //m
 	"ot_msg": "msg: enviar uma mensagem para o log do servidor",
 	"ot_mp": "opções do reprodutor de mídia",
 	"ot_cfg": "opções de configuração",
@@ -125,7 +125,7 @@ Ls.por = {
 	"ot_noie": 'Por favor, use Chrome / Firefox / Edge',
 
 	"ab_mkdir": "criar diretório",
-	"ab_mkdoc": "novo documento markdown",
+	"ab_mkdoc": "novo ficheiro de texto", //m
 	"ab_msg": "enviar msg para o log do srv",
 
 	"ay_path": "pular para pastas",
@@ -437,6 +437,8 @@ Ls.por = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Copiar</a><a href="#" id="modal-ng">Enviar</a>',
 
 	"mk_noname": "digite um nome no campo de texto à esquerda antes de fazer isso :p",
+	"nmd_i1": "também pode adicionar a extensão desejada, por exemplo <code>.txt</code>", //m
+	"nmd_i2": "só pode criar ficheiros <code>.md</code> porque não tem permissão para apagar", //m
 
 	"tv_load": "Carregando documento de texto:\n\n{0}\n\n{1}% ({2} de {3} MiB carregados)",
 	"tv_xe1": "não foi possível carregar o arquivo de texto:\n\nerro ",

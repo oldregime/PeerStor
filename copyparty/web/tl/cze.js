@@ -120,7 +120,7 @@ Ls.cze = {
 	"ot_unpost": "unpost: smazat vaše nedávné nahrání nebo zrušit nedokončené",
 	"ot_bup": "bup: základní nahrávač, podporuje i netscape 4.0",
 	"ot_mkdir": "mkdir: vytvořit nový adresář",
-	"ot_md": "new-md: vytvořit nový markdown dokument",
+	"ot_md": "new-file: vytvořit nový textový soubor", //m
 	"ot_msg": "msg: poslat zprávu do logu serveru",
 	"ot_mp": "možnosti přehrávače médií",
 	"ot_cfg": "možnosti konfigurace",
@@ -129,7 +129,7 @@ Ls.cze = {
 	"ot_noie": 'Prosím použijte Chrome / Firefox / Edge',
 
 	"ab_mkdir": "vytvořit adresář",
-	"ab_mkdoc": "nový markdown dokument",
+	"ab_mkdoc": "nový textový soubor", //m
 	"ab_msg": "poslat zprávu do logu serveru",
 
 	"ay_path": "přejít na složky",
@@ -441,6 +441,8 @@ Ls.cze = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopírovat</a><a href="#" id="modal-ng">Nahrát</a>',
 
 	"mk_noname": "napište název do textového pole vlevo předtím než to uděláte :p",
+	"nmd_i1": "můžeš také přidat příponu souboru, například <code>.txt</code>", //m
+	"nmd_i2": "můžeš vytvářet pouze <code>.md</code> soubory, protože nemáš oprávnění mazat", //m
 
 	"tv_load": "Načítání textového dokumentu:\n\n{0}\n\n{1}% ({2} z {3} MiB načteno)",
 	"tv_xe1": "nelze načíst textový soubor:\n\nchyba ",

@@ -116,7 +116,7 @@ Ls.fin = {
 	"ot_unpost": "unpost: poista viimeaikaiset tai keskeytä keskeneräiset lataukset",
 	"ot_bup": "bup: tiedostojen 'perus'lähetysohjelma, tukee jopa netscape 4.0",
 	"ot_mkdir": "mkdir: luo uusi hakemisto",
-	"ot_md": "new-md: luo uusi markdown-dokumentti",
+	"ot_md": "new-file: luo uusi tekstitiedosto", //m
 	"ot_msg": "msg: lähetä viesti palvelinlokiin",
 	"ot_mp": "mediasoittimen asetukset",
 	"ot_cfg": "asetukset",
@@ -125,7 +125,7 @@ Ls.fin = {
 	"ot_noie": 'Suosittelemme käyttämään uudempaa selainta.',
 
 	"ab_mkdir": "luo hakemisto",
-	"ab_mkdoc": "luo markdown-tiedosto",
+	"ab_mkdoc": "luo tekstitiedosto", //m
 	"ab_msg": "lähetä viesti palvelinlokiin",
 
 	"ay_path": "siirry hakemistoihin",
@@ -437,6 +437,8 @@ Ls.fin = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopioi</a><a href="#" id="modal-ng">Lähetä</a>',
 
 	"mk_noname": "kirjoita nimi vasemmalla olevaan tekstikenttään ennen kuin teet tuon :p",
+	"nmd_i1": "voit myös lisätä haluamasi tiedostopäätteen, esimerkiksi <code>.txt</code>", //m
+	"nmd_i2": "voit luoda vain <code>.md</code>-tiedostoja, koska sinulla ei ole poistolupaa", //m
 
 	"tv_load": "Ladataan tekstidokumenttia:\n\n{0}\n\n{1}% ({2} / {3} Mt ladattu)",
 	"tv_xe1": "tekstitiedoston lataaminen epäonnistui:\n\nvirhe ",

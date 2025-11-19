@@ -116,7 +116,7 @@ Ls.tur = {
 	"ot_unpost": "unpost: son yüklemelerinizi silin veya tamamlanmamış olanları iptal edin",
 	"ot_bup": "bup: temel yükleyici, hatta netscape 4.0'ı destekler",
 	"ot_mkdir": "mkdir: yeni bir dizin oluştur",
-	"ot_md": "new-md: yeni bir markdown belgesi oluştur",
+	"ot_md": "new-file: yeni bir metin dosyası oluştur", //m
 	"ot_msg": "msg: sunucu günlüğüne bir mesaj gönder",
 	"ot_mp": "medya oynatıcı seçenekleri",
 	"ot_cfg": "konfigürasyon seçenekleri",
@@ -125,7 +125,7 @@ Ls.tur = {
 	"ot_noie": 'Lütfen Chrome / Firefox / Edge kullanın',
 
 	"ab_mkdir": "dizin oluştur",
-	"ab_mkdoc": "yeni markdown belgesi",
+	"ab_mkdoc": "yeni metin dosyası", //m
 	"ab_msg": "sunucu günlüğüne mesaj gönder",
 
 	"ay_path": "klasörlere atla",
@@ -437,6 +437,8 @@ Ls.tur = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopyala</a><a href="#" id="modal-ng">Yükle</a>',
 
 	"mk_noname": "bunu yapmadan önce soldaki boşluğa bir şeyler yazsana :p",
+	"nmd_i1": "ayrıca istediğin dosya uzantısını ekleyebilirsin, örneğin <code>.txt</code>", //m
+	"nmd_i2": "silme iznin olmadığı için yalnızca <code>.md</code> dosyaları oluşturabilirsin", //m
 
 	"tv_load": "Metin belgesi yükleniyor:\n\n{0}\n\n{1}% ({2} of {3} MiB yüklendi)",
 	"tv_xe1": "metin dosyası yüklenemedi:\n\nhata ",

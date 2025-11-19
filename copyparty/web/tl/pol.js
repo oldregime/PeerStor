@@ -119,7 +119,7 @@ Ls.pol = {
 	"ot_unpost": "unpost: usuń ostatnio przesłane pliki lub przerwij przesyłanie",
 	"ot_bup": "bup: podstawowe przesyłanie danych, wspiera nawet netscape 4.0",
 	"ot_mkdir": "mkdir: tworzy nowy folder",
-	"ot_md": "new-md: tworzy nowy dokument markdown",
+	"ot_md": "new-file: tworzy nowy plik tekstowy", //m
 	"ot_msg": "msg: wysyła wiadomość do loga serwera",
 	"ot_mp": "opcje odtwarzacza multimediów",
 	"ot_cfg": "opcje konfiguracji",
@@ -128,7 +128,7 @@ Ls.pol = {
 	"ot_noie": 'Użyj przeglądarki Chrome / Firefox / Edge',
 
 	"ab_mkdir": "stwórz folder",
-	"ab_mkdoc": "stwórz dok. markdown",
+	"ab_mkdoc": "nowy plik tekstowy", //m
 	"ab_msg": "wyślij wiad. do logów serwera",
 
 	"ay_path": "przejdź do folderów",
@@ -440,6 +440,8 @@ Ls.pol = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopiuj</a><a href="#" id="modal-ng">Prześlij</a>',
 
 	"mk_noname": "wpisz nazwę do pola po lewej zanim to zrobisz :p",
+	"nmd_i1": "możesz też dodać wybrane rozszerzenie, np. <code>.txt</code>", //m
+	"nmd_i2": "możesz tworzyć tylko pliki <code>.md</code>, ponieważ nie masz uprawnień do usuwania", //m
 
 	"tv_load": "Wczytywanie pliku tekstowego:\n\n{0}\n\n{1}% (wczytano {2} z {3} MiB)",
 	"tv_xe1": "nie udało się wczytać pliku:\n\nbłąd ",

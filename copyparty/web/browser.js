@@ -119,7 +119,7 @@ if (1)
 		"ot_unpost": "unpost: delete your recent uploads, or abort unfinished ones",
 		"ot_bup": "bup: basic uploader, even supports netscape 4.0",
 		"ot_mkdir": "mkdir: create a new directory",
-		"ot_md": "new-md: create a new markdown document",
+		"ot_md": "new-file: create a new textfile",
 		"ot_msg": "msg: send a message to the server log",
 		"ot_mp": "media player options",
 		"ot_cfg": "configuration options",
@@ -128,7 +128,7 @@ if (1)
 		"ot_noie": 'Please use Chrome / Firefox / Edge',
 
 		"ab_mkdir": "make directory",
-		"ab_mkdoc": "new markdown doc",
+		"ab_mkdoc": "new textfile",
 		"ab_msg": "send msg to srv log",
 
 		"ay_path": "skip to folders",
@@ -440,6 +440,8 @@ if (1)
 		"fcp_both_b": '<a href="#" id="modal-ok">Copy</a><a href="#" id="modal-ng">Upload</a>',
 
 		"mk_noname": "type a name into the text field on the left before you do that :p",
+		"nmd_i1": "also add the file extension you want, for example <code>.md</code>",
+		"nmd_i2": "you can only create <code>.md</code> files because you don't have the delete-permission",
 
 		"tv_load": "Loading text document:\n\n{0}\n\n{1}% ({2} of {3} MiB loaded)",
 		"tv_xe1": "could not load textfile:\n\nerror ",
@@ -7742,6 +7744,8 @@ function apply_perms(res) {
 	u2ts = res.u2ts;
 	if (up2k)
 		up2k.set_fsearch();
+
+	ebi('new_mdi').innerHTML = has(perms, "delete") ? L.nmd_i1 : L.nmd_i2;
 
 	widget.setvis();
 	thegrid.setvis();

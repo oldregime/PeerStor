@@ -116,7 +116,7 @@ Ls.spa = {
 	"ot_unpost": "dessubir: elimina tus subidas recientes, o aborta las inacabadas",
 	"ot_bup": "bup: uploader básico, soporta hasta netscape 4.0",
 	"ot_mkdir": "mkdir: crear un nuevo directorio",
-	"ot_md": "new-md: crear un nuevo documento markdown",
+	"ot_md": "new-file: crear un nuevo archivo de texto", //m
 	"ot_msg": "msg: enviar un mensaje al registro del servidor",
 	"ot_mp": "opciones del reproductor multimedia",
 	"ot_cfg": "opciones de configuración",
@@ -125,7 +125,7 @@ Ls.spa = {
 	"ot_noie": "Por favor, usa Chrome / Firefox / Edge",
 
 	"ab_mkdir": "crear directorio",
-	"ab_mkdoc": "nuevo documento markdown",
+	"ab_mkdoc": "nuevo archivo de texto", //m
 	"ab_msg": "enviar msg al registro del servidor",
 
 	"ay_path": "saltar a carpetas",
@@ -436,6 +436,8 @@ Ls.spa = {
 	"fcp_both_b": "<a href=\"#\" id=\"modal-ok\">Copiar</a><a href=\"#\" id=\"modal-ng\">Subir</a>",
 
 	"mk_noname": "escribe un nombre en el campo de texto de la izquierda antes de hacer eso :p",
+	"nmd_i1": "también puedes añadir la extensión que quieras, por ejemplo <code>.txt</code>", //m
+	"nmd_i2": "solo puedes crear archivos <code>.md</code> porque no tienes permiso para borrar", //m
 
 	"tv_load": "Cargando documento de texto:\n\n{0}\n\n{1}% ({2} de {3} MiB cargados)",
 	"tv_xe1": "no se pudo cargar el archivo de texto:\n\nerror ",

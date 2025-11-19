@@ -116,7 +116,7 @@ Ls.swe = {
 	"ot_unpost": "unpost: radera dina senaste uppladdningar, eller avbryt pågående sådana",
 	"ot_bup": "bup: enkel uppladdare, stödjer t o m netscape 4.0",
 	"ot_mkdir": "mkdir: skapa en ny mapp",
-	"ot_md": "new-md: skapa ett nytt markdown-dokument",
+	"ot_md": "new-file: skapa en ny textfil",
 	"ot_msg": "msg: skicka ett meddelande till serverloggen",
 	"ot_mp": "mediaspelarinställningar",
 	"ot_cfg": "konfigurationsinställningar",
@@ -125,7 +125,7 @@ Ls.swe = {
 	"ot_noie": 'Var vänlig använd Chrome / Firefox / Edge',
 
 	"ab_mkdir": "skapa mapp",
-	"ab_mkdoc": "nytt markdown-dokument",
+	"ab_mkdoc": "ny textfil",
 	"ab_msg": "skicka medd. till serverlogg",
 
 	"ay_path": "hoppa till mappar",
@@ -437,6 +437,8 @@ Ls.swe = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopiera</a><a href="#" id="modal-ng">Ladda upp</a>',
 
 	"mk_noname": "skriv ett namn i fältet till vänster först :p",
+	"nmd_i1": "lägg också till filändelsen du vill ha, till exempel <code>.txt</code>", //m
+	"nmd_i2": "du kan bara skapa <code>.md</code>-filer eftersom du inte har borttagningsbehörighet", //m
 
 	"tv_load": "Laddar textfil:\n\n{0}\n\n{1}% ({2} av {3} MiB laddat)",
 	"tv_xe1": "kunde ej ladda textfil:\n\nfel ",

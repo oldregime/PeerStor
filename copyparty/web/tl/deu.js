@@ -116,7 +116,7 @@ Ls.deu = {
 	"ot_unpost": "unpost: lösche deine letzten Uploads oder breche unvollständige ab",
 	"ot_bup": "bup: Basic Uploader, unterstützt sogar Neuheiten wie Netscape 4.0",
 	"ot_mkdir": "mkdir: Neuen Ordner erstellen",
-	"ot_md": "new-md: Neues Markdown-Dokument erstellen",
+	"ot_md": "new-file: Neues Textdokument erstellen", //m
 	"ot_msg": "msg: Eine Nachricht an das Server-Log schicken",
 	"ot_mp": "Media Player-Optionen",
 	"ot_cfg": "Konfigurationsoptionen",
@@ -125,7 +125,7 @@ Ls.deu = {
 	"ot_noie": 'Bitte benutze Chrome / Firefox / Edge',
 
 	"ab_mkdir": "Ordner erstellen",
-	"ab_mkdoc": "Markdown Doc erstellen",
+	"ab_mkdoc": "Textdatei erstellen", //m
 	"ab_msg": "Nachricht an Server Log senden",
 
 	"ay_path": "zu Ordnern springen",
@@ -437,6 +437,8 @@ Ls.deu = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopieren</a><a href="#" id="modal-ng">Hochladen</a>',
 
 	"mk_noname": "Tipp' mal vorher lieber einen Namen in das Textfeld links, bevor du das machst :p",
+	"nmd_i1": "Fügen Sie auch die gewünschte Dateiendung hinzu, z. B. <code>.txt</code>", //m
+	"nmd_i2": "Sie können nur <code>.md</code>-Dateien erstellen, da Ihnen die Löschberechtigung fehlt", //m
 
 	"tv_load": "Textdatei wird geladen:\n\n{0}\n\n{1}% ({2} von {3} MiB geladen)",
 	"tv_xe1": "Konnte Textdatei nicht laden:\n\nFehler ",

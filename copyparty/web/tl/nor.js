@@ -114,7 +114,7 @@ Ls.nor = {
 	"ot_unpost": "unpost: slett filer som du nylig har lastet opp; «angre-knappen»",
 	"ot_bup": "bup: tradisjonell / primitiv filopplastning,$N$Nfungerer i omtrent samtlige nettlesere",
 	"ot_mkdir": "mkdir: lag en ny mappe",
-	"ot_md": "new-md: lag et nytt markdown-dokument",
+	"ot_md": "new-file: lag en ny tekstfil",
 	"ot_msg": "msg: send en beskjed til serverloggen",
 	"ot_mp": "musikkspiller-instillinger",
 	"ot_cfg": "andre innstillinger",
@@ -123,7 +123,7 @@ Ls.nor = {
 	"ot_noie": 'Fungerer mye bedre i Chrome / Firefox / Edge',
 
 	"ab_mkdir": "lag mappe",
-	"ab_mkdoc": "nytt dokument",
+	"ab_mkdoc": "ny tekstfil",
 	"ab_msg": "send melding",
 
 	"ay_path": "gå videre til mapper",
@@ -435,6 +435,8 @@ Ls.nor = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopiér</a><a href="#" id="modal-ng">Last opp</a>',
 
 	"mk_noname": "skriv inn et navn i tekstboksen til venstre først :p",
+	"nmd_i1": "legg også til ønsket filtype, for eksempel <code>.txt</code>", //m
+	"nmd_i2": "du kan bare lage <code>.md</code>-filer fordi du ikke har delete-tilgang", //m
 
 	"tv_load": "Laster inn tekstfil:\n\n{0}\n\n{1}% ({2} av {3} MiB lastet ned)",
 	"tv_xe1": "kunne ikke laste tekstfil:\n\nfeil ",

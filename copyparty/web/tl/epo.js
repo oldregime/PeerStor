@@ -116,7 +116,7 @@ Ls.epo = {
 	"ot_unpost": "unpost: forigi viaj plej lastaj alŝutoj, aŭ ĉesigi nefinigitajn",
 	"ot_bup": "bup: fundamenta alŝutilo, funkias eĉ kun netscape 4.0",
 	"ot_mkdir": "mkdir: krei novan dosierujon",
-	"ot_md": "new-md: krei novan markdown-dosieron",
+	"ot_md": "new-file: krei novan tekstodosieron", //m
 	"ot_msg": "msg: sendi mesaĝon al servila protokolo",
 	"ot_mp": "agordoj de medialudilo",
 	"ot_cfg": "aliaj agordoj",
@@ -125,7 +125,7 @@ Ls.epo = {
 	"ot_noie": 'Bonvolu uzi retumilojn Chrome / Firefox / Edge',
 
 	"ab_mkdir": "krei dosierujon",
-	"ab_mkdoc": "krei markdown-dosieron",
+	"ab_mkdoc": "krei tekstodosieron", //m
 	"ab_msg": "sendi mesaĝon al protokolo",
 
 	"ay_path": "iri al dosierujoj",
@@ -437,6 +437,8 @@ Ls.epo = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopii</a><a href="#" id="modal-ng">Alŝuti</a>',
 
 	"mk_noname": "tajpu nomon en tekstokampo maldekstre antaŭ vi faras ĉi tion :p",
+	"nmd_i1": "vi povas aldoni la deziratan sufikson, ekzemple <code>.txt</code>", //m
+	"nmd_i2": "vi povas krei nur <code>.md</code>-dosierojn ĉar vi ne havas forigan permeson", //m
 
 	"tv_load": "Ŝargado de teksto-dokumento:\n\n{0}\n\n{1}% ({2} da {3} MiB ŝargita)",
 	"tv_xe1": "ne povas ŝargi teksto-dosieron:\n\neraro ",
