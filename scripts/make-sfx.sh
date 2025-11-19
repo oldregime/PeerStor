@@ -584,7 +584,7 @@ gzres() {
 		$pk "$f" &
 	done < <(
 		find -printf '%s %p\n' |
-		grep -E '\.(js|css)$|/web/a/[^_].*\.(py|txt)$' |
+		grep -E '\.(js|css)$|/web/a/.*\.txt$' |
 		grep -vF /deps/ |
 		sort -nr
 	)
