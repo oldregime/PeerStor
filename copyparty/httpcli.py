@@ -124,7 +124,17 @@ from .util import (
 
 if True:  # pylint: disable=using-constant-test
     import typing
-    from typing import Any, Generator, Iterable, Match, Optional, Pattern, Type, Union
+    from typing import (
+        Any,
+        Generator,
+        Iterable,
+        Match,
+        Optional,
+        Pattern,
+        Sequence,
+        Type,
+        Union,
+    )
 
 if TYPE_CHECKING:
     from .httpconn import HttpConn
@@ -170,6 +180,18 @@ PERMS_rwh = [
     [False, True],
     [False, False, False, False, False, False, True],
 ]
+
+
+def _build_zip_xcode() -> Sequence[str]:
+    ret = "opus mp3 flac wav p".split()
+    for codec in ("w", "j"):
+        for suf in ("", "f", "f3", "3"):
+            ret.append("%s%s" % (codec, suf))
+    return ret
+
+
+ZIP_XCODE_L = _build_zip_xcode()
+ZIP_XCODE_S = set(ZIP_XCODE_L)
 
 
 class HttpCli(object):
@@ -4942,9 +4964,12 @@ class HttpCli(object):
         # for f in fgen: print(repr({k: f[k] for k in ["vp", "ap"]}))
         cfmt = ""
         if self.thumbcli and not self.args.no_bacode:
-            for zs in ("opus", "mp3", "flac", "wav", "w", "j", "p"):
-                if zs in self.ouparam or uarg == zs:
-                    cfmt = zs
+            if uarg in ZIP_XCODE_S:
+                cfmt = uarg
+            else:
+                for zs in ZIP_XCODE_L:
+                    if zs in self.ouparam:
+                        cfmt = zs
 
             if cfmt:
                 self.log("transcoding to [{}]".format(cfmt))
