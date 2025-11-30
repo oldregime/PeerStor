@@ -247,8 +247,8 @@ class HttpCli(object):
         self.dl_id = ""
         self.gctx = " "  # additional context for garda
         self.trailing_slash = True
-        self.uname = " "
-        self.pw = " "
+        self.uname = "*"
+        self.pw = ""
         self.rvol = self.wvol = self.avol = empty_stringlist
         self.do_log = True
         self.can_read = False
