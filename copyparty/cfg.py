@@ -30,6 +30,7 @@ def vf_bmap() -> dict[str, str]:
     }
     for k in (
         "dedup",
+        "dlni",
         "dotsrch",
         "e2d",
         "e2ds",
@@ -318,6 +319,7 @@ flagcats = {
         "hsortn": "number of sort-rules to add to media URLs",
         "ufavico=URL": "per-volume favicon (.ico/png/gif/svg)",
         "unlist": "dont list files matching REGEX",
+        "dlni": "force-download (no-inline) files on click",
         "html_head=TXT": "includes TXT in the <head>, or @PATH for file at PATH",
         "html_head_s=TXT": "additional static text in the html <head>",
         "tcolor=#fc0": "theme color (a hint for webbrowsers, discord, etc.)",

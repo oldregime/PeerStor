@@ -3049,6 +3049,8 @@ class AuthSrv(object):
             vn.js_ls = {
                 "idx": "e2d" in vf,
                 "itag": "e2t" in vf,
+                "dlni": "dlni" in vf,
+                "dgrid": "grid" in vf,
                 "dnsort": "nsort" in vf,
                 "dhsortn": vf["hsortn"],
                 "dsort": vf["sort"],
@@ -3091,7 +3093,8 @@ class AuthSrv(object):
                 "unlist0": vf.get("unlist") or "",
                 "see_dots": self.args.see_dots,
                 "dqdel": self.args.qdel,
-                "dgrid": "grid" in vf,
+                "dlni": vn.js_ls["dlni"],
+                "dgrid": vn.js_ls["dgrid"],
                 "dgsel": "gsel" in vf,
                 "dnsort": "nsort" in vf,
                 "dhsortn": vf["hsortn"],

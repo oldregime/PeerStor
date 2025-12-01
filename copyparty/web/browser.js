@@ -226,6 +226,7 @@ if (1)
 		"ct_ttips": '◔ ◡ ◔">ℹ️ tooltips',
 		"ct_thumb": 'in grid-view, toggle icons or thumbnails$NHotkey: T">🖼️ thumbs',
 		"ct_csel": 'use CTRL and SHIFT for file selection in grid-view">sel',
+		"ct_dl": 'force download (don\'t display inline) when a file is clicked">dl',
 		"ct_ihop": 'when the image viewer is closed, scroll down to the last viewed file">g⮯',
 		"ct_dots": 'show hidden files (if server permits)">dotfiles',
 		"ct_qdel": 'when deleting files, only ask for confirmation once">qdel',
@@ -878,6 +879,7 @@ ebi('op_cfg').innerHTML = (
 	'		<a id="griden" class="tgl btn" href="#" tt="' + L.wt_grid + '">' + L.ct_grid + '</a>\n' +
 	'		<a id="thumbs" class="tgl btn" href="#" tt="' + L.ct_thumb + '</a>\n' +
 	'		<a id="csel" class="tgl btn" href="#" tt="' + L.ct_csel + '</a>\n' +
+	'		<a id="dlni" class="tgl btn" href="#" tt="' + L.ct_dl + '</a>\n' +
 	'		<a id="ihop" class="tgl btn" href="#" tt="' + L.ct_ihop + '</a>\n' +
 	'		<a id="dotfiles" class="tgl btn" href="#" tt="' + L.ct_dots + '</a>\n' +
 	'		<a id="qdel" class="tgl btn" href="#" tt="' + L.ct_qdel + '</a>\n' +
@@ -6603,6 +6605,9 @@ var treectl = (function () {
 		mentered = null,
 		treesz = clamp(icfg_get('treesz', 16), 10, 50);
 
+	if (/[?&]dlni\b/.exec(sloc0))
+		swrite('dlni', /[?&]dlni=0\b/.exec(sloc0) ? 0 : 1);
+
 	var resort = function () {
 		ENATSORT = NATSORT && clgot(ebi('nsort'), 'on');
 		treectl.gentab(get_evpath(), treectl.lsc);
@@ -6611,6 +6616,7 @@ var treectl = (function () {
 	bcfg_bind(r, 'idxh', 'idxh', idxh, setidxh);
 	bcfg_bind(r, 'dyn', 'dyntree', true, onresize);
 	bcfg_bind(r, 'csel', 'csel', dgsel);
+	bcfg_bind(r, 'dlni', 'dlni', dlni, resort);
 	bcfg_bind(r, 'dots', 'dotfiles', see_dots, function (v) {
 		r.goto();
 		setck('dots=' + (v ? 'y' : ''));
@@ -7160,6 +7166,10 @@ var treectl = (function () {
 		dth3x = res.dth3x;
 		dk = res.dk;
 
+		dlni = res.dlni;
+		if (!sread('dlni'))
+			clmod(ebi('dlni'), 'on', treectl.dlni = dlni);
+
 		srvinf = res.srvinf;
 		if (rtt !== null)
 			srvinf += (srvinf ? '</span> // <span>rtt: ' : 'rtt: ') + rtt;
@@ -7346,6 +7356,11 @@ var treectl = (function () {
 		html.push('</tbody>');
 		html = html.join('\n');
 		set_files_html(html);
+		if (r.dlni) {
+			var o = QSA('#files a[id]');
+			for (var a = 0, aa = o.length; a < aa; a++)
+				o[a].setAttribute('download', '');
+		}
 		if (r.trunc) {
 			r.setlazy(plain);
 			if (!r.ask) {
