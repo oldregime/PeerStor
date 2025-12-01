@@ -6231,6 +6231,9 @@ class HttpCli(object):
             self.log("unpost was denied" + BADXFF, 1)
             raise Pebkac(403, "the delete feature is disabled in server config")
 
+        if not unpost and self.vn.shr_src:
+            raise Pebkac(403, "files in shares can only be deleted with unpost")
+
         if not req:
             req = [self.vpath]
         elif self.is_vproxied:
