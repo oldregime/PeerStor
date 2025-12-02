@@ -923,7 +923,9 @@ var set_lno = (function () {
             if (i === pi)
                 return;
 
-            var v = 'L' + dom_src.value.slice(0, i).split('\n').length;
+            var lns = dom_src.value.slice(0, i).split('\n'),
+                v = lns.length + ' : ' + lns.pop().length;
+
             if (v != pv)
                 lno.innerHTML = v;
 
