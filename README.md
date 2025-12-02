@@ -118,6 +118,7 @@ made in Norway 🇳🇴
     * [nix package](#nix-package) - `nix profile install github:9001/copyparty`
     * [nixos module](#nixos-module)
 * [browser support](#browser-support) - TLDR: yes
+* [server hall of fame](#server-hall-of-fame) - unexpected things that run copyparty
 * [client examples](#client-examples) - interact with copyparty using non-browser clients
     * [folder sync](#folder-sync) - sync folders to/from copyparty
     * [mount as drive](#mount-as-drive) - a remote copyparty server as a local filesystem
@@ -2621,6 +2622,15 @@ quick summary of more eccentric web-browsers trying to view a directory index:
 | **Nintendo Wii (Opera 9.0 "Internet Channel")**          | can browse, can't upload or download (no local storage), can view images - works best with `?b=u`, default view broken |
 
 <p align="center"><img src="https://github.com/user-attachments/assets/88deab3d-6cad-4017-8841-2f041472b853" /></p>
+
+
+# server hall of fame
+
+unexpected things that run copyparty:
+
+* an old [allwinner](https://a.ocv.me/pub/g/nerd-stuff/cpp/servers/aallwinner.jpg) android tv-box (ziptie-strapped to an HDD) running a firmware which flips the CPU into Big-Endian mode early during boot
+  * copyparty is [certified BE ready](https://a.ocv.me/pub/g/nerd-stuff/cpp/servers/be-ready.png)
+* a [wristwatch](https://a.ocv.me/pub/g/nerd-stuff/cpp/servers/clockyparty.jpg)
 
 
 # client examples
