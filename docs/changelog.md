@@ -1,4 +1,18 @@
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
+# 2025-1102-0109  `v1.19.20`  november
+
+## 🧪 new features
+
+* #961 the `/?shares` listing now shows the list of filenames for each share 2cc53ea15181f750b4367e6cd20dfebd0bcb3bee
+
+## 🩹 bugfixes
+
+* #967 per-volume md/lg sandbox rules are now applied during navigation db60951d9fa5b17c8190e8b3ab4ceb422a9d2701
+  * if a volume has `no-sb-lg` or `no-sb-md` set then it'll apply when navigating into that volume, and vice-versa
+
+
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
 # 2025-1025-1918  `v1.19.19`  copyparty.eu マークII
 
 ## 🩹 bugfixes
