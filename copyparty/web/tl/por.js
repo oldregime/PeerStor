@@ -84,6 +84,8 @@ Ls.por = {
 			["M", "fechar arquivo de texto"],
 			["E", "editar arquivo de texto"],
 			["S", "selecionar arquivo (para recortar/copiar/renomear)"],
+			["Y", "baixar arquivo de texto"], //m
+			["⇧ J", "embelezar json"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.por = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ dicas de ferramentas',
 	"ct_thumb": 'na visualização de grade, alternar entre ícones ou miniaturas$NHotkey: T">🖼️ miniaturas',
 	"ct_csel": 'usar CTRL e SHIFT para seleção de arquivo na visualização de grade">sel',
+	"ct_dl": 'forçar download (não exibir inline) ao clicar em um arquivo">dl', //m
 	"ct_ihop": 'quando o visualizador de imagens for fechado, rolar para o último arquivo visualizado">g⮯',
 	"ct_dots": 'mostrar arquivos ocultos (se o servidor permitir)">dotfiles',
 	"ct_qdel": 'ao excluir arquivos, pedir confirmação apenas uma vez">qdel',
@@ -449,6 +452,7 @@ Ls.por = {
 	"tvt_prev": "mostrar documento anterior$NHotkey: i\">⬆ anterior",
 	"tvt_next": "mostrar próximo documento$NHotkey: K\">⬇ próximo",
 	"tvt_sel": "selecionar arquivo &nbsp; ( para recortar / copiar / excluir / ... )$NHotkey: S\">sel",
+	"tvt_j": "embelezar json$NHotkey: shift-J\">j", //m
 	"tvt_edit": "abrir arquivo no editor de texto$NHotkey: E\">✏️ editar",
 	"tvt_tail": "monitorar arquivo para alterações; mostrar novas linhas em tempo real\">📡 seguir",
 	"tvt_wrap": "quebra de linha\">↵",

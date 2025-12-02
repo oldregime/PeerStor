@@ -84,6 +84,8 @@ Ls.deu = {
 			["M", "Textdatei schliessen"],
 			["E", "Textdatei bearbeiten"],
 			["S", "Textdatei auswählen (für Ausschneiden / Kopieren / Umbenennen)"],
+			["Y", "Textdatei herunterladen"], //m
+			["⇧ J", "json verschönern"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.deu = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ Tooltips',
 	"ct_thumb": 'In Raster-Ansicht, zwischen Icons und Vorschau wechseln$NHotkey: T">🖼️ Vorschaubilder',
 	"ct_csel": 'Benutze STRG und UMSCHALT für Dateiauswahl in Raster-Ansicht">sel',
+	"ct_dl": 'Herunterladen erzwingen (nicht inline anzeigen), wenn eine datei angeklickt wird">dl', //m
 	"ct_ihop": 'Wenn die Bildanzeige geschlossen ist, scrolle runter zu den zuletzt angesehenen Dateien">g⮯',
 	"ct_dots": 'Verstecke Dateien anzeigen (wenn erlaubt durch Server)">dotfiles',
 	"ct_qdel": 'Nur einmal fragen, wenn mehrere Dateien gelöscht werden">qdel',
@@ -449,6 +452,7 @@ Ls.deu = {
 	"tvt_prev": "Vorheriges Dokument zeigen$NHotkey: i\">⬆ vorh.",
 	"tvt_next": "Nächstes Dokument zeigen$NHotkey: K\">⬇ nächst.",
 	"tvt_sel": "Wählt diese Datei aus &nbsp; ( zum Ausschneiden / Kopieren / Löschen / ... )$NHotkey: S\">ausw.",
+	"tvt_j": "json verschönern$NHotkey: shift-J\">j", //m
 	"tvt_edit": "Datei im Texteditor zum Bearbeiten öffnen$NHotkey: E\">✏️ bearb.",
 	"tvt_tail": "Datei auf Veränderungen überwachen; Neue Zeilen werden in Echtzeit angezeigt\">📡 folgen",
 	"tvt_wrap": "Zeilenumbruch\">↵",

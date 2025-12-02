@@ -82,6 +82,7 @@ Ls.nno = {
 			["E", "redigér tekstdokument"],
 			["S", "markér fil (for F2/ctrl-x/...)"],
 			["Y", "last ned tekstfil"],
+			["⇧ J", "formattér json"],
 		]
 	],
 
@@ -221,6 +222,7 @@ Ls.nno = {
 	"ct_ttips": 'vis hjelpetekst ved å holde musa over ting">ℹ️ tips',
 	"ct_thumb": 'vis miniatyrbilder i staden for ikon$NSnarvei: T">🖼️ bilder',
 	"ct_csel": 'bruk tastane CTRL og SHIFT for markering av filer i ikonvising">merk',
+	"ct_dl": 'last ned filer (ikkje vis i nettleseren)">dl',
 	"ct_ihop": 'bla ned åt sist viste bilde når bildevisaren lukkast">g⮯',
 	"ct_dots": 'vis skjulte filer (gitt at serveren tillèt det)">.synlig',
 	"ct_qdel": 'sletteknappen spør berre éin gong om stadfesting">hurtig🗑️',
@@ -447,6 +449,7 @@ Ls.nno = {
 	"tvt_prev": "vis førre dokument$NSnarvei: i\">⬆ forr.",
 	"tvt_next": "vis neste dokument$NSnarvei: K\">⬇ neste",
 	"tvt_sel": "markér fila &nbsp; ( for utklipp / sletting / ... )$NSnarvei: S\">merk",
+	"tvt_j": "formattér json$NSnarvei: shift-J\">j",
 	"tvt_edit": "redigér fila$NSnarvei: E\">✏️ endre",
 	"tvt_tail": "overvak fila for endringar og vis nye linjer i sanntid\">📡 følg",
 	"tvt_wrap": "tekstbryting\">↵",

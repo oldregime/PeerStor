@@ -84,6 +84,8 @@ Ls.tur = {
 			["M", "metin dosyasını kapat"],
 			["E", "metin dosyasını düzenle"],
 			["S", "dosyayı seç (kes/kopyala/yeniden adlandır)"],
+			["Y", "metin dosyasını indir"], //m
+			["⇧ J", "json güzelleştir"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.tur = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ ipuçları',
 	"ct_thumb": 'ızgara görünümünde, simgeler ve küçük resimler arasında geçiş yapın$NKısayol: T">🖼️ küçük resimler',
 	"ct_csel": 'ızgara görünümünde dosya seçimi için CTRL ve SHIFT tuşlarını kullanın">seç',
+	"ct_dl": 'dosyaya tıklandığında indirmeyi zorla (satır içinde görüntüleme)">dl', //m
 	"ct_ihop": 'resim görüntüleyici kapatıldığında, en son görüntülenen dosyaya kaydırın">g⮯',
 	"ct_dots": 'gizli dosyaları göster (sunucu izin veriyorsa)">nokta dosyaları',
 	"ct_qdel": 'dosyaları silerken yalnız bir kez onay isteyin">qdel',
@@ -449,6 +452,7 @@ Ls.tur = {
 	"tvt_prev": "önceki belgeyi göster$NKısayol: i\">⬆ önceki",
 	"tvt_next": "sonraki belgeyi göster$NKısayol: K\">⬇ sonraki",
 	"tvt_sel": "dosyayı seç$NKısayol: S\">seç",
+	"tvt_j": "json güzelleştir$NKısayol: shift-J\">j", //m
 	"tvt_edit": "dosyayı metin düzenleyicisinde aç$NKısayol: E\">✏️ düzenle",
 	"tvt_tail": "dosyalardaki değişiklikleri izle; yeni satırları gerçek zamanlı göster\">📡 takip",
 	"tvt_wrap": "kelime sarma\">↵",

@@ -84,6 +84,8 @@ Ls.ita = {
 			["M", "chiudi file di testo"],
 			["E", "modifica file di testo"],
 			["S", "seleziona file (per taglia/copia/rinomina)"],
+			["Y", "scarica il file di testo"], //m
+			["⇧ J", "abbellire json"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.ita = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ tooltip',
 	"ct_thumb": 'nella vista griglia, alterna icone o miniature$NTasto rapido: T">🖼️ miniature',
 	"ct_csel": 'usa CTRL e SHIFT per la selezione file nella vista griglia">sel',
+	"ct_dl": 'forza il download (non visualizzare inline) quando si clicca su un file">dl', //m
 	"ct_ihop": 'quando il visualizzatore immagini è chiuso, scorri fino all\'ultimo file visualizzato">g⮯',
 	"ct_dots": 'mostra file nascosti (se il server lo permette)">dotfile',
 	"ct_qdel": 'quando elimini file, chiedi conferma solo una volta">qdel',
@@ -449,6 +452,7 @@ Ls.ita = {
 	"tvt_prev": "mostra documento precedente$NTasto rapido: i\">⬆ prec",
 	"tvt_next": "mostra documento successivo$NTasto rapido: K\">⬇ succ",
 	"tvt_sel": "seleziona file &nbsp; ( per taglia / copia / elimina / ... )$NTasto rapido: S\">sel",
+	"tvt_j": "abbellire json$NTasto rapido: shift-J\">j", //m
 	"tvt_edit": "apri file nell'editor di testo$NTasto rapido: E\">✏️ modifica",
 	"tvt_tail": "monitora file per cambiamenti; mostra nuove righe in tempo reale\">📡 segui",
 	"tvt_wrap": "a capo parola\">↵",

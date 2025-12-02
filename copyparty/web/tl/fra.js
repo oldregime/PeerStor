@@ -84,6 +84,8 @@ Ls.fra = {
 			["M", "fermer le fichier texte"],
 			["E", "modifier le fichier texte"],
 			["S", "sélectioner le fichier (pour le couper/copier/renommer)"],
+			["Y", "télécharger le fichier texte"], //m
+			["⇧ J", "embellir json"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.fra = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ infobulles',
 	"ct_thumb": 'vue en grille, activer les icônes ou les miniatures$NHotkey: T">🖼️ minia',
 	"ct_csel": 'utiliser CTRL et MAJ pour selectioner des fichiers en vue en grille">sel',
+	"ct_dl": 'forcer le téléchargement (ne pas afficher en ligne) lorsqu’un fichier est cliqué">dl', //m
 	"ct_ihop": 'quand le visionneuse d\'image est fermé, faire defiller vers le bas jusqu\'au dernier fichier">g⮯',
 	"ct_dots": 'voir les fichiers caché (si le serveur le permet)">dotfiles',
 	"ct_qdel": 'ne demander qu\'une confirmation lors de la suppression de fichiers>qdel',
@@ -449,6 +452,7 @@ Ls.fra = {
 	"tvt_prev": "montrer le document précédent$NHotkey: i\">⬆ précédent",
 	"tvt_next": "montrer le document suivant$NHotkey: K\">⬇ suivant",
 	"tvt_sel": "sélectionner le fichier &nbsp; ( pour couper / copier / supprimer / … )$NHotkey: S\">sel",
+	"tvt_j": "embellir json$NHotkey: shift-J\">j", //m
 	"tvt_edit": "ouvrir le fichier dans l'éditeur de texte$NHotkey: E\">✏️ modifier",
 	"tvt_tail": "surveiller le fichier pour les changements; montrer les nouvelles lignes en temps réel\">📡 suivre",
 	"tvt_wrap": "retour à la ligne\">↵",

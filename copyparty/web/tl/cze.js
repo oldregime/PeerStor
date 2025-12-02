@@ -84,6 +84,8 @@ Ls.cze = {
 			["M", "zavřít textový soubor"],
 			["E", "upravit textový soubor"],
 			["S", "vybrat soubor (pro vyjmutí/kopírování/přejmenování)"],
+			["Y", "stáhnout textový soubor"], //m
+			["⇧ J", "zkrášlit json"], //m
 		]
 	],
 
@@ -227,6 +229,7 @@ Ls.cze = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ nápovědy',
 	"ct_thumb": 'v zobrazení mřížky přepnout ikony nebo náhledy$NKlávesová zkratka: T">🖼️ náhledy',
 	"ct_csel": 'použít CTRL a SHIFT pro výběr souborů v zobrazení mřížky">výběr',
+	"ct_dl": 'vynutit stažení (nezobrazovat inline) při kliknutí na soubor">dl', //m
 	"ct_ihop": 'když se zavře prohlížeč obrázků, posunout dolů k naposledy zobrazenému souboru">g⮯',
 	"ct_dots": 'zobrazit skryté soubory (pokud to server povoluje)">dotfiles',
 	"ct_qdel": 'při mazání souborů požádat o potvrzení jen jednou">rychlé mazání',
@@ -453,6 +456,7 @@ Ls.cze = {
 	"tvt_prev": "zobrazit předchozí dokument$NKlávesová zkratka: i\">⬆ předchozí",
 	"tvt_next": "zobrazit následující dokument$NKlávesová zkratka: K\">⬇ další",
 	"tvt_sel": "vybrat soubor &nbsp; ( pro vyjmutí / kopírování / mazání / ... )$NKlávesová zkratka: S\">výběr",
+	"tvt_j": "zkrášlit json$NKlávesová zkratka: shift-J\">j", //m
 	"tvt_edit": "otevřít soubor v textovém editoru$NKlávesová zkratka: E\">✏️ upravit",
 	"tvt_tail": "sledovat soubor pro změny; zobrazit nové řádky v reálném čase\">📡 sledovat",
 	"tvt_wrap": "zalamování slov\">↵",

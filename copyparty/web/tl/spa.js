@@ -83,7 +83,9 @@ Ls.spa = {
 			["I/K", "anterior/siguiente archivo"],
 			["M", "cerrar archivo"],
 			["E", "editar archivo"],
-			["S", "seleccionar archivo (para cortar/copiar/renombrar)"]
+			["S", "seleccionar archivo (para cortar/copiar/renombrar)"],
+			["Y", "descargar archivo de texto"], //m
+			["⇧ J", "embellecer json"], //m
 		]
 	],
 
@@ -222,6 +224,7 @@ Ls.spa = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ tooltips',
 	"ct_thumb": 'en vista de cuadrícula, alternar iconos o miniaturas$NAtajo: T">🖼️ miniaturas',
 	"ct_csel": 'usa CTRL y SHIFT para seleccionar archivos en la vista de cuadrícula">sel',
+	"ct_dl": 'forzar descarga (no mostrar en línea) al hacer clic en un archivo">dl', //m
 	"ct_ihop": 'al cerrar el visor de imágenes, desplazarse hasta el último archivo visto">g⮯',
 	"ct_dots": 'mostrar archivos ocultos (si el servidor lo permite)">archivos ocultos',
 	"ct_qdel": 'al eliminar archivos, pedir confirmación solo una vez">elim. rápida',
@@ -448,6 +451,7 @@ Ls.spa = {
 	"tvt_prev": "mostrar documento anterior$NAtajo: i\">⬆ ant",
 	"tvt_next": "mostrar siguiente documento$NAtajo: K\">⬇ sig",
 	"tvt_sel": "seleccionar archivo &nbsp; ( para cortar / copiar / eliminar / ... )$NAtajo: S\">sel",
+	"tvt_j": "embellecer json$NAtajo: shift-J\">j", //m
 	"tvt_edit": "abrir archivo en editor de texto$NAtajo: E\">✏️ editar",
 	"tvt_tail": "monitorizar cambios en el archivo; mostrar nuevas líneas en tiempo real\">📡 seguir",
 	"tvt_wrap": "ajuste de línea\">↵",

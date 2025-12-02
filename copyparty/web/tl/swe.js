@@ -84,6 +84,8 @@ Ls.swe = {
 			["M", "stäng textfil"],
 			["E", "redigera textfil"],
 			["S", "välj fil"],
+			["Y", "ladda ner textfil"], //m
+			["⇧ J", "försköna json"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.swe = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ tips',
 	"ct_thumb": 'växla mellan miniatyrer och ikoner i rutnätsvyn$NSnabbtangent: T">🖼️ miniatyrer',
 	"ct_csel": 'använd CTRL och SKIFT för urval av filer i rutnätsvyn">val',
+	"ct_dl": 'tvinga nedladdning (visa inte inline) när en fil klickas">dl', //m
 	"ct_ihop": 'skrolla till den senast visade filen när bildvisaren stängs">g⮯',
 	"ct_dots": 'visa dolda filer (om servern tillåter detta)">dolda',
 	"ct_qdel": 'bekräfta endast en gång när filer raderas">srad',
@@ -449,6 +452,7 @@ Ls.swe = {
 	"tvt_prev": "visa föregående fil$NSnabbtangent: i\">⬆ föreg.",
 	"tvt_next": "visa nästa fil$NSnabbtangent: K\">⬇ nästa",
 	"tvt_sel": "välj fil &nbsp; ( för klipp / kopiera / radera / ... )$NSnabbtangent: S\">välj",
+	"tvt_j": "försköna json$NSnabbtangent: shift-J\">j", //m
 	"tvt_edit": "öppna fil i textredigerare$NSnabbtangent: E\">✏️ redigera",
 	"tvt_tail": "övervaka filen; visa nya rader i realtid\">📡 övervaka",
 	"tvt_wrap": "automatisk radbrytning\">↵",

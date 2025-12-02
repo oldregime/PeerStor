@@ -84,6 +84,8 @@ Ls.epo = {
 			["M", "fermi dosieron"],
 			["E", "redakti dosieron"],
 			["S", "elekti dosieron (por eltondado/kopiado/alinomado)"],
+			["Y", "elŝuti tekstodosieron"], //m
+			["⇧ J", "beligi json"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.epo = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ ŝpruchelpiloj',
 	"ct_thumb": 'dum krado-vido, baskuli montradon de simboloj aŭ bildetoj$NFulmoklavo: T">🖼️ bildetoj',
 	"ct_csel": 'uzi STIR kaj MAJ por elekti dosierojn en krado-vido">elekto',
+	"ct_dl": 'devigi elŝuton (ne montri enkadre) kiam dosiero estas alklakita">dl', //m
 	"ct_ihop": 'montri la lastan viditan bildo-dosieron post fermado de bildo-vidilo">g⮯',
 	"ct_dots": 'montri kaŝitajn dosierojn (se servilo permesas)">kaŝitaj',
 	"ct_qdel": 'peti konfirmon nur unufoje antaŭ forigado">rapid-forig.',
@@ -449,6 +452,7 @@ Ls.epo = {
 	"tvt_prev": "montri malsekvan dokumenton$NFulmoklavo: i\">⬆ malsekva",
 	"tvt_next": "montri sekvan dokumenton$NFulmoklavo: K\">⬇ sekva",
 	"tvt_sel": "elekti dosieron &nbsp; ( por eltondado / kopiado / forigado / ... )$NFulmoklavo: S\">elekti",
+	"tvt_j": "beligi json$NFulmoklavo: shift-J\">j", //m
 	"tvt_edit": "malfermi dosieron en teksto-redaktilo$NFulmoklavo: E\">✏️ redakti",
 	"tvt_tail": "observi ŝanĝojn en dosiero; novaj linioj estos tuje montritaj\">📡 gvati",
 	"tvt_wrap": "linifaldo\">↵",

@@ -84,6 +84,8 @@ Ls.fin = {
 			["M", "sulje tekstitiedosto"],
 			["E", "muokkaa tekstitiedostoa"],
 			["S", "valitse tiedosto (leikkausta/kopiointia/uudelleennimeämistä varten)"],
+			["Y", "lataa tekstitiedosto"], //m
+			["⇧ J", "kaunista json"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.fin = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ vihjelaatikot',
 	"ct_thumb": 'valitse kuvakkeiden / pienoiskuvien välillä kuvanäkymässä $NPikanäppäin: T">🖼️ pienoiskuvat',
 	"ct_csel": 'käytä CTRL ja SHIFT tiedostojen valintaan kuvanäkymässä">valitse',
+	"ct_dl": 'pakota lataus (älä näytä upotettuna), kun tiedostoa napsautetaan">dl', //m
 	"ct_ihop": 'kun kuvakatselin suljetaan, vieritä alas viimeksi katsottuun tiedostoon">g⮯',
 	"ct_dots": 'näytä piilotetut tiedostot (jos palvelin sallii)">piilotiedostot',
 	"ct_qdel": 'kysy vahvistusta vain kerran tiedostoja poistaessa">qdel',
@@ -449,6 +452,7 @@ Ls.fin = {
 	"tvt_prev": "näytä edellinen dokumentti$NPikanäppäin: i\">⬆ edell",
 	"tvt_next": "näytä seuraava dokumentti$NPikanäppäin: K\">⬇ seur",
 	"tvt_sel": "valitse tiedosto &nbsp; ( leikkausta / kopiointia / poistoa / ... varten )$NPikanäppäin: S\">val",
+	"tvt_j": "kaunista json$NPikanäppäin: shift-J\">j", //m
 	"tvt_edit": "avaa tiedosto tekstieditorissa$NPikanäppäin: E\">✏️ muokkaa",
 	"tvt_tail": "seuraa tiedoston muutoksia; näytä uudet rivit reaaliaikaisesti\">📡 seuraa",
 	"tvt_wrap": "rivitys\">↵",

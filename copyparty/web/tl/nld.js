@@ -84,6 +84,8 @@ Ls.nld = {
 			["M", "sluit tekst bestand"],
 			["E", "bewerk tekst bestand"],
 			["S", "selecteer bestand (voor knip/kopie/hernoem)"],
+			["Y", "tekst bestand downloaden"], //m
+			["⇧ J", "json verfraaien"], //m
 		]
 	],
 
@@ -223,6 +225,7 @@ Ls.nld = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ tooltips',
 	"ct_thumb": 'In grid-overzicht, wissel tussen iconen of thumbnails$NHotkey: T">🖼️ thumbs',
 	"ct_csel": 'Gebruik CTRL en SHIFT voor de bestand selectie in grid-overzicht>sel',
+	"ct_dl": 'download afdwingen (niet inline weergeven) wanneer op een bestand wordt geklikt">dl', //m
 	"ct_ihop": 'Als je afbeeldingviewer afsluit, scroll omlaag naar de laatst bekeken bestand">g⮯',
 	"ct_dots": 'Laat verborgen bestanden zien (als de server dat toestaat)">dotfiles',
 	"ct_qdel": 'Waneeer je een bestand verwijderd, vraag eenmalig om bevestiging">qdel',
@@ -449,6 +452,7 @@ Ls.nld = {
 	"tvt_prev": "Vorig document tonen$NHotkey: i\">⬆ prev",
 	"tvt_next": "Volgende document tonen$NHotkey: K\">⬇ next",
 	"tvt_sel": "Selecteer bestand &nbsp; ( voor knip / verplaats / verwijder / ... )$NHotkey: S\">sel",
+	"tvt_j": "json verfraaien$NHotkey: shift-J\">j", //m
 	"tvt_edit": "Bestand openen in teksteditor$NHotkey: E\">✏️ bewerk",
 	"tvt_tail": "Bestand controleren op wijzigingen; nieuwe regels in realtime weergeven\">📡 volgen",
 	"tvt_wrap": "Automatische terugloop\">↵",

@@ -87,6 +87,8 @@ if (1)
 				["M", "close textfile"],
 				["E", "edit textfile"],
 				["S", "select file (for cut/copy/rename)"],
+				["Y", "download textfile"],
+				["⇧ J", "beautify json"],
 			]
 		],
 
@@ -453,6 +455,7 @@ if (1)
 		"tvt_prev": "show previous document$NHotkey: i\">⬆ prev",
 		"tvt_next": "show next document$NHotkey: K\">⬇ next",
 		"tvt_sel": "select file &nbsp; ( for cut / copy / delete / ... )$NHotkey: S\">sel",
+		"tvt_j": "beautify json$NHotkey: shift-J\">j",
 		"tvt_edit": "open file in text editor$NHotkey: E\">✏️ edit",
 		"tvt_tail": "monitor file for changes; show new lines in real time\">📡 follow",
 		"tvt_wrap": "word-wrap\">↵",
@@ -5126,6 +5129,33 @@ var showfile = (function () {
 		return out.join('');
 	};
 
+	r.ppj = function (e) {
+		ebi(e);
+		try {
+			r.ppj2();
+		}
+		catch (ex) {
+			toast.err(10, '' + ex);
+		}
+	};
+	r.ppj2 = function () {
+		var btn = ebi('dldoc'),
+			el = ebi('doc'),
+			t = el.textContent.trim(),
+			jo = JSON.parse(t),
+			jt = JSON.stringify(jo, null, t.indexOf('\n') + 1 ? 0 : 2);
+		el.textContent = jt;
+		el.innerHTML = '<code>' + el.innerHTML + '</code>';
+		try {
+			el = QS('#doc>code');
+			el.className = 'language-json';
+			Prism.highlightElement(el);
+		}
+		catch (ex) { }
+        btn.setAttribute('download', ebi('docname').innerHTML);
+        btn.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(jt));
+	};
+
 	r.mktree = function () {
 		var top = get_evpath().slice(SR.length),
 			crumbs = linksplit(top).join('<span>/</span>'),
@@ -5192,6 +5222,7 @@ var showfile = (function () {
 		'<a href="#" class="btn" id="prevdoc" tt="' + L.tvt_prev + '</a>\n' +
 		'<a href="#" class="btn" id="nextdoc" tt="' + L.tvt_next + '</a>\n' +
 		'<a href="#" class="btn" id="seldoc" tt="' + L.tvt_sel + '</a>\n' +
+		'<a href="#" class="btn" id="ppjdoc" tt="' + L.tvt_j + '</a>\n' +
 		'<a href="#" class="btn" id="editdoc" tt="' + L.tvt_edit + '</a>\n' +
 		'<a href="#" class="btn tgl" id="taildoc" tt="' + L.tvt_tail + '</a>\n' +
 		'<div id="tailbtns">\n' +
@@ -5211,6 +5242,7 @@ var showfile = (function () {
 	ebi('prevdoc').onclick = function () { tree_neigh(-1); };
 	ebi('nextdoc').onclick = function () { tree_neigh(1); };
 	ebi('seldoc').onclick = r.tglsel;
+	ebi('ppjdoc').onclick = r.ppj;
 	bcfg_bind(r, 'wrap', 'wrapdoc', true, r.tglwrap);
 	bcfg_bind(r, 'taildoc', 'taildoc', false, r.tgltail);
 	bcfg_bind(r, 'tail2end', 'tail2end', true);
@@ -5885,6 +5917,7 @@ var ahotkeys = function (e) {
 		return;
 
 	var k = (e.key || e.code) + '', pos = -1, n,
+		sh = e.shiftKey,
 		ae = document.activeElement,
 		aet = ae && ae != document.body ? ae.nodeName.toLowerCase() : '';
 
@@ -6007,7 +6040,7 @@ var ahotkeys = function (e) {
 	if (k == '?')
 		return hkhelp();
 
-	if (!e.shiftKey && ctrl(e)) {
+	if (!sh && ctrl(e)) {
 		var sel = window.getSelection && window.getSelection() || {};
 		sel = sel && !sel.isCollapsed && sel.direction != 'none';
 
@@ -6026,7 +6059,16 @@ var ahotkeys = function (e) {
 		return;
 	}
 
-	if (e.shiftKey && kl != 'a' && kl != 'd')
+	if (showfile.active()) {
+		if (!sh && kl == 's')
+			return showfile.tglsel() || true;
+		if (!sh && kl == 'e' && ebi('editdoc').style.display != 'none')
+			return ebi('editdoc').click() || true;
+		if (sh && kl == 'j')
+			return showfile.ppj(e) || true;
+	}
+
+	if (sh && kl != 'a' && kl != 'd')
 		return;
 
 	if (/^[0-9]$/.test(k))
@@ -6075,19 +6117,12 @@ var ahotkeys = function (e) {
 	if (k == 'F2')
 		return fileman.rename();
 
-	if (!treectl.hidden && (!e.shiftKey || !thegrid.en)) {
+	if (!treectl.hidden && (!sh || !thegrid.en)) {
 		if (kl == 'a')
 			return QS('#twig').click();
 
 		if (kl == 'd')
 			return QS('#twobytwo').click();
-	}
-
-	if (showfile.active()) {
-		if (kl == 's')
-			showfile.tglsel();
-		if (kl == 'e' && ebi('editdoc').style.display != 'none')
-			ebi('editdoc').click();
 	}
 
 	if (mp && mp.au && !mp.au.paused) {
