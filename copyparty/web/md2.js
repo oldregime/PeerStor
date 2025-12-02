@@ -698,6 +698,39 @@ function reLastIndexOf(txt, ptn, end) {
 }
 
 
+// json formatter
+function fmt_json(e) {
+    ev(e);
+    try {
+        fmt_json2();
+    }
+    catch (ex) {
+        return toast.err(7, 'json-format (CTRL-J) failed\n\n(hint: select the json you want to beautify/minify first)\n\n' + ex);
+    }
+}
+function fmt_json2() {
+    var txt = dom_src.value,
+        o0 = txt.lastIndexOf('\n', dom_src.selectionStart - 1),
+        o1 = txt.indexOf('\n', dom_src.selectionEnd);
+    o0 = o0 + 1 ? o0 + 1 : 0;
+    if (o1 < 0) o1 = txt.length;
+    for (var a = 0; a < 9; a++) {
+        if (has(['\r', '\n', ' '], txt.charAt(o0))) ++o0;
+        if (has(['\r', '\n', ' '], txt.charAt(o1))) --o1;
+    }
+    var jt0 = txt.slice(o0, ++o1),
+        jo = JSON.parse(jt0),
+        jt = JSON.stringify(jo, null, jt0.indexOf('\n') + 1 ? 0 : 2);
+    setsel({
+        "pre": txt.slice(0, o0),
+        "sel": jt,
+        "post": txt.slice(o1),
+        "car": o0,
+        "cdr": o0,
+    });
+}
+
+
 // table formatter
 function fmt_table(e) {
     ev(e);
@@ -997,6 +1030,10 @@ var set_lno = (function () {
                 action_stack.redo();
                 return false;
             }
+            if (kl == "j") {
+                fmt_json(e.shiftKey);
+                return false;
+            }
             if (kl == "k") {
                 fmt_table();
                 return false;
@@ -1067,6 +1104,7 @@ ebi('help').onclick = function (e) {
 
 
 ebi('fmt_table').onclick = fmt_table;
+ebi('fmt_json').onclick = fmt_json;
 ebi('mark_uni').onclick = mark_uni;
 ebi('iter_uni').onclick = iter_uni;
 ebi('cfg_uni').onclick = cfg_uni;
