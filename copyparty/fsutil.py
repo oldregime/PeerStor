@@ -211,6 +211,12 @@ def ramdisk_chk(asrv: AuthSrv) -> None:
         if fs == "tmpfs" or (mp == "/" and fs in ramfs):
             mods.append((vn.vpath, ap, fs, mp))
             vn.axs.uwrite.clear()
+            vn.axs.umove.clear()
+            for un, ztsp in list(vn.uaxs.items()):
+                zsl = list(ztsp)
+                zsl[1] = False
+                zsl[2] = False
+                vn.uaxs[un] = zsl
     if mods:
         t = "WARNING: write-access was removed from the following volumes because they are not mapped to an actual HDD for storage! All uploaded data would live in RAM only, and all uploaded files would be LOST on next reboot. To allow uploading and ignore this hazard, enable the 'wram' option (global/volflag). List of affected volumes:"
         t2 = ["\n  volume=[/%s], abspath=%r, type=%s, root=%r" % x for x in mods]
