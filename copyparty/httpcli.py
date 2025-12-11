@@ -969,7 +969,7 @@ class HttpCli(object):
             return False
 
         self.log("banned for {:.0f} sec".format(rt), 6)
-        self.terse_reply(b"thank you for playing (see serverlog and readme)", 403)
+        self.terse_reply(self.args.banmsg_b, 403)
         return True
 
     def permit_caching(self) -> None:
@@ -1152,7 +1152,10 @@ class HttpCli(object):
         ]
 
         if body:
-            lines.append("Content-Length: " + unicode(len(body)))
+            lines.append(
+                "Content-Type: text/html; charset=utf-8\r\nContent-Length: "
+                + unicode(len(body))
+            )
 
         lines.append("\r\n")
         self.s.sendall("\r\n".join(lines).encode("utf-8") + body)
