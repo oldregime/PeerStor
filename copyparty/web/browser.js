@@ -2548,6 +2548,9 @@ var mpui = (function () {
 						if (mpl.prescan_evp == evp)
 							throw "evp match";
 
+						if (treectl.trunc)
+							return treectl.showmore(99999, repreload);
+
 						if (mpl.traversals++ > 4) {
 							mpl.prescan_evp = null;
 							toast.inf(10, L.mm_nof);
@@ -3024,6 +3027,9 @@ function play(tid, is_ev, seek) {
 	}
 
 	if (tn >= mp.order.length) {
+		if (treectl.trunc)
+			return treectl.showmore(99999, next_song);
+
 		if (mpl.pb_mode == 'loop' || ebi('unsearch')) {
 			tn = 0;
 		}
@@ -7520,7 +7526,7 @@ var treectl = (function () {
 		catch (ex) { }
 	};
 
-	r.showmore = function (n) {
+	r.showmore = function (n, cb) {
 		window.removeEventListener('scroll', r.tscroll);
 		console.log('nvis {0} -> {1}'.format(r.nvis, n));
 		r.nvis = n;
@@ -7530,6 +7536,8 @@ var treectl = (function () {
 		setTimeout(function () {
 			r.gentab(get_evpath(), r.lsc);
 			ebi('wrap').style.opacity = CLOSEST ? 'unset' : 1;
+			if (cb)
+				cb();
 		}, 1);
 	};
 
