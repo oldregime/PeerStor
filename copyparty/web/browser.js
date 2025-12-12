@@ -1139,6 +1139,20 @@ var ACtx = !IPHONE && (window.AudioContext || window.webkitAudioContext),
 	dk, mp;
 
 
+var x = '';
+if (!fullui) {
+	if (window.ui_nombar || /[?&]nombar\b/.exec(sloc0)) x += '#ops,';
+	if (window.ui_noacci || /[?&]noacci\b/.exec(sloc0)) x += '#acc_info,';
+	if (window.ui_nosrvi || /[?&]nosrvi\b/.exec(sloc0)) x += '#srv_info,#srv_info2,';
+	if (window.ui_nocpla || /[?&]nocpla\b/.exec(sloc0)) x += '#goh,';
+	if (window.ui_nolbar || /[?&]nolbar\b/.exec(sloc0)) x += '#wfp,';
+	if (window.ui_noctxb || /[?&]noctxb\b/.exec(sloc0)) x += '#wtoggle,';
+	if (window.ui_norepl || /[?&]norepl\b/.exec(sloc0)) x += '#repl,';
+}
+if (x)
+	document.head.appendChild(mknod('style', '', x.slice(0, -1) + '{display:none!important}'));
+
+
 if (location.pathname.indexOf('//') === 0)
 	hist_replace(location.pathname.replace(/^\/+/, '/'));
 
@@ -8231,7 +8245,12 @@ var settheme = (function () {
 		freshen();
 	};
 
-	freshen();
+	var m = /[?&]theme=([0-9]+)/.exec(sloc0);
+	if (m)
+		r.go(parseInt(m[1]));
+	else
+		freshen();
+
 	return r;
 })();
 
@@ -9442,14 +9461,3 @@ function reload_browser() {
 	msel.render();
 }
 treectl.hydrate();
-
-if (!fullui && (window.ui_nombar || /[?&]nombar\b/.exec(sloc0))) ebi('ops').style.display = 'none';
-if (!fullui && (window.ui_noacci || /[?&]noacci\b/.exec(sloc0))) ebi('acc_info').style.display = 'none';
-if (!fullui && (window.ui_nosrvi || /[?&]nosrvi\b/.exec(sloc0))) ebi('srv_info').style.display = 'none';
-if (!fullui && (window.ui_nocpla || /[?&]nocpla\b/.exec(sloc0))) ebi('goh').style.display = 'none';
-if (!fullui && (window.ui_nolbar || /[?&]nolbar\b/.exec(sloc0))) ebi('wfp').style.display = 'none';
-if (!fullui && (window.ui_noctxb || /[?&]noctxb\b/.exec(sloc0))) ebi('wtoggle').style.display = 'none';
-if (!fullui && (window.ui_norepl || /[?&]norepl\b/.exec(sloc0))) ebi('repl').style.display = 'none';
-
-var m = /[?&]theme=([0-9]+)/.exec(sloc0);
-if (m) settheme.go(parseInt(m[1]));
