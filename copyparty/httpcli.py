@@ -633,7 +633,7 @@ class HttpCli(object):
         if relchk(self.vpath) and (self.vpath != "*" or self.mode != "OPTIONS"):
             self.log("illegal relpath; req(%r) => %r" % (self.req, "/" + self.vpath))
             self.cbonk(self.conn.hsrv.gmal, self.req, "bad_vp", "invalid relpaths")
-            return self.tx_404() and self.keepalive
+            return self.tx_404() and False
 
         zso = self.headers.get("authorization")
         bauth = ""
