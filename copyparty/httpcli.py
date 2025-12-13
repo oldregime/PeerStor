@@ -159,10 +159,6 @@ BADXFF2 = ". Some copyparty features are now disabled as a safety measure."
 H_CONN_KEEPALIVE = "Connection: Keep-Alive"
 H_CONN_CLOSE = "Connection: Close"
 
-LOGUES = [[0, ".prologue.html"], [1, ".epilogue.html"]]
-
-READMES = [[0, ["preadme.md", "PREADME.md"]], [1, ["readme.md", "README.md"]]]
-
 RSS_SORT = {"m": "mt", "u": "at", "n": "fn", "s": "sz"}
 
 A_FILE = os.stat_result(
@@ -4133,40 +4129,36 @@ class HttpCli(object):
         self, vn: VFS, abspath: str, lnames: Optional[dict[str, str]]
     ) -> tuple[list[str], list[str]]:
         logues = ["", ""]
-        if not self.args.no_logues:
-            for n, fn in LOGUES:
-                if lnames is not None and fn not in lnames:
-                    continue
+        for n, fns1, fns2 in [] if self.args.no_logues else vn.flags["emb_lgs"]:
+            for fn in fns1 if lnames is None else fns2:
+                if lnames is not None:
+                    fn = lnames.get(fn)
+                    if not fn:
+                        continue
                 fn = "%s/%s" % (abspath, fn)
-                if bos.path.isfile(fn):
-                    logues[n] = read_utf8(self.log, fsenc(fn), False)
-                    if "exp" in vn.flags:
-                        logues[n] = self._expand(
-                            logues[n], vn.flags.get("exp_lg") or []
-                        )
+                if not bos.path.isfile(fn):
+                    continue
+                logues[n] = read_utf8(self.log, fsenc(fn), False)
+                if "exp" in vn.flags:
+                    logues[n] = self._expand(logues[n], vn.flags.get("exp_lg") or [])
+                break
 
         readmes = ["", ""]
-        for n, fns in [] if self.args.no_readme else READMES:
+        for n, fns1, fns2 in [] if self.args.no_readme else vn.flags["emb_mds"]:
             if logues[n]:
                 continue
-            elif lnames is None:
-                pass
-            elif fns[0] in lnames:
-                fns = [lnames[fns[0]]]
-            else:
-                fns = []
-
-            txt = ""
-            for fn in fns:
+            for fn in fns1 if lnames is None else fns2:
+                if lnames is not None:
+                    fn = lnames.get(fn.lower())
+                    if not fn:
+                        continue
                 fn = "%s/%s" % (abspath, fn)
-                if bos.path.isfile(fn):
-                    txt = read_utf8(self.log, fsenc(fn), False)
-                    break
-
-            if txt and "exp" in vn.flags:
-                txt = self._expand(txt, vn.flags.get("exp_md") or [])
-
-            readmes[n] = txt
+                if not bos.path.isfile(fn):
+                    continue
+                readmes[n] = read_utf8(self.log, fsenc(fn), False)
+                if "exp" in vn.flags:
+                    readmes[n] = self._expand(readmes[n], vn.flags.get("exp_md") or [])
+                break
 
         return logues, readmes
 

@@ -2524,6 +2524,18 @@ class AuthSrv(object):
                 t = "WARNING: volume [/%s]: invalid value specified for ext-th: %s"
                 self.log(t % (vol.vpath, etv), 3)
 
+            zsl1 = [x for x in vol.flags["preadmes"].split(",") if x]
+            zsl2 = [x for x in vol.flags["readmes"].split(",") if x]
+            zsl3 = list(set([x.lower() for x in zsl1]))
+            zsl4 = list(set([x.lower() for x in zsl2]))
+            vol.flags["emb_mds"] = [[0, zsl1, zsl3], [1, zsl2, zsl4]]
+
+            zsl1 = [x for x in vol.flags["prologues"].split(",") if x]
+            zsl2 = [x for x in vol.flags["epilogues"].split(",") if x]
+            zsl3 = list(set([x.lower() for x in zsl1]))
+            zsl4 = list(set([x.lower() for x in zsl2]))
+            vol.flags["emb_lgs"] = [[0, zsl1, zsl3], [1, zsl2, zsl4]]
+
             zs = str(vol.flags.get("html_head") or "")
             if zs and zs[:1] in "%@":
                 vol.flags["html_head_d"] = zs
