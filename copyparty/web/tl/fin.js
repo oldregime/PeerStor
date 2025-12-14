@@ -440,7 +440,7 @@ Ls.fin = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopioi</a><a href="#" id="modal-ng">Lähetä</a>',
 
 	"mk_noname": "kirjoita nimi vasemmalla olevaan tekstikenttään ennen kuin teet tuon :p",
-	"nmd_i1": "voit myös lisätä haluamasi tiedostopäätteen, esimerkiksi <code>.txt</code>", //m
+	"nmd_i1": "voit myös lisätä haluamasi tiedostopäätteen, esimerkiksi <code>.md</code>", //m
 	"nmd_i2": "voit luoda vain <code>.md</code>-tiedostoja, koska sinulla ei ole poistolupaa", //m
 
 	"tv_load": "Ladataan tekstidokumenttia:\n\n{0}\n\n{1}% ({2} / {3} Mt ladattu)",

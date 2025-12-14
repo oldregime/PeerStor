@@ -444,7 +444,7 @@ Ls.cze = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopírovat</a><a href="#" id="modal-ng">Nahrát</a>',
 
 	"mk_noname": "napište název do textového pole vlevo předtím než to uděláte :p",
-	"nmd_i1": "můžeš také přidat příponu souboru, například <code>.txt</code>", //m
+	"nmd_i1": "můžeš také přidat příponu souboru, například <code>.md</code>", //m
 	"nmd_i2": "můžeš vytvářet pouze <code>.md</code> soubory, protože nemáš oprávnění mazat", //m
 
 	"tv_load": "Načítání textového dokumentu:\n\n{0}\n\n{1}% ({2} z {3} MiB načteno)",

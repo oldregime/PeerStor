@@ -440,7 +440,7 @@ Ls.nld = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopieer</a><a href="#" id="modal-ng">Upload</a>',
 
 	"mk_noname": "Voer een naam in het tekstveld aan de linkerkant voordat je verder gaat :p",
-	"nmd_i1": "Voeg ook de gewenste extensie toe, bijvoorbeeld <code>.txt</code>", //m
+	"nmd_i1": "Voeg ook de gewenste extensie toe, bijvoorbeeld <code>.md</code>", //m
 	"nmd_i2": "Je kunt alleen <code>.md</code>-bestanden maken omdat je geen verwijderrechten hebt", //m
 
 	"tv_load": "Tekstdocument laden:\n\n{0}\n\n{1}% ({2} van de {3} MiB geladen)",

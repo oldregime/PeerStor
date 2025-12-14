@@ -440,7 +440,7 @@ Ls.por = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Copiar</a><a href="#" id="modal-ng">Enviar</a>',
 
 	"mk_noname": "digite um nome no campo de texto à esquerda antes de fazer isso :p",
-	"nmd_i1": "também pode adicionar a extensão desejada, por exemplo <code>.txt</code>", //m
+	"nmd_i1": "também pode adicionar a extensão desejada, por exemplo <code>.md</code>", //m
 	"nmd_i2": "só pode criar ficheiros <code>.md</code> porque não tem permissão para apagar", //m
 
 	"tv_load": "Carregando documento de texto:\n\n{0}\n\n{1}% ({2} de {3} MiB carregados)",

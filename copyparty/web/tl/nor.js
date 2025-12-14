@@ -437,7 +437,7 @@ Ls.nor = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopiér</a><a href="#" id="modal-ng">Last opp</a>',
 
 	"mk_noname": "skriv inn et navn i tekstboksen til venstre først :p",
-	"nmd_i1": "legg også til ønsket filtype, for eksempel <code>.txt</code>", //m
+	"nmd_i1": "legg også til ønsket filtype, for eksempel <code>.md</code>", //m
 	"nmd_i2": "du kan bare lage <code>.md</code>-filer fordi du ikke har delete-tilgang", //m
 
 	"tv_load": "Laster inn tekstfil:\n\n{0}\n\n{1}% ({2} av {3} MiB lastet ned)",

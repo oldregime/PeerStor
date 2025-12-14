@@ -440,7 +440,7 @@ Ls.kor = {
 	"fcp_both_b": '<a href="#" id="modal-ok">복사</a><a href="#" id="modal-ng">업로드</a>',
 
 	"mk_noname": "왼쪽 텍스트 필드에 이름을 먼저 입력해주세요 :p",
-	"nmd_i1": "원하는 파일 확장자를 추가할 수 있습니다. 예: <code>.txt</code>", //m
+	"nmd_i1": "원하는 파일 확장자를 추가할 수 있습니다. 예: <code>.md</code>", //m
 	"nmd_i2": "삭제 권한이 없어서 <code>.md</code> 파일만 만들 수 있습니다", //m
 
 	"tv_load": "텍스트 문서 불러오는 중:\n\n{0}\n\n{1}% ({3} MiB 중 {2} MiB 로드됨)",

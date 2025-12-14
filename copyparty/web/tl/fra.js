@@ -440,7 +440,7 @@ Ls.fra = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Copier</a><a href="#" id="modal-ng">Téléverser</a>',
 
 	"mk_noname": "entrez un nom dans le champ de texte à gauche avant de faire ça :p",
-	"nmd_i1": "ajoutez aussi l’extension souhaitée, par exemple <code>.txt</code>", //m
+	"nmd_i1": "ajoutez aussi l’extension souhaitée, par exemple <code>.md</code>", //m
 	"nmd_i2": "vous ne pouvez créer que des fichiers <code>.md</code> car vous n’avez pas la permission d’effacer", //m
 
 	"tv_load": "Chargement du document texte:\n\n{0}\n\n{1}% ({2} de {3} MiB chargés)",

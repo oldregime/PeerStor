@@ -440,7 +440,7 @@ Ls.deu = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopieren</a><a href="#" id="modal-ng">Hochladen</a>',
 
 	"mk_noname": "Tipp' mal vorher lieber einen Namen in das Textfeld links, bevor du das machst :p",
-	"nmd_i1": "Fügen Sie auch die gewünschte Dateiendung hinzu, z. B. <code>.txt</code>", //m
+	"nmd_i1": "Fügen Sie auch die gewünschte Dateiendung hinzu, z. B. <code>.md</code>", //m
 	"nmd_i2": "Sie können nur <code>.md</code>-Dateien erstellen, da Ihnen die Löschberechtigung fehlt", //m
 
 	"tv_load": "Textdatei wird geladen:\n\n{0}\n\n{1}% ({2} von {3} MiB geladen)",

@@ -440,7 +440,7 @@ Ls.chi = {
 	"fcp_both_b": '<a href="#" id="modal-ok">复制</a><a href="#" id="modal-ng">上传</a>', //m
 
 	"mk_noname": "在左侧文本框中输入名称，然后再执行此操作 :p",
-	"nmd_i1": "还可以添加需要的文件扩展名，例如 <code>.txt</code>", //m
+	"nmd_i1": "还可以添加需要的文件扩展名，例如 <code>.md</code>", //m
 	"nmd_i2": "由于没有删除权限，你只能创建 <code>.md</code> 文件", //m
 
 	"tv_load": "加载文本文件：\n\n{0}\n\n{1}% ({2} 的 {3} MiB 已加载)",

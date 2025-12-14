@@ -440,7 +440,7 @@ Ls.ita = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Copia</a><a href="#" id="modal-ng">Carica</a>',
 
 	"mk_noname": "scrivi un nome nel campo di testo a sinistra prima di farlo :p",
-	"nmd_i1": "puoi anche aggiungere l’estensione che vuoi, per esempio <code>.txt</code>", //m
+	"nmd_i1": "puoi anche aggiungere l’estensione che vuoi, per esempio <code>.md</code>", //m
 	"nmd_i2": "puoi creare solo file <code>.md</code> perché non hai il permesso di eliminare", //m
 
 	"tv_load": "Caricando documento di testo:\n\n{0}\n\n{1}% ({2} di {3} MiB caricati)",

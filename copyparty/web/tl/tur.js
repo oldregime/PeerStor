@@ -440,7 +440,7 @@ Ls.tur = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopyala</a><a href="#" id="modal-ng">Yükle</a>',
 
 	"mk_noname": "bunu yapmadan önce soldaki boşluğa bir şeyler yazsana :p",
-	"nmd_i1": "ayrıca istediğin dosya uzantısını ekleyebilirsin, örneğin <code>.txt</code>", //m
+	"nmd_i1": "ayrıca istediğin dosya uzantısını ekleyebilirsin, örneğin <code>.md</code>", //m
 	"nmd_i2": "silme iznin olmadığı için yalnızca <code>.md</code> dosyaları oluşturabilirsin", //m
 
 	"tv_load": "Metin belgesi yükleniyor:\n\n{0}\n\n{1}% ({2} of {3} MiB yüklendi)",

@@ -439,7 +439,7 @@ Ls.spa = {
 	"fcp_both_b": "<a href=\"#\" id=\"modal-ok\">Copiar</a><a href=\"#\" id=\"modal-ng\">Subir</a>",
 
 	"mk_noname": "escribe un nombre en el campo de texto de la izquierda antes de hacer eso :p",
-	"nmd_i1": "también puedes añadir la extensión que quieras, por ejemplo <code>.txt</code>", //m
+	"nmd_i1": "también puedes añadir la extensión que quieras, por ejemplo <code>.md</code>", //m
 	"nmd_i2": "solo puedes crear archivos <code>.md</code> porque no tienes permiso para borrar", //m
 
 	"tv_load": "Cargando documento de texto:\n\n{0}\n\n{1}% ({2} de {3} MiB cargados)",

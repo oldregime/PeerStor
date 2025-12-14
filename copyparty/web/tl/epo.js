@@ -440,7 +440,7 @@ Ls.epo = {
 	"fcp_both_b": '<a href="#" id="modal-ok">Kopii</a><a href="#" id="modal-ng">Alŝuti</a>',
 
 	"mk_noname": "tajpu nomon en tekstokampo maldekstre antaŭ vi faras ĉi tion :p",
-	"nmd_i1": "vi povas aldoni la deziratan sufikson, ekzemple <code>.txt</code>", //m
+	"nmd_i1": "vi povas aldoni la deziratan sufikson, ekzemple <code>.md</code>", //m
 	"nmd_i2": "vi povas krei nur <code>.md</code>-dosierojn ĉar vi ne havas forigan permeson", //m
 
 	"tv_load": "Ŝargado de teksto-dokumento:\n\n{0}\n\n{1}% ({2} da {3} MiB ŝargita)",
