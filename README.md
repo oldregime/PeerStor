@@ -1782,6 +1782,8 @@ notes:
 * `:c,magic` enables filetype detection for nameless uploads, same as `--magic`
   * needs https://pypi.org/project/python-magic/ `python3 -m pip install --user -U python-magic`
   * on windows grab this instead `python3 -m pip install --user -U python-magic-bin`
+* `cachectl` changes how webbrowser will cache responses (the `Cache-Control` response-header); default is `no-cache` which will prevent repeated downloading of the same file unless necessary (browser will ask copyparty if the file has changed)
+  * adding `?cache` to a link will override this with "fully cache this for 69 seconds"; `?cache=321` is 321 seconds, and `?cache=i` is 7 days
 
 
 ## database location

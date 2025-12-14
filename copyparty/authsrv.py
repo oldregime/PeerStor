@@ -1054,6 +1054,7 @@ class AuthSrv(object):
         self.is_lxc = args.c == ["/z/initcfg"]
 
         self._vf0b = {
+            "cachectl": self.args.cachectl,
             "tcolor": self.args.tcolor,
             "du_iwho": self.args.du_iwho,
             "shr_who": self.args.shr_who if self.args.shr else "no",

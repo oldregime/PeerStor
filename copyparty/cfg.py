@@ -95,6 +95,7 @@ def vf_vmap() -> dict[str, str]:
     }
     for k in (
         "bup_ck",
+        "cachectl",
         "casechk",
         "chmod_d",
         "chmod_f",
@@ -419,6 +420,7 @@ flagcats = {
         "zipmaxt=no": "reply with 'no' if download-as-zip exceeds max",
         "zipmaxu": "zip-size-limit does not apply to authenticated users",
         "nopipe": "disable race-the-beam (download unfinished uploads)",
+        "cachectl=no-cache": "controls caching in webbrowsers",
         "mv_retry": "ms-windows: timeout for renaming busy files",
         "rm_retry": "ms-windows: timeout for deleting busy files",
         "davauth": "ask webdav clients to login for all folders",

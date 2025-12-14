@@ -149,8 +149,6 @@ _ = (argparse, threading)
 
 USED4SEC = {"usedforsecurity": False} if sys.version_info > (3, 9) else {}
 
-NO_CACHE = {"Cache-Control": "no-cache"}
-
 ALL_COOKIES = "k304 no304 js idxh dots cppwd cppws".split()
 
 BADXFF = " due to dangerous misconfiguration (the http-header specified by --xff-hdr was received from an untrusted reverse-proxy)"
@@ -973,7 +971,7 @@ class HttpCli(object):
     def permit_caching(self) -> None:
         cache = self.uparam.get("cache")
         if cache is None:
-            self.out_headers.update(NO_CACHE)
+            self.out_headers["Cache-Control"] = self.vn.flags["cachectl"]
             return
 
         n = 69 if not cache else 604869 if cache == "i" else int(cache)
@@ -5159,7 +5157,7 @@ class HttpCli(object):
         file_ts = int(max(ts_md, self.E.t0))
         file_lastmod, do_send, _ = self._chk_lastmod(file_ts)
         self.out_headers["Last-Modified"] = file_lastmod
-        self.out_headers.update(NO_CACHE)
+        self.out_headers["Cache-Control"] = "no-cache"
         status = 200 if do_send else 304
 
         arg_base = "?"
