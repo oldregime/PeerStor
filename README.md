@@ -455,7 +455,7 @@ upgrade notes
   * per-volume configuration; many (not all) global-options can be set as volflags, and most (not all) volflags can be set as global-options; [complete list of volflags](https://copyparty.eu/cli/#flags-help-page)
 
 * what is a volume?
-  * a mapping from a URL (`/music/`) to a folder on your server's local filesystem (`/home/ed/Music` or `C:\Users\ed\Music`) which can then be accessed through copyparty, depending on the permissions and options you set on it -- see [accounts and volumes](#accounts-and-volumes)
+  * a mapping from a URL (`/music/`) to a folder on your server's local filesystem (`C:\Users\ed\Music`) which can then be accessed through copyparty, depending on the permissions and options you set on it -- see [accounts and volumes](#accounts-and-volumes)
 
 * can I change the 🌲 spinning pine-tree loading animation?
   * [yeah...](https://github.com/9001/copyparty/tree/hovudstraum/docs/rice#boring-loader-spinner) :-(

@@ -675,6 +675,8 @@ Ls.nor = {
 		"ta1": "du må skrive et nytt passord først",
 		"ta2": "gjenta for å bekrefte nytt passord:",
 		"ta3": "fant en skrivefeil; vennligst prøv igjen",
+		"nop": "FEIL: Passord kan ikke være blankt",
+		"nou": "FEIL: Både brukernavn og passord må angis",
 		"aa1": "innkommende:",
 		"ab1": "skru av no304",
 		"ac1": "skru på no304",

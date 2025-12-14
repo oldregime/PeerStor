@@ -17,6 +17,10 @@ if (window.langmod)
 	langmod();
 
 var d = (Ls[lang] || Ls.eng).splash;
+if (Ls.eng && d !== Ls.eng.splash)
+	for (var k in Ls.eng.splash)
+		if (d[k] === undefined)
+			d[k] = Ls.eng.splash[k];
 
 d.wb = d.w;
 

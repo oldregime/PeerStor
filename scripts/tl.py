@@ -105,6 +105,8 @@ Ls.{lang3} = {{
 		"ta1": "fill in your new password first",
 		"ta2": "repeat to confirm new password:",
 		"ta3": "found a typo; please try again",
+		"nop": "ERROR: Password cannot be blank",
+		"nou": "ERROR: Username and/or password cannot be blank",
 		"aa1": "incoming files:",
 		"ab1": "disable no304",
 		"ac1": "enable no304",
