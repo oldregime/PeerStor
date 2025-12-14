@@ -173,6 +173,7 @@ RE_MHOST = re.compile(r"^[][0-9a-zA-Z.:_-]+$")  # match faster >=18ch
 RE_K = re.compile(r"[^0-9a-zA-Z_-]")  # search faster <=17ch
 RE_HR = re.compile(r"[<>\"'&]")
 RE_MDV = re.compile(r"(.*)\.([0-9]+\.[0-9]{3})(\.[Mm][Dd])$")
+RE_RSS_KW = re.compile(r"(\{[^} ]+\})")
 
 UPARAM_CC_OK = set("doc move tree".split())
 
@@ -1556,18 +1557,31 @@ class HttpCli(object):
         ap = ""
         use_magic = "rmagic" in self.vn.flags
 
+        tpl_t = self.uparam.get("fmt_t") or self.vn.flags["rss_fmt_t"]
+        tpl_d = self.uparam.get("fmt_d") or self.vn.flags["rss_fmt_d"]
+        kw_t = [[x, x[1:-1]] for x in RE_RSS_KW.findall(tpl_t)]
+        kw_d = [[x, x[1:-1]] for x in RE_RSS_KW.findall(tpl_d)]
+
         for i in hits:
             if use_magic:
                 ap = os.path.join(self.vn.realpath, i["rp"])
 
+            tags = i["tags"]
             iurl = html_escape("%s%s" % (baseurl, i["rp"]), True, True)
-            title = unquotep(i["rp"].split("?")[0].split("/")[-1])
-            title = html_escape(title, True, True)
-            tag_t = str(i["tags"].get("title") or "")
-            tag_a = str(i["tags"].get("artist") or "")
-            desc = "%s - %s" % (tag_a, tag_t) if tag_t and tag_a else (tag_t or tag_a)
-            desc = html_escape(desc, True, True) if desc else title
-            mime = html_escape(guess_mime(title, ap))
+            fname = tags["fname"] = unquotep(i["rp"].split("?")[0].split("/")[-1])
+            title = tpl_t
+            desc = tpl_d
+            for zs1, zs2 in kw_t:
+                title = title.replace(zs1, str(tags.get(zs2, "")))
+            for zs1, zs2 in kw_d:
+                desc = desc.replace(zs1, str(tags.get(zs2, "")))
+            title = html_escape(title.strip(), True, True)
+            if desc.strip(" -,"):
+                desc = html_escape(desc.strip(), True, True)
+            else:
+                desc = title
+
+            mime = html_escape(guess_mime(fname, ap))
             lmod = formatdate(max(0, i["ts"]))
             zsa = (iurl, iurl, title, desc, lmod, iurl, mime, i["sz"])
             zs = (

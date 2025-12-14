@@ -1701,7 +1701,9 @@ def add_rss(ap):
     ap2.add_argument("--rss", action="store_true", help="enable RSS output (experimental) (volflag=rss)")
     ap2.add_argument("--rss-nf", metavar="HITS", type=int, default=250, help="default number of files to return (url-param 'nf')")
     ap2.add_argument("--rss-fext", metavar="E,E", type=u, default="", help="default list of file extensions to include (url-param 'fext'); blank=all")
-    ap2.add_argument("--rss-sort", metavar="ORD", type=u, default="m", help="default sort order (url-param 'sort'); [\033[32mm\033[0m]=last-modified [\033[32mu\033[0m]=upload-time [\033[32mn\033[0m]=filename [\033[32ms\033[0m]=filesize; Uppercase=oldest-first. Note that upload-time is 0 for non-uploaded files")
+    ap2.add_argument("--rss-sort", metavar="ORD", type=u, default="m", help="default sort order (url-param 'sort'); [\033[32mm\033[0m]=last-modified [\033[32mu\033[0m]=upload-time [\033[32mn\033[0m]=filename [\033[32ms\033[0m]=filesize; Uppercase=oldest-first. Note that upload-time is 0 for non-uploaded files (volflag=rss_sort)")
+    ap2.add_argument("--rss-fmt-t", metavar="TXT", type=u, default="{fname}", help="title format (url-param 'rss_fmt_t') (volflag=rss_fmt_t)")
+    ap2.add_argument("--rss-fmt-d", metavar="TXT", type=u, default="{artist} - {title}", help="description format (url-param 'rss_fmt_d') (volflag=rss_fmt_d)")
 
 
 def add_db_general(ap, hcores):
