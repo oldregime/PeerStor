@@ -678,6 +678,8 @@ Ls.fin = {
 		"ta1": "täytä ensin uusi salasana",
 		"ta2": "toista vahvistaaksesi uuden salasanan:",
 		"ta3": "löytyi kirjoitusvirhe; yritä uudelleen",
+		"nop": "VIRHE: Salasana ei voi olla tyhjä", //m
+		"nou": "VIRHE: Käyttäjänimi ja/tai salasana ei voi olla tyhjä", //m
 		"aa1": "saapuvat:",
 		"ab1": "poista no304 käytöstä",
 		"ac1": "ota no304 käyttöön",

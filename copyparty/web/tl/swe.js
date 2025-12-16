@@ -678,6 +678,8 @@ Ls.swe = {
 		"ta1": "fyll i ditt nya lösenord",
 		"ta2": "upprepa det nya lösenordet:",
 		"ta3": "det blev fel; vänligen försök igen",
+		"nop": "FEL: Lösenordet får inte vara tomt", //m
+		"nou": "FEL: Användarnamn och/eller lösenord får inte vara tomt", //m
 		"aa1": "inkommande filer:",
 		"ab1": "avaktivera no304",
 		"ac1": "aktivera no304",

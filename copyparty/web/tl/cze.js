@@ -682,11 +682,14 @@ Ls.cze = {
 		"ta1": "nejprve vyplňte své nové heslo",
 		"ta2": "zopakujte pro potvrzení nového hesla:",
 		"ta3": "nalezen překlep; zkuste to prosím znovu",
+		"nop": "CHYBA: Heslo nesmí být prázdné", //m
+		"nou": "CHYBA: Uživatelské jméno a/nebo heslo nesmí být prázdné", //m
 		"aa1": "příchozí soubory:",
 		"ab1": "deaktivovat no304",
 		"ac1": "povolit no304",
 		"ad1": "povolení no304 deaktivuje veškeré mezipaměti; zkuste to, pokud k304 nestačilo. To ovšem zapříčíní obrovské množství síťového provozu!",
 		"ae1": "aktivní stahování:",
 		"af1": "zobrazit nedávné nahrávání",
+		"ag1": "zobrazit známé uživatele IdP", //m
 	}
 };

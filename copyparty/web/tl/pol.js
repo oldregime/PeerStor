@@ -681,6 +681,8 @@ Ls.pol = {
 		"ta1": "najpierw wprowadź nowe hasło",
 		"ta2": "powtórz hasło dla potwierdzenia:",
 		"ta3": "znaleziono literówkę, spróbuj ponownie",
+		"nop": "BŁĄD: Hasło nie może być puste", //m
+		"nou": "BŁĄD: Nazwa użytkownika i/lub hasło nie może być puste", //m
 		"aa1": "pliki przychodzące:",
 		"ab1": "wyłącz no304",
 		"ac1": "włącz no304",

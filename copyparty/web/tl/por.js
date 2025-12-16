@@ -678,6 +678,8 @@ Ls.por = {
 		"ta1": "primeiro digite sua nova senha",
 		"ta2": "repita para confirmar a nova senha:",
 		"ta3": "há um erro; por favor, tente novamente",
+		"nop": "ERRO: A senha não pode estar em branco", //m
+		"nou": "ERRO: O nome de usuário e/ou a senha não podem estar em branco", //m
 		"aa1": "arquivos de entrada:",
 		"ab1": "desativar no304",
 		"ac1": "ativar no304",

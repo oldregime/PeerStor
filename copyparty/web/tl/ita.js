@@ -678,6 +678,8 @@ Ls.ita = {
 		"ta1": "devi prima inserire una nuova password",
 		"ta2": "ripeti per confermare la nuova password:",
 		"ta3": "errore di digitazione; riprova",
+		"nop": "ERRORE: La password non può essere vuota", //m
+		"nou": "ERRORE: Il nome utente e/o la password non possono essere vuoti", //m
 		"aa1": "in arrivo:",
 		"ab1": "disattiva no304",
 		"ac1": "attiva no304",

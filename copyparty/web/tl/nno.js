@@ -675,6 +675,8 @@ Ls.nno = {
 		"ta1": "du må skrive eit nytt passord først",
 		"ta2": "gjenta for å stadfeste nytt passord:",
 		"ta3": "fant ein skrivefeil; vennligst prøv igjen",
+		"nop": "FEIL: Passord kan ikkje vere tomt",
+		"nou": "FEIL: Brukarnamn og passord må fyllast ut",
 		"aa1": "innkommande:",
 		"ab1": "skru av no304",
 		"ac1": "skru på no304",

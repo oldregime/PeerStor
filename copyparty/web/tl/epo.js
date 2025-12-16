@@ -678,6 +678,8 @@ Ls.epo = {
 		"ta1": "entajpu novan pasvorton unue",
 		"ta2": "retajpu por konfirmi:",
 		"ta3": "tajpo-eraro; bonvolu provu denove",
+		"nop": "ERARO: Pasvorto ne povas esti malplena", //m
+		"nou": "ERARO: Uzantnomo kaj/aŭ pasvorto ne povas esti malplena", //m
 		"aa1": "aktivaj alŝutoj:",
 		"ab1": "malŝalti no304-on",
 		"ac1": "ŝalti no304-on",

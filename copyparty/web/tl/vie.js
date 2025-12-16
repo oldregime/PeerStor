@@ -717,11 +717,14 @@ Ls.vie = {
 		"ta1": "điền mật khẩu mới:",
 		"ta2": "nhập lại mật khẩu mới:",
 		"ta3": "mật khẩu không khớp, xin hãy thử lại",
+		"nop": "LỖI: Mật khẩu không được để trống", //m
+		"nou": "LỖI: Tên người dùng và/hoặc mật khẩu không được để trống", //m
 		"aa1": "tệp đến",
 		"ab1": "vô hiệu hóa no304",
 		"ac1": "bật no304",
 		"ad1": "bật no304 sẽ vô hiệu hóa tất cả bộ nhớ đệm; hãy thử tùy chọn này nếu k304 không đủ. Tùy chọn này sẽ làm lãng phí một lượng lớn lưu lượng mạng!",
 		"ae1": "tải xuống đang hoạt động:",
 		"af1": "hiển thị các tệp đã tải lên gần đây",
+		"ag1": "hiển thị người dùng IdP đã biết", //m
 	}
 };

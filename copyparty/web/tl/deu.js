@@ -678,11 +678,14 @@ Ls.deu = {
 		"ta1": "Trage zuerst dein Passwort ein",
 		"ta2": "Wiederhole dein Passwort zur Bestätigung:",
 		"ta3": "Da stimmt etwas nicht; probier's nochmal",
+		"nop": "FEHLER: Passwort darf nicht leer sein", //m
+		"nou": "FEHLER: Benutzername und/oder Passwort dürfen nicht leer sein", //m
 		"aa1": "Eingehende Dateien:",
 		"ab1": "no304 deaktivieren",
 		"ac1": "no304 aktivieren",
 		"ad1": "Das Aktivieren von no304 deaktiviert jegliche Form von Caching; probier dies, wenn k304 nicht genug war. Dies verschwendet eine grosse Menge Netzwerk-Traffic!",
 		"ae1": "Aktive Downloads:",
 		"af1": "Zeige neue Uploads",
+		"ag1": "Bekannte IdP-Benutzer anzeigen", //m
 	}
 };

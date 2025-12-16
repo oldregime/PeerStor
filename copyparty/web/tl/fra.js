@@ -678,11 +678,14 @@ Ls.fra = {
 		"ta1": "entrez d'abord votre nouveau mot de passe",
 		"ta2": "répétez pour confirmer le nouveau mot de passe :",
 		"ta3": "une faute de frappe a été détectée ; veuillez réessayer.",
+		"nop": "ERREUR : Le mot de passe ne peut pas être vide", //m
+		"nou": "ERREUR : Le nom d’utilisateur et/ou le mot de passe ne peut pas être vide", //m
 		"aa1": "fichiers entrants :",
 		"ab1": "désactiver no304",
 		"ac1": "activer no304",
 		"ad1": "l'activation de no304 désactivera toute mise en cache ; essayez ceci si k304 n'était pas suffisant. Cela va générer un trafic réseau considérable !",
 		"ae1": "téléchargements actifs :",
 		"af1": "afficher les derniers téléchargements",
+		"ag1": "afficher les utilisateurs IdP connus", //m
 	}
 };

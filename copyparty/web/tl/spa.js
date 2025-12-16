@@ -677,6 +677,8 @@ Ls.spa = {
 		"ta1": "primero escribe tu nueva contraseña",
 		"ta2": "repite para confirmar la nueva contraseña:",
 		"ta3": "hay un error; por favor, inténtalo de nuevo",
+		"nop": "ERROR: La contraseña no puede estar vacía", //m
+		"nou": "ERROR: El nombre de usuario y/o la contraseña no pueden estar vacíos", //m
 		"aa1": "archivos entrantes:",
 		"ab1": "desactivar no304",
 		"ac1": "activar no304",

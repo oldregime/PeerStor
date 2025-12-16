@@ -678,6 +678,8 @@ Ls.nld = {
 		"ta1": "Je moet eerst een nieuw wachtwoord invoeren",
 		"ta2": "Herhaal om nieuw wachtwoord te bevestigen:",
 		"ta3": "Typefout gevonden; probeer het opnieuw",
+		"nop": "FOUT: Wachtwoord mag niet leeg zijn", //m
+		"nou": "FOUT: Gebruikersnaam en/of wachtwoord mag niet leeg zijn", //m
 		"aa1": "Inkomend:",
 		"ab1": "Schakel nr. 304 uit",
 		"ac1": "Schakel nr. 304 in",

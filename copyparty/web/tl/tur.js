@@ -673,11 +673,14 @@ Ls.tur = {
 		"ta1": "ilk önce yeni şifreyi doldur",
 		"ta2": "yeni şifreyi onaylamak için tekrar girin:",
 		"ta3": "bir yazım hatası bulundu; lütfen tekrar deneyin",
+		"nop": "HATA: Parola boş olamaz", //m
+		"nou": "HATA: Kullanıcı adı ve/veya parola boş olamaz", //m
 		"aa1": "gelen dosyalar:",
 		"ab1": "no304'ü devre dışı bırak",
 		"ac1": "no304'ü etkinleştir",
 		"ad1": "no304'ü etkinleştirmek, tüm önbelleği devre dışı bırakır; bunu k304 yeterli olmadıysa deneyin. Bu, büyük miktarda ağ trafiği israf edecektir!",
 		"ae1": "aktif indirmeler:",
 		"af1": "son yüklemeleri göster",
+		"ag1": "bilinen IdP kullanıcılarını göster", //m
 	}
 };
