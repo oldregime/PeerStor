@@ -154,6 +154,7 @@ ALL_COOKIES = "k304 no304 js idxh dots cppwd cppws".split()
 BADXFF = " due to dangerous misconfiguration (the http-header specified by --xff-hdr was received from an untrusted reverse-proxy)"
 BADXFF2 = ". Some copyparty features are now disabled as a safety measure.\n\n\n"
 BADXFP = ', or change the copyparty global-option "xf-proto" to another header-name to read this value from. Alternatively, if your reverseproxy is not able to provide a header similar to "X-Forwarded-Proto", then you must tell copyparty which protocol to assume by setting global-option --xf-proto-fb to either http or https'
+BADXFFB = "<b>NOTE: serverlog has a message regarding your reverse-proxy config</b>"
 
 H_CONN_KEEPALIVE = "Connection: Keep-Alive"
 H_CONN_CLOSE = "Connection: Close"
@@ -423,7 +424,24 @@ class HttpCli(object):
                         ]
                         t = 'could not determine the client\'s IP-address because the global-option --rproxy has not been configured, so the request-header [%s] specified by global-option --xff-hdr cannot be used safely! The raw header value was [%s]. Please see the "reverse-proxy" section in the readme. The best approach is to configure your reverse-proxy to give copyparty the exact IP-address to assume (perhaps in another header), but you may also try the following:'
                         t = t % (self.args.xff_hdr, zso)
-                        self.log("%s\n\n%s\n" % (t, "\n".join(zsl)), 3)
+                        t = "%s\n\n%s\n" % (t, "\n".join(zsl))
+
+                        zs = self.headers.get(self.args.xf_proto)
+                        t2 = "\nFurthermore, the following request-headers are also relevant, and you should check that the values below are sensible:\n\n  request-header [%s] (configured with global-option --xf-proto) has the value [%s]; this should be the protocol that the webbrowser is using, so either 'http' or 'https'"
+                        t += t2 % (self.args.xf_proto, zs or "NOT-PROVIDED")
+                        if not zs:
+                            t += ". Because the header is not provided by the reverse-proxy, you must either fix the reverseproxy config"
+                            t += BADXFP
+                        zs = self.headers.get(self.args.xf_host)
+                        t2 = "\n\n  request-header [%s] (configured with global-option --xf-host) has the value [%s]; this should be the website domain or external IP-address which the webbrowser is accessing"
+                        t += t2 % (self.args.xf_host, zs or "NOT-PROVIDED")
+                        if not zs:
+                            zs = self.headers.get("host")
+                            t2 = ". Because the header is not provided by the reverse-proxy, copyparty is using the standard [Host] header which has the value [%s]"
+                            t += t2 % (zs or "NOT-PROVIDED")
+                            if zs:
+                                t += ". If that is the address that visitors are supposed to use to access your server -- or, in other words, it is not some internal address you wish to keep secret -- then the current choice of using the [Host] header is fine (usually the case)"
+                        self.log(t + "\n\n\n", 3)
 
                 pip = self.conn.addr[0]
                 xffs = self.conn.xff_nm
@@ -5437,6 +5455,7 @@ class HttpCli(object):
             no304=self.no304(),
             k304vis=self.args.k304 > 0,
             no304vis=self.args.no304 > 0,
+            msg=BADXFFB if hasattr(self, "bad_xff") else "",
             ver=S_VERSION if show_ver else "",
             chpw=self.args.chpw and self.uname != "*",
             ahttps="" if self.is_https else "https://" + self.host + self.req,
