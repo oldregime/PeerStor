@@ -79,6 +79,7 @@ from .util import (
     start_stackmon,
     termsize,
     ub64enc,
+    umktrans,
 )
 
 if HAVE_SQLITE3:
@@ -1131,8 +1132,19 @@ class SvcHub(object):
             except:
                 raise Exception("invalid --idp-hm-usr [%s]" % (zs0,))
 
-        al.ftp_ipa_nm = build_netmap(al.ftp_ipa or al.ipa, True)
-        al.tftp_ipa_nm = build_netmap(al.tftp_ipa or al.ipa, True)
+        zs1 = ""
+        zs2 = ""
+        zs = al.idp_chsub
+        while zs:
+            if zs[:1] != "|":
+                raise Exception("invalid --idp-chsub; expected another | but got " + zs)
+            zs1 += zs[1:2]
+            zs2 += zs[2:3]
+            zs = zs[3:]
+        al.idp_chsub_tr = umktrans(zs1, zs2)
+
+        al.ftp_ipa_nm = build_netmap(al.ftp_ipa or al.ipa or al.ipar, True)
+        al.tftp_ipa_nm = build_netmap(al.tftp_ipa or al.ipa or al.ipar, True)
 
         mte = ODict.fromkeys(DEF_MTE.split(","), True)
         al.mte = odfusion(mte, al.mte)

@@ -691,6 +691,9 @@ class HttpCli(object):
                     if self.args.idp_h_grp
                     else ""
                 )
+                if self.args.idp_chsub:
+                    idp_usr = idp_usr.translate(self.args.idp_chsub_tr)
+                    idp_grp = idp_grp.translate(self.args.idp_chsub_tr)
 
                 if not trusted_xff:
                     pip = self.conn.addr[0]
