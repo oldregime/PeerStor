@@ -152,7 +152,8 @@ USED4SEC = {"usedforsecurity": False} if sys.version_info > (3, 9) else {}
 ALL_COOKIES = "k304 no304 js idxh dots cppwd cppws".split()
 
 BADXFF = " due to dangerous misconfiguration (the http-header specified by --xff-hdr was received from an untrusted reverse-proxy)"
-BADXFF2 = ". Some copyparty features are now disabled as a safety measure."
+BADXFF2 = ". Some copyparty features are now disabled as a safety measure.\n\n\n"
+BADXFP = ', or change the copyparty global-option "xf-proto" to another header-name to read this value from. Alternatively, if your reverseproxy is not able to provide a header similar to "X-Forwarded-Proto", then you must tell copyparty which protocol to assume by setting global-option --xf-proto-fb to either http or https'
 
 H_CONN_KEEPALIVE = "Connection: Keep-Alive"
 H_CONN_CLOSE = "Connection: Close"
@@ -449,10 +450,13 @@ class HttpCli(object):
                     try:
                         self.is_https = len(self.headers[self.args.xf_proto]) == 5
                     except:
-                        self.bad_xff = True
-                        self.host = "example.com"
-                        t = 'got proxied request without header "%s" (global-option "xf-proto"). This header must contain either "http" or "https". Either fix your reverse-proxy config to include this header, or change the copyparty global-option "xf-proto" to another header-name to read this value from'
-                        self.log(t % (self.args.xf_proto,) + BADXFF2, 3)
+                        if self.args.xf_proto_fb:
+                            self.is_https = len(self.args.xf_proto_fb) == 5
+                        else:
+                            self.bad_xff = True
+                            self.host = "example.com"
+                            t = 'got proxied request without header "%s" (global-option "xf-proto"). This header must contain either "http" or "https". Either fix your reverse-proxy config to include this header%s%s'
+                            self.log(t % (self.args.xf_proto, BADXFP, BADXFF2), 3)
 
                     # the semantics of trusted_xff and bad_xff are different;
                     # trusted_xff is whether the connection came from a trusted reverseproxy,
