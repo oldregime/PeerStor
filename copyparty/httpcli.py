@@ -472,6 +472,11 @@ class HttpCli(object):
         if self.is_banned():
             return False
 
+        if self.conn.ipar_nm and not self.conn.ipar_nm.map(self.ip):
+            self.log("client rejected (--ipar)", 3)
+            self.terse_reply(b"", 500)
+            return False
+
         if self.conn.aclose:
             nka = self.conn.aclose
             ip = ipnorm(self.ip)
