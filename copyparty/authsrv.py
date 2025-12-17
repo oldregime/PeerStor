@@ -1590,7 +1590,7 @@ class AuthSrv(object):
                 uns = [x[0] for x in un_gns.items() if grp in x[1]]
                 if grp == "${g}":
                     unames.append(un)
-                elif not uns and not self.args.idp_h_grp:
+                elif not uns and not self.args.idp_h_grp and grp != self.args.grp_all:
                     t = "group [%s] must be defined with --grp argument (or in a [groups] config section)"
                     raise CfgEx(t % (grp,))
 
