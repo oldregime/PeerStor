@@ -7032,18 +7032,8 @@ class HttpCli(object):
             if self.can_admin:
                 up_q = "select substr(w,1,16), ip, at, un from up where rd=? and fn=?"
                 up_m = ["w", "up_ip", ".up_at", "up_by"]
-            elif ".up_at" in mte:
-                if "w" in mte:
-                    up_q = "select substr(w,1,16), at from up where rd=? and fn=?"
-                    up_m = ["w", ".up_at"]
-                else:
-                    up_q = "select at from up where rd=? and fn=?"
-                    up_m = [".up_at"]
-            elif "w" in mte:
-                up_q = "select substr(w,1,16) from up where rd=? and fn=?"
-                up_m = ["w"]
             else:
-                up_q = ""
+                up_q, up_m = vn.flags["ls_q_m"]
 
             mt_q = "select mt.k, mt.v from up inner join mt on mt.w = substr(up.w,1,16) where up.rd = ? and up.fn = ? and +mt.k != 'x'"
             for fe in files:
