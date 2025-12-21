@@ -1072,8 +1072,13 @@ window.baguetteBox = (function () {
             dl = el.closest('div').querySelector('figcaption a'),
             vw = cw,
             vh = ch - dl.offsetHeight + magic,
-            pmag = Math.min(1, Math.min(vw / ih, vh / iw)),
-            wmag = Math.min(1, Math.min(vw / iw, vh / ih));
+            pmag = Math.min(vw / ih, vh / iw),
+            wmag = Math.min(vw / iw, vh / ih);
+
+        if (!options.bbzoom) {
+        	pmag = Math.min(1, pmag);
+			wmag = Math.min(1, wmag);
+        }
 
         while (rot < 0) rot += 360;
         while (rot >= 360) rot -= 360;
