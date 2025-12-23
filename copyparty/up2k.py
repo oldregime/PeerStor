@@ -3323,7 +3323,7 @@ class Up2k(object):
                                     job["ptop"] = vfs.realpath
                                     job["vtop"] = vfs.vpath
                                     job["prel"] = rem
-                                    job["name"] = sanitize_fn(job["name"], "")
+                                    job["name"] = sanitize_fn(job["name"])
                                     ud2 = (vfs.vpath, job["prel"], job["name"])
                                     if ud1 != ud2:
                                         # print(json.dumps(job, sort_keys=True, indent=4))
@@ -5186,7 +5186,7 @@ class Up2k(object):
                     job["ptop"] = vfs.realpath
                     job["vtop"] = vfs.vpath
                     job["prel"] = rem
-                    job["name"] = sanitize_fn(job["name"], "")
+                    job["name"] = sanitize_fn(job["name"])
                     ud2 = (vfs.vpath, job["prel"], job["name"])
                     if ud1 != ud2:
                         self.log("xbu reloc2:%d..." % (depth,), 6)

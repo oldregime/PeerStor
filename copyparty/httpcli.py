@@ -2419,7 +2419,7 @@ class HttpCli(object):
             if rnd:
                 fn = rand_name(fdir, fn, rnd)
 
-            fn = sanitize_fn(fn or "", "")
+            fn = sanitize_fn(fn or "")
 
         path = os.path.join(fdir, fn)
 
@@ -2857,7 +2857,7 @@ class HttpCli(object):
             name = name.translate(tl)
         dbv, vrem = vfs.get_dbv(rem)
 
-        name = sanitize_fn(name, "")
+        name = sanitize_fn(name)
         if (
             not self.can_read
             and self.can_write
@@ -3353,7 +3353,7 @@ class HttpCli(object):
         if "nosub" in vfs.flags:
             raise Pebkac(403, "mkdir is forbidden below this folder")
 
-        rem = sanitize_vpath(rem, "/")
+        rem = sanitize_vpath(rem)
         fn = vfs.canonical(rem)
 
         if not nullwrite:
@@ -3397,7 +3397,7 @@ class HttpCli(object):
             t = "you can only create .md files because you don't have the delete-permission"
             raise Pebkac(400, t)
 
-        sanitized = sanitize_fn(new_file, "")
+        sanitized = sanitize_fn(new_file)
         fdir = vfs.canonical(rem)
         fn = os.path.join(fdir, sanitized)
 
@@ -3549,7 +3549,7 @@ class HttpCli(object):
                     # fallthrough
 
                 fdir = fdir_base
-                fname = sanitize_fn(p_file or "", "")
+                fname = sanitize_fn(p_file or "")
                 abspath = os.path.join(fdir, fname)
                 suffix = "-%.6f-%s" % (time.time(), dip)
                 if p_file and not nullwrite:
