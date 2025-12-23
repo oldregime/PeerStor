@@ -1847,7 +1847,7 @@ def add_ui(ap, retry: int):
     ap2.add_argument("--ui-noacci", action="store_true", help="hide account-info in the UI (volflag=ui_noacci)")
     ap2.add_argument("--ui-nosrvi", action="store_true", help="hide server-info in the UI (volflag=ui_nosrvi)")
     ap2.add_argument("--ui-nonav", action="store_true", help="hide navpane+breadcrumbs (volflag=ui_nonav)")
-    ap2.add_argument("--ui-notree", action="store_true", help="hide navpane in the UI (volflag=ui_nonav)")
+    ap2.add_argument("--ui-notree", action="store_true", help="hide navpane in the UI (volflag=ui_notree)")
     ap2.add_argument("--ui-nocpla", action="store_true", help="hide cpanel-link in the UI (volflag=ui_nocpla)")
     ap2.add_argument("--ui-nolbar", action="store_true", help="hide link-bar in the UI (volflag=ui_nolbar)")
     ap2.add_argument("--ui-noctxb", action="store_true", help="hide context-buttons in the UI (volflag=ui_noctxb)")

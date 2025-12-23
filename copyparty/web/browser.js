@@ -6738,10 +6738,11 @@ var treectl = (function () {
 		aligngriditems();
 	};
 
-	r.detree = function (e) {
+	r.detree = function (e, nw) {
 		ev(e);
 		entreed = false;
-		swrite('entreed', 'na');
+		if (!nw)
+			swrite('entreed', 'na');
 
 		r.hide();
 		if (!nonav)
@@ -7640,7 +7641,7 @@ var treectl = (function () {
 
 	if (notree) {
 		cs = 'na';
-		r.hide();
+		r.detree(null, 1);
 	}
 
 	if (cs == 'tree' || (cs != 'na' && vw >= 60))
