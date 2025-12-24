@@ -1834,6 +1834,7 @@ class HttpCli(object):
             bfree, btot, _ = get_df(vn.realpath, False)
             if btot:
                 if "vmaxb" in vn.flags:
+                    btot = vn.lim.vbmax
                     if bfree == vn.lim.c_vb_r:
                         bfree = min(bfree, max(0, vn.lim.vbmax - vn.lim.c_vb_v))
                     else:
@@ -6744,6 +6745,7 @@ class HttpCli(object):
             free, total, zs = get_df(abspath, False)
             if total:
                 if "vmaxb" in vn.flags:
+                    total = vn.lim.vbmax
                     if free == vn.lim.c_vb_r:
                         free = min(free, max(0, vn.lim.vbmax - vn.lim.c_vb_v))
                     else:
