@@ -1440,7 +1440,9 @@ def add_webdav(ap):
     ap2.add_argument("--dav-rt", action="store_true", help="show symlink-destination's lastmodified instead of the link itself; always enabled for recursive listings (volflag=davrt)")
     ap2.add_argument("--dav-auth", action="store_true", help="force auth for all folders (required by davfs2 when only some folders are world-readable) (volflag=davauth)")
     ap2.add_argument("--dav-ua1", metavar="PTN", type=u, default=r" kioworker/", help="regex of user-agents which ARE webdav-clients, and expect 401 from GET requests; disable with [\033[32mno\033[0m] or blank")
+    ap2.add_argument("--dav-port", metavar="P", type=int, default=0, help="additional port to listen on for misbehaving webdav clients which pretend they are graphical browsers; an alternative/supplement to dav-ua1")
     ap2.add_argument("--ua-nodav", metavar="PTN", type=u, default=r"^(Mozilla/|NetworkingExtension/|com\.apple\.WebKit)", help="regex of user-agents which are NOT webdav-clients")
+    ap2.add_argument("--p-nodav", metavar="P,P", type=u, default="", help="server-ports (comma-sep.) which are NOT webdav-clients; an alternative/supplement to ua-nodav")
 
 
 def add_tftp(ap):
@@ -1558,7 +1560,7 @@ def add_safety(ap):
     ap2.add_argument("--no-dot-ren", action="store_true", help="disallow renaming dotfiles; makes it impossible to turn something into a dotfile")
     ap2.add_argument("--no-logues", action="store_true", help="disable rendering .prologue/.epilogue.html into directory listings")
     ap2.add_argument("--no-readme", action="store_true", help="disable rendering readme/preadme.md into directory listings")
-    ap2.add_argument("--vague-403", action="store_true", help="send 404 instead of 403 (security through ambiguity, very enterprise)")
+    ap2.add_argument("--vague-403", action="store_true", help="send 404 instead of 403 (security through ambiguity, very enterprise). \033[1;31mWARNING:\033[0m Not compatible with WebDAV")
     ap2.add_argument("--force-js", action="store_true", help="don't send folder listings as HTML, force clients to use the embedded json instead -- slight protection against misbehaving search engines which ignore \033[33m--no-robots\033[0m")
     ap2.add_argument("--no-robots", action="store_true", help="adds http and html headers asking search engines to not index anything (volflag=norobots)")
     ap2.add_argument("--logout", metavar="H", type=float, default=8086.0, help="logout clients after \033[33mH\033[0m hours of inactivity; [\033[32m0.0028\033[0m]=10sec, [\033[32m0.1\033[0m]=6min, [\033[32m24\033[0m]=day, [\033[32m168\033[0m]=week, [\033[32m720\033[0m]=month, [\033[32m8760\033[0m]=year)")

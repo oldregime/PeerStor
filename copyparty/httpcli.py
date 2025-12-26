@@ -5522,18 +5522,19 @@ class HttpCli(object):
         # most webdav clients will not send credentials until they
         # get 401'd, so send a challenge if we're Absolutely Sure
         # that the client is not a graphical browser
-        if (
-            rc == 403
-            and self.uname == "*"
-            and "sec-fetch-site" not in self.headers
-            and self.cookies.get("js") != "y"
-            and (
-                not self.args.ua_nodav.search(self.ua)
-                or (self.args.dav_ua1 and self.args.dav_ua1.search(self.ua))
-            )
-        ):
-            rc = 401
-            self.out_headers["WWW-Authenticate"] = 'Basic realm="a"'
+        if rc == 403 and self.uname == "*":
+            sport = self.s.getsockname()[1]
+            if self.args.dav_port == sport or (
+                "sec-fetch-site" not in self.headers
+                and self.cookies.get("js") != "y"
+                and sport not in self.args.p_nodav
+                and (
+                    not self.args.ua_nodav.search(self.ua)
+                    or (self.args.dav_ua1 and self.args.dav_ua1.search(self.ua))
+                )
+            ):
+                rc = 401
+                self.out_headers["WWW-Authenticate"] = 'Basic realm="a"'
 
         t = t.format(self.args.SR)
         qv = quotep(self.vpaths) + self.ourlq()

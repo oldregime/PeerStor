@@ -220,6 +220,10 @@ class SvcHub(object):
             self.log("root", t.format(args.j), c=3)
             args.no_fpool = True
 
+        args.p_nodav = [int(x.strip()) for x in args.p_nodav.split(",") if x]
+        if args.dav_port and args.dav_port not in args.p:
+            args.p.append(args.dav_port)
+
         for name, arg in (
             ("iobuf", "iobuf"),
             ("s-rd-sz", "s_rd_sz"),
