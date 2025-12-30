@@ -367,6 +367,7 @@ pip install jinja2 strip_hints  # MANDATORY
 pip install argon2-cffi  # password hashing
 pip install pyzmq  # send 0mq from hooks
 pip install mutagen  # audio metadata
+pip install paramiko  # sftp server
 pip install pyftpdlib  # ftp server
 pip install partftpy  # tftp server
 pip install impacket  # smb server -- disable Windows Defender if you REALLY need this on windows
@@ -377,7 +378,7 @@ pip install black==21.12b0 click==8.0.2 bandit pylint flake8 isort mypy  # vscod
 ```
 
 * on archlinux you can do this:
-  * `sudo pacman -Sy --needed python-{pip,isort,jinja,argon2-cffi,pyzmq,mutagen,pyftpdlib,pillow}`
+  * `sudo pacman -Sy --needed python-{pip,isort,jinja,argon2-cffi,pyzmq,mutagen,paramiko,pyftpdlib,pillow}`
   * then, as user: `python3 -m pip install --user --break-system-packages -U strip_hints black==21.12b0 click==8.0.2`
   * for building docker images: `sudo pacman -Sy --needed qemu-user-static{,-binfmt} podman{,-docker} jq`
 

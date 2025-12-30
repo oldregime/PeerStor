@@ -654,22 +654,41 @@ except:
     JINJA_VER = "(None)"
 
 try:
+    if os.environ.get("PRTY_NO_PYFTPD"):
+        raise Exception()
+
     from pyftpdlib.__init__ import __ver__ as PYFTPD_VER
 except:
     PYFTPD_VER = "(None)"
 
 try:
+    if os.environ.get("PRTY_NO_PARTFTPY"):
+        raise Exception()
+
     from partftpy.__init__ import __version__ as PARTFTPY_VER
 except:
     PARTFTPY_VER = "(None)"
 
+try:
+    if os.environ.get("PRTY_NO_PARAMIKO"):
+        raise Exception()
+
+    from paramiko import __version__ as MIKO_VER
+except:
+    MIKO_VER = "(None)"
+
 
 PY_DESC = py_desc()
 
-VERSIONS = (
-    "copyparty v{} ({})\n{}\n   sqlite {} | jinja {} | pyftpd {} | tftp {}".format(
-        S_VERSION, S_BUILD_DT, PY_DESC, SQLITE_VER, JINJA_VER, PYFTPD_VER, PARTFTPY_VER
-    )
+VERSIONS = "copyparty v{} ({})\n{}\n   sqlite {} | jinja {} | pyftpd {} | tftp {} | miko {}".format(
+    S_VERSION,
+    S_BUILD_DT,
+    PY_DESC,
+    SQLITE_VER,
+    JINJA_VER,
+    PYFTPD_VER,
+    PARTFTPY_VER,
+    MIKO_VER,
 )
 
 

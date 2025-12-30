@@ -422,6 +422,7 @@ class TcpSrv(object):
         self.hub.broker.say("httpsrv.set_netdevs", self.netdevs)
         self.hub.start_zeroconf()
         gencert(self.log, self.args, self.netdevs)
+        self.hub.restart_sftpd()
         self.hub.restart_ftpd()
         self.hub.restart_tftpd()
 

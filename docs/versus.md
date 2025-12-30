@@ -242,7 +242,7 @@ symbol legend,
 | serve ftp  (tcp)        | █ |   |   |   |   | █ |   |   |   |   |   | █ | █ |
 | serve ftps (tls)        | █ |   |   |   |   | █ |   |   |   |   |   | █ |   |
 | serve tftp (udp)        | █ |   |   |   |   |   |   |   |   |   |   |   |   |
-| serve sftp (ssh)        |   |   |   |   |   | █ |   |   |   |   |   | █ | █ |
+| serve sftp (ssh)        | █ |   |   |   |   | █ |   |   |   |   |   | █ | █ |
 | serve smb/cifs          | ╱ |   |   |   |   | █ |   |   |   |   |   |   |   |
 | serve dlna              |   |   |   |   |   | █ |   |   |   |   |   |   |   |
 | listen on unix-socket   | █ |   |   | █ | █ |   | █ | █ | █ | █ | █ | █ |   |
@@ -640,8 +640,7 @@ symbol legend,
 * ⚠️ impractical directory URLs
 * ⚠️ AGPL licensed
 * 🔵 uploading small files is fast; `340` files per sec (copyparty does `670`/sec)
-* 🔵 ftp, ftps, webdav
-* ✅ sftp server
+* 🔵 sftp, ftp, ftps, webdav
 * ✅ settings gui
 * ✅ acme (automatic tls certs)
   * 💾 relies on caddy/certbot/acme.sh
@@ -667,7 +666,6 @@ symbol legend,
 * ⚠️ not self-contained (pulls from jsdelivr)
 * ⚠️ has an audio player, but supports less filetypes
 * ⚠️ limited support for configuring real-ip detection
-* ✅ sftp server
 * ✅ settings gui
 * ✅ good-looking gui
 * ✅ an IDE, msoffice viewer, rich host integration, much more

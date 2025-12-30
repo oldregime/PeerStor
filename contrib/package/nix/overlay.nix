@@ -8,6 +8,7 @@ let
     withMediaProcessing = true;
     withBasicAudioMetadata = true;
     withZeroMQ = true;
+    withSFTP = true;
     withFTP = true;
     withFTPS = true;
     withTFTP = true;

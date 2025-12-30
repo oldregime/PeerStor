@@ -48,6 +48,7 @@ from .util import (
     HAVE_IPV6,
     IMPLICATIONS,
     JINJA_VER,
+    MIKO_VER,
     MIMES,
     PARTFTPY_VER,
     PY_DESC,
@@ -1419,6 +1420,21 @@ def add_zc_ssdp(ap):
     ap2.add_argument("--zsid", metavar="UUID", type=u, default=zsid, help="USN (device identifier) to announce")
 
 
+def add_sftp(ap):
+    ap2 = ap.add_argument_group("SFTP options")
+    ap2.add_argument("--sftp", metavar="PORT", type=int, default=0, help="enable SFTP server on \033[33mPORT\033[0m, for example \033[32m3922")
+    ap2.add_argument("--sftpv", action="store_true", help="verbose")
+    ap2.add_argument("--sftpvv", action="store_true", help="verboser")
+    ap2.add_argument("--sftp4", action="store_true", help="only listen on IPv4")
+    ap2.add_argument("--sftp-key", metavar="U K", type=u, action="append", help="\033[34mREPEATABLE:\033[0m add ssh-key \033[33mK\033[0m for user \033[33mU\033[0m (username, space, key-type, space, base64); if user has multiple keys, then repeat this option for each key\n └─commandline example: --sftp-key 'david ssh-ed25519 AAAAC3NzaC...'\n └─config-file example: sftp-key: david ssh-ed25519 AAAAC3NzaC...")
+    ap2.add_argument("--sftp-key2u", action="append", help=argparse.SUPPRESS)
+    ap2.add_argument("--sftp-pw", action="store_true", help="allow password-authentication with sftp (not just ssh-keys)")
+    ap2.add_argument("--sftp-anon", metavar="TXT", type=u, default="", help="allow anonymous/unauthenticated connections with \033[33mTXT\033[0m as username")
+    ap2.add_argument("--sftp-hostk", metavar="FP", type=u, default=E.cfg, help="path to folder with hostkeys, for example 'ssh_host_rsa_key'; missing keys will be generated")
+    ap2.add_argument("--sftp-banner", metavar="T", type=u, default="", help="bannertext to send when someone connects; can be @filepath")
+    ap2.add_argument("--sftp-ipa", metavar="CIDR", type=u, default="", help="only accept connections from IP-addresses inside \033[33mCIDR\033[0m (comma-separated); specify [\033[32many\033[0m] to disable inheriting \033[33m--ipa\033[0m / \033[33m--ipar\033[0m. Examples: [\033[32mlan\033[0m] or [\033[32m10.89.0.0/16, 192.168.33.0/24\033[0m]")
+
+
 def add_ftp(ap):
     ap2 = ap.add_argument_group("FTP options (TCP only)")
     ap2.add_argument("--ftp", metavar="PORT", type=int, default=0, help="enable FTP server on \033[33mPORT\033[0m, for example \033[32m3921")
@@ -1927,6 +1943,7 @@ def run_argparse(
     add_thumbnail(ap)
     add_transcoding(ap)
     add_rss(ap)
+    add_sftp(ap)
     add_ftp(ap)
     add_webdav(ap)
     add_tftp(ap)
@@ -1994,7 +2011,7 @@ def main(argv: Optional[list[str]] = None) -> None:
 
     init_E(E)
 
-    f = '\033[36mcopyparty v{} "\033[35m{}\033[36m" ({})\n{}\033[0;36m\n   sqlite {} | jinja {} | pyftpd {} | tftp {}\n\033[0m'
+    f = '\033[36mcopyparty v{} "\033[35m{}\033[36m" ({})\n{}\033[0;36m\n   sqlite {} | jinja {} | pyftpd {} | tftp {} | miko {}\n\033[0m'
     f = f.format(
         S_VERSION,
         CODENAME,
@@ -2004,6 +2021,7 @@ def main(argv: Optional[list[str]] = None) -> None:
         JINJA_VER,
         PYFTPD_VER,
         PARTFTPY_VER,
+        MIKO_VER,
     )
     lprint(f)
 

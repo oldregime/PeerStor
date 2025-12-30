@@ -5,7 +5,7 @@
 turn almost any device into a file server with resumable uploads/downloads using [*any*](#browser-support) web browser
 
 * server only needs Python (2 or 3), all dependencies optional
-* 🔌 protocols: [http](#the-browser) // [webdav](#webdav-server) // [ftp](#ftp-server) // [tftp](#tftp-server) // [smb/cifs](#smb-server)
+* 🔌 protocols: [http(s)](#the-browser) // [webdav](#webdav-server) // [sftp](#sftp-server) // [ftp(s)](#ftp-server) // [tftp](#tftp-server) // [smb/cifs](#smb-server)
 * 📱 [android app](#android-app) // [iPhone shortcuts](#ios-shortcuts)
 
 👉 **[Get started](#quickstart)!** or visit the **[read-only demo server](https://a.ocv.me/pub/demo/)** 👀 running on a nuc in my basement
@@ -14,7 +14,7 @@ turn almost any device into a file server with resumable uploads/downloads using
 
 🎬 **videos:** [upload](https://a.ocv.me/pub/demo/pics-vids/up2k.webm) // [cli-upload](https://a.ocv.me/pub/demo/pics-vids/u2cli.webm) // [race-the-beam](https://a.ocv.me/pub/g/nerd-stuff/cpp/2024-0418-race-the-beam.webm) // 👉 **[feature-showcase](https://a.ocv.me/pub/demo/showcase-hq.webm)** ([youtube](https://www.youtube.com/watch?v=15_-hgsX2V0))
 
-made in Norway 🇳🇴
+built in Norway 🇳🇴 with contributions from [not-norway](https://github.com/9001/copyparty/graphs/contributors)
 
 
 ## readme toc
@@ -1396,6 +1396,26 @@ config file example, which restricts FTP to only use ports 3921 and 12000-12099 
   ftp: 3921
   ftp-pr: 12000-12099
 ```
+
+
+## sftp server
+
+goes roughly 700 MiB/s (slower than webdav and ftp)
+
+> this is **not** [ftps](#ftp-server) (which copyparty also supports); [ftps](#ftp-server) is ftp-tls (think http/https), while **sftp** is ssh-based and (preferably) uses ssh-keys for authentication
+
+the sftp-server requires the optional dependency [paramiko](https://pypi.org/project/paramiko/);
+* if you are **not** using docker, then install paramiko somehow
+* if you **are** using docker, then use one of the following image variants: `ac` / `iv` / `dj`
+
+enable sftpd with `--sftp 3922` to listen on port 3922;
+* use global-option `sftp-key` to associate an ssh-key with a user;
+  * commandline: `--sftp-key 'david ssh-ed25519 AAAAC3NzaC...'`
+  * config-file: `sftp-key: david ssh-ed25519 AAAAC3NzaC...`
+* `--sftp-pw` enables login with passwords (default is ssh-keys only)
+* `--sftp-anon foo` enables login with username `foo` and no password; gives the same access/permissions as the website does when not logged in
+
+see the [sftp section in --help](https://copyparty.eu/cli/#g-sftp) for the other options
 
 
 ## webdav server
@@ -3030,12 +3050,15 @@ set any of the following environment variables to disable its associated optiona
 | `PRTY_NO_FFPROBE`    | **audio transcoding** goes byebye, **thumbnailing** must be handled by Pillow/libvips, **metadata-scanning** must be handled by mutagen |
 | `PRTY_NO_MAGIC`      | do not use [magic](https://pypi.org/project/python-magic/) for filetype detection |
 | `PRTY_NO_MUTAGEN`    | do not use [mutagen](https://pypi.org/project/mutagen/) for reading metadata from media files; will fallback to ffprobe |
+| `PRTY_NO_PARAMIKO`   | disable sftp server ([paramiko](https://www.paramiko.org/)-based) |
+| `PRTY_NO_PARTFTPY`   | disable tftp server ([partftpy](https://github.com/9001/partftpy)-based) |
 | `PRTY_NO_PIL`        | disable all [Pillow](https://pypi.org/project/pillow/)-based thumbnail support; will fallback to libvips or ffmpeg |
 | `PRTY_NO_PILF`       | disable Pillow `ImageFont` text rendering, used for folder thumbnails |
 | `PRTY_NO_PIL_AVIF`   | disable Pillow avif support (internal and/or [plugin](https://pypi.org/project/pillow-avif-plugin/)) |
 | `PRTY_NO_PIL_HEIF`   | disable 3rd-party Pillow plugin for [HEIF support](https://pypi.org/project/pillow-heif/) |
 | `PRTY_NO_PIL_WEBP`   | disable use of native webp support in Pillow |
 | `PRTY_NO_PSUTIL`     | do not use [psutil](https://pypi.org/project/psutil/) for reaping stuck hooks and plugins on Windows |
+| `PRTY_NO_PYFTPD`     | disable ftp(s) server ([pyftpdlib](https://pypi.org/project/pyftpdlib/)-based) |
 | `PRTY_NO_RAW`        | disable all [rawpy](https://pypi.org/project/rawpy/)-based thumbnail support for RAW images |
 | `PRTY_NO_VIPS`       | disable all [libvips](https://pypi.org/project/pyvips/)-based thumbnail support; will fallback to Pillow or ffmpeg |
 

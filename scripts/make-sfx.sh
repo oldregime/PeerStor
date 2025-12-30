@@ -48,7 +48,11 @@ help() { exec cat <<'EOF'
 #
 # `no-tfp` saves ~10k by removing the tftp server, disabling --tftp
 #
+# `no-sfp` saves ~?k by removing the sftp server, disabling --sftp
+#
 # `no-zm` saves ~7k by removing the zeroconf mDNS server
+#
+# `no-z` saves ~7k by removing all zeroconf (mDNS, SSDP)
 #
 # `no-smb` saves ~3.5k by removing the smb / cifs server
 #
@@ -133,10 +137,12 @@ while [ ! -z "$1" ]; do
 		xz)     use_xz=1 ; ;;
 		gz)     use_gz=1 ; ;;
 		gzz)    shift;use_gzz=$1;use_gz=1; ;;
+		no-sfp) no_sfp=1 ; ;;
 		no-ftp) no_ftp=1 ; ;;
 		no-tfp) no_tfp=1 ; ;;
 		no-smb) no_smb=1 ; ;;
 		no-zm)  no_zm=1  ; ;;
+		no-z)   no_zm=1;no_z=1; ;;
 		no-pf)  no_pf=1  ; ;;
 		no-fnt) no_fnt=1 ; ;;
 		no-hl)  no_hl=1  ; ;;
@@ -451,6 +457,14 @@ unhelp() {
 		{sub(/help=.*/,"help=argparse.SUPPRESS)")}1' copyparty/__main__.py
 }
 
+unhelpg() {
+    iawk '/^def/{m=0}
+        /^def add_'$1'/{m=1}
+        m>1{sub(/, help=".*"\)$/, ", help=argparse.SUPPRESS)")}
+        m==1&&/, help="/{m++;sub(/, help=".*"\)$/, ", help=\"not available in this build\")")}
+        1' copyparty/__main__.py
+}
+
 [ $no_ftp ] && {
 	unhelp ftp
 	rm -rf copyparty/ftpd.py ftp
@@ -461,6 +475,11 @@ unhelp() {
 	rm -rf copyparty/tftpd.py partftpy
 }
 
+[ $no_sfp ] && {
+	unhelp sftp
+	rm -rf copyparty/sftpd.py
+}
+
 [ $no_smb ] && {
 	unhelp smb
 	rm -f copyparty/smbd.py
@@ -468,7 +487,13 @@ unhelp() {
 }
 
 [ $no_zm ] &&
+    iawk '$1=="],"{s=0}/"mDNS debugging"/{s=1;sub(/".*/,"\"not available in this build\",\"\"");print};!s' copyparty/__main__.py &&
+    unhelpg zc_mdns &&
 	rm -rf copyparty/mdns.py copyparty/stolen/dnslib
+
+[ $no_z ] &&
+    unhelpg '(zeroconf|zc_ssdp)' &&
+	rm -rf copyparty/ssdp.py copyparty/multicast.py
 
 [ $no_pf ] &&
 	rm -rf copyparty/web/a/partyfuse.py copyparty/web/deps/fuse.py

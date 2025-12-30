@@ -15,6 +15,7 @@
   pyzmq,
   ffmpeg,
   mutagen,
+  paramiko,
   pyftpdlib,
   magic,
   partftpy,
@@ -43,6 +44,9 @@
 
   # send ZeroMQ messages from event-hooks
   withZeroMQ ? true,
+
+  # enable SFTP server
+  withSFTP ? false,
 
   # enable FTP server
   withFTP ? true,
@@ -131,6 +135,7 @@ buildPythonApplication {
       fusepy
     ]
     ++ lib.optional withSMB impacket
+    ++ lib.optional withSFTP paramiko
     ++ lib.optional withFTP pyftpdlib
     ++ lib.optional withFTPS pyopenssl
     ++ lib.optional withTFTP partftpy
@@ -152,7 +157,7 @@ buildPythonApplication {
   meta = {
     description = "Turn almost any device into a file server";
     longDescription = ''
-      Portable file server with accelerated resumable uploads, dedup, WebDAV,
+      Portable file server with accelerated resumable uploads, dedup, WebDAV, SFTP,
       FTP, TFTP, zeroconf, media indexer, thumbnails++ all in one file, no deps
     '';
     homepage = "https://github.com/9001/copyparty";

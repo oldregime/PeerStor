@@ -86,7 +86,7 @@ class FtpAuth(DummyAuthorizer):
             if args.usernames:
                 alts = ["%s:%s" % (username, password)]
             else:
-                alts = password, username
+                alts = [password, username]
 
             for zs in alts:
                 zs = asrv.iacct.get(asrv.ah.hash(zs), "")
@@ -249,7 +249,33 @@ class FtpFs(AbstractedFS):
                 need_unlink = False
                 td = 0
 
-        if w and need_unlink:
+            xbu = vfs.flags.get("xbu")
+            if xbu:
+                hr = runhook(
+                    self.log,
+                    None,
+                    self.hub.up2k,
+                    "xbu.ftp",
+                    xbu,
+                    ap,
+                    filename,
+                    "",
+                    "",
+                    "",
+                    0,
+                    0,
+                    "1.3.8.7",
+                    time.time(),
+                    None,
+                )
+                t = hr.get("rejectmsg") or ""
+                if t or hr.get("rc") != 0:
+                    if not t:
+                        t = "upload blocked by xbu server config: %r" % (filename,)
+                    self.log(t, 3)
+                    raise FSE(t)
+
+        if w and need_unlink:  # type: ignore  # !rm
             assert td  # type: ignore  # !rm
             if td >= -1 and td <= self.args.ftp_wt:
                 # within permitted timeframe; allow overwrite or resume

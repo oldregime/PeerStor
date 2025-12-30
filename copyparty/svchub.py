@@ -413,6 +413,11 @@ class SvcHub(object):
         if not args.http_only:
             zms += "D"
 
+        if args.sftp:
+            from .sftpd import Sftpd
+
+            self.sftpd: Optional[Sftpd] = None
+
         if args.ftp or args.ftps:
             from .ftpd import Ftpd
 
@@ -424,7 +429,7 @@ class SvcHub(object):
 
             self.tftpd: Optional[Tftpd] = None
 
-        if args.ftp or args.ftps or args.tftp:
+        if args.sftp or args.ftp or args.ftps or args.tftp:
             Daemon(self.start_ftpd, "start_tftpd")
 
         if args.smb:
@@ -751,11 +756,27 @@ class SvcHub(object):
     def start_ftpd(self) -> None:
         time.sleep(30)
 
+        if hasattr(self, "sftpd") and not self.sftpd:
+            self.restart_sftpd()
+
         if hasattr(self, "ftpd") and not self.ftpd:
             self.restart_ftpd()
 
         if hasattr(self, "tftpd") and not self.tftpd:
             self.restart_tftpd()
+
+    def restart_sftpd(self) -> None:
+        if not hasattr(self, "sftpd"):
+            return
+
+        from .sftpd import Sftpd
+
+        if self.sftpd:
+            return  # todo
+
+        self.sftpd = Sftpd(self)
+        self.sftpd.run()
+        self.log("root", "started SFTPd")
 
     def restart_ftpd(self) -> None:
         if not hasattr(self, "ftpd"):
@@ -893,9 +914,9 @@ class SvcHub(object):
             return
 
         ar = self.args
-        for _ in range(10 if ar.ftp or ar.ftps else 0):
+        for _ in range(10 if ar.sftp or ar.ftp or ar.ftps else 0):
             time.sleep(0.03)
-            if self.ftpd:
+            if self.ftpd if ar.ftp or ar.ftps else ar.sftp:
                 break
 
         if self.tcpsrv.qr:
@@ -1147,8 +1168,14 @@ class SvcHub(object):
             zs = zs[3:]
         al.idp_chsub_tr = umktrans(zs1, zs2)
 
+        al.sftp_ipa_nm = build_netmap(al.sftp_ipa or al.ipa or al.ipar, True)
         al.ftp_ipa_nm = build_netmap(al.ftp_ipa or al.ipa or al.ipar, True)
         al.tftp_ipa_nm = build_netmap(al.tftp_ipa or al.ipa or al.ipar, True)
+
+        al.sftp_key2u = {
+            "%s %s" % (x[1], x[2]): x[0]
+            for x in [x.split(" ") for x in al.sftp_key or []]
+        }
 
         mte = ODict.fromkeys(DEF_MTE.split(","), True)
         al.mte = odfusion(mte, al.mte)
