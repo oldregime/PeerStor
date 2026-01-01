@@ -695,7 +695,7 @@ for (var a = 0; a < LANGN.length; a++)
 
 function langtest() {
 	var n = LANGS.length - 1;
-	for (var a = 1; a < LANGS.length; a++) 
+	for (var a = 1; a < LANGS.length; a++)
 		import_js(SR + '/.cpr/tl/' + LANGS[a] + '.js', function () { if (!--n) langtest2(); });
 }
 function langtest2() {
@@ -1034,7 +1034,7 @@ ebi('rcm').innerHTML = (
 	'<a href="#" id="rcpy">' + L.rc_cpy + '</a>' +
 	(has(perms, "write") ?
 		'<a href="#" id="rpst">' + L.rc_pst + '</a>' +
-		'<div id="rs3" class="sep"></div>' + 
+		'<div id="rs3" class="sep"></div>' +
 		'<a href="#" id="rnfo">' + L.rc_nfo + '</a>' +
 		'<a href="#" id="rnfi">' + L.rc_nfi + '</a>'
 	: '') +
@@ -6022,6 +6022,9 @@ var ahotkeys = function (e) {
 		if (ebi('hkhelp'))
 			return qsr('#hkhelp');
 
+		if (ebi('rcm').style.display)
+			return rcm.hide();
+
 		if (toast.visible)
 			return toast.hide();
 
@@ -9463,7 +9466,7 @@ var rcm = (function () {
 	};
 
 	function mktemp(is_dir) {
-		var row = mknod('tr', 'temp', 
+		var row = mknod('tr', 'temp',
 			'<td>-new-</td>' +
 			'<td colspan="' + (QSA("#files thead th").length - 1) + '"><input id="tempname" class="i" type="text" placeholder="' + (is_dir ? 'Folder' : "File") + ' Name"></td>'
 		);
@@ -9484,8 +9487,7 @@ var rcm = (function () {
 					return toast.err(3, "a " + (is_dir ? "folder" : "file") + " with that name already exists.");
 				if (req.status < 200 || req.status > 399)
 					return toast.err(3, "couldn't create " + (is_dir ? "folder" : "file") + ": <br><code>" + esc(req.responseText) + '</code>');
-				
-				location.reload();
+				treectl.goto();
 			};
 			req.send(data);
 		}
@@ -9570,10 +9572,10 @@ var rcm = (function () {
 				default:
 					console.warn('Invalid rcm option "' + e.target.id + '"');
 			}
-			hide(true);
+			r.hide(true);
 		};
 	}
-	
+
 	function show(x, y, target) {
 		selFile.elem = selFile.type = selFile.path = selFile.id = selFile.relpath = null;
 		selFile.no_dsel = false;
@@ -9621,7 +9623,7 @@ var rcm = (function () {
 		menu.focus();
 	}
 
-	function hide(force) {
+	r.hide = function (force) {
 		if (!menu.style.display || (!force && menu.contains(document.activeElement)))
 			return;
 		if (selFile.elem && !selFile.no_dsel)
@@ -9633,16 +9635,16 @@ var rcm = (function () {
 
 	ebi('wrap').oncontextmenu = function(e) {
 		if (thegrid.en || !r.enabled || e.shiftKey || menu.style.display) {
-			hide(true);
+			r.hide(true);
 			return true;
 		}
 		else {
 			ev(e);
-			show(e.clientX, e.clientY, e.target);
+			show(xscroll() + e.clientX, yscroll() + e.clientY, e.target);
 			return false;
 		}
 	};
-	menu.onblur = function() {setTimeout(hide)};
+	menu.onblur = function() {setTimeout(r.hide)};
 
 	return r;
 })();

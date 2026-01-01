@@ -594,6 +594,19 @@ function yscroll() {
     }
     return 0;
 }
+function xscroll() {
+    if (document.documentElement.scrollLeft) {
+        return (window.xscroll = function () {
+            return document.documentElement.scrollLeft;
+        })();
+    }
+    if (window.pageXOffset) {
+        return (window.xscroll = function () {
+            return window.pageXOffset;
+        })();
+    }
+    return 0;
+}
 
 
 function showsort(tab) {
