@@ -1848,7 +1848,13 @@ var modal = (function () {
         document.removeEventListener('selectionchange', onselch);
         document.removeEventListener('focus', onfocus);
         document.removeEventListener('keydown', onkey);
-        o.parentNode.removeChild(o);
+        try {
+            o.parentNode.removeChild(o);
+        }
+        catch (ex) {
+            if (r.busy)
+                alert('WARNING: you have a browser-extension which is causing problems');
+        }
         r.busy = false;
         setTimeout(next, 50);
     };
