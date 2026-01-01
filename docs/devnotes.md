@@ -155,7 +155,11 @@ there is a static salt for all passwords;
 * method `uPOST` = url-encoded post
 * `FILE` = conventional HTTP file upload entry (rfc1867 et al, filename in `Content-Disposition`)
 
-authenticate using header `Cookie: cppwd=foo` or url param `&pw=foo`
+clients can authenticate in the following ways; the first of these which is not blank will be used:
+* url-param `&pw=foo` -- can be disabled with `--pw-urlp=A` (or renamed, if provided value is lowercase)
+* then, header `PW: foo` -- can be disabled with `--pw-hdr=A` (or renamed, if provided value is lowercase)
+* then, basic-auth -- can be disabled with `--no-bauth`
+* then, depending on protocol, header `Cookie: cppwd=foo` on plaintext http, or header `Cookie: cppws=foo` on https
 
 ## read
 

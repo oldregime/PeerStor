@@ -328,7 +328,7 @@ class HttpCli(object):
     def run(self) -> bool:
         """returns true if connection can be reused"""
         self.out_headers = {
-            "Vary": "Origin, PW, Cookie",
+            "Vary": self.args.http_vary,
             "Cache-Control": "no-store, max-age=0",
         }
 
@@ -682,7 +682,12 @@ class HttpCli(object):
             except:
                 pass
 
-        self.pw = uparam.get("pw") or self.headers.get("pw") or bauth or cookie_pw
+        self.pw = (
+            uparam.get(self.args.pw_urlp)
+            or self.headers.get(self.args.pw_hdr)
+            or bauth
+            or cookie_pw
+        )
         self.uname = (
             self.asrv.sesa.get(self.pw)
             or self.asrv.iacct.get(self.asrv.ah.hash(self.pw))
@@ -1198,6 +1203,7 @@ class HttpCli(object):
             return ""
 
         kv = {k: zs for k, zs in self.uparam.items() if k not in rm}
+        # no reason to consider args.pw_urlp
         if "pw" in kv:
             pw = self.cookies.get("cppws") or self.cookies.get("cppwd")
             if kv["pw"] == pw:
@@ -1211,6 +1217,7 @@ class HttpCli(object):
         return "?" + "&amp;".join(r)
 
     def ourlq(self) -> str:
+        # no reason to consider args.pw_urlp
         skip = ("pw", "h", "k")
         ret = []
         for k, v in self.ouparam.items():
@@ -1274,12 +1281,15 @@ class HttpCli(object):
         proto = "https" if self.is_https else "http"
         good_origins = self.args.acao + ["%s://%s" % (proto, host)]
 
-        if "pw" in ih or re.sub(r"(:[0-9]{1,5})?/?$", "", origin) in good_origins:
+        if (
+            self.args.pw_hdr in ih
+            or re.sub(r"(:[0-9]{1,5})?/?$", "", origin) in good_origins
+        ):
             good_origin = True
             bad_hdrs = ("",)
         else:
             good_origin = False
-            bad_hdrs = ("", "pw")
+            bad_hdrs = ("", self.args.pw_hdr)
 
         # '*' blocks auth through cookies / WWW-Authenticate;
         # exact-match for Origin is necessary to unlock those,
@@ -1526,10 +1536,11 @@ class HttpCli(object):
 
         hits = idx.run_query(self.uname, [self.vn], uq, uv, False, False, nmax)[0]
 
-        if "pw" in self.ouparam and "nopw" not in self.ouparam:
-            zs = self.ouparam["pw"]
-            q_pw = "?pw=%s" % (quotep(zs),)
-            a_pw = "&pw=%s" % (quotep(zs),)
+        pwk = self.args.pw_urlp
+        if pwk in self.ouparam and "nopw" not in self.ouparam:
+            zs = self.ouparam[pwk]
+            q_pw = "?%s=%s" % (pwk, quotep(zs))
+            a_pw = "&%s=%s" % (pwk, quotep(zs))
             for i in hits:
                 i["rp"] += a_pw if "?" in i["rp"] else q_pw
         else:
@@ -1543,8 +1554,8 @@ class HttpCli(object):
             self.host,
         )
         feed = baseurl + self.req[1:]
-        if "pw" in self.ouparam and self.ouparam.get("nopw") == "a":
-            feed = re.sub(r"&pw=[^&]*", "", feed)
+        if pwk in self.ouparam and self.ouparam.get("nopw") == "a":
+            feed = re.sub(r"&%s=[^&]*" % (pwk,), "", feed)
         if self.is_vproxied:
             baseurl += self.args.RS
         efeed = html_escape(feed, True, True)
@@ -5308,7 +5319,7 @@ class HttpCli(object):
         defpw = "dave:hunter2" if self.args.usernames else "hunter2"
 
         vp = (self.uparam["hc"] or "").lstrip("/")
-        pw = self.ouparam.get("pw") or defpw
+        pw = self.ouparam.get(self.args.pw_urlp) or defpw
         if pw in self.asrv.sesa:
             pw = defpw
 
