@@ -424,9 +424,10 @@ if (1)
 		"fcc_warn": 'copied {0} items to clipboard\n\nbut: only <b>this</b> browser-tab can paste them\n(since the selection is so absolutely massive)',
 
 		"fp_apply": "use these names",
+		"fp_skip": "skip conflicts",  // TLNote: "skip existing names" (filenames taken in target folder)
 		"fp_ecut": "first cut or copy some files / folders to paste / move\n\nnote: you can cut / paste across different browser tabs",
-		"fp_ename": "{0} items cannot be moved here because the names are already taken. Give them new names below to continue, or blank the name to skip them:",
-		"fcp_ename": "{0} items cannot be copied here because the names are already taken. Give them new names below to continue, or blank the name to skip them:",
+		"fp_ename": "{0} items cannot be moved here because the names are already taken. Give them new names below to continue, or blank the name (\"skip conflicts\") to skip them:",
+		"fcp_ename": "{0} items cannot be copied here because the names are already taken. Give them new names below to continue, or blank the name (\"skip conflicts\") to skip them:",
 		"fp_emore": "there are still some filename collisions left to fix",
 		"fp_ok": "move OK",
 		"fcp_ok": "copy OK",
@@ -4626,6 +4627,7 @@ var fileman = (function () {
 		var html = [
 				'<div>',
 				'<button id="rn_cancel" tt="' + L.frt_abrt + '</button>',
+				'<button id="rn_skip">⏭ ' + L.fp_skip + '</button>',
 				'<button id="rn_apply">✅ ' + L.fp_apply + '</button>',
 				' &nbsp; src: ' + esc(r.clip[0].replace(/[^/]+$/, '')),
 				'</div>',
@@ -4729,11 +4731,21 @@ var fileman = (function () {
 			rn_cancel(e);
 			okgo();
 		}
+		function rn_skip(e) {
+			var o = QSA('#rn_f tr.ng');
+			for (var a = o.length - 1; a >= 0; a--) {
+				var oo = o[a].querySelector('input');
+				oo.value = '';
+				oo.oninput.call(oo);
+			}
+			rn_apply();
+		}
 		function rn_cancel(e) {
 			ev(e);
 			rui.parentNode.removeChild(rui);
 		}
 		ebi('rn_cancel').onclick = rn_cancel;
+		ebi('rn_skip').onclick = rn_skip;
 		ebi('rn_apply').onclick = rn_apply;
 
 		var first_bad = 0;

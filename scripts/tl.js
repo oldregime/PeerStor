@@ -448,9 +448,10 @@ Ls.hmn = {
 	"fcc_warn": 'copied {0} items to clipboard\n\nbut: only <b>this</b> browser-tab can paste them\n(since the selection is so absolutely massive)',
 
 	"fp_apply": "use these names",
+	"fp_skip": "skip conflicts",  // TLNote: "skip existing names" (filenames taken in target folder)
 	"fp_ecut": "first cut or copy some files / folders to paste / move\n\nnote: you can cut / paste across different browser tabs",
-	"fp_ename": "{0} items cannot be moved here because the names are already taken. Give them new names below to continue, or blank the name to skip them:",
-	"fcp_ename": "{0} items cannot be copied here because the names are already taken. Give them new names below to continue, or blank the name to skip them:",
+	"fp_ename": "{0} items cannot be moved here because the names are already taken. Give them new names below to continue, or blank the name (\"skip conflicts\") to skip them:",
+	"fcp_ename": "{0} items cannot be copied here because the names are already taken. Give them new names below to continue, or blank the name (\"skip conflicts\") to skip them:",
 	"fp_emore": "there are still some filename collisions left to fix",
 	"fp_ok": "move OK",
 	"fcp_ok": "copy OK",

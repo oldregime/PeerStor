@@ -419,9 +419,10 @@ Ls.epo = {
 	"fcc_warn": '{0} aĵoj kopiitaj al tondujo\n\nnur <b>ĉi tiu</b> langeto de retumilo povas alglui ilin\n(pro la grando de elektaĵo)',
 
 	"fp_apply": "uzi ĉi tiujn nomojn",
+	"fp_skip": "preterpasi konfliktojn", //m
 	"fp_ecut": "unue eltondi aŭ kopii dosier(uj)ojn, do alglui ĝin poste\n\nnoto: tondujo ankaŭ funkcias inter aliaj langetoj de retumilo",
-	"fp_ename": "{0} aĵoj ne povas esti movitaj, ĉar iliaj nomoj estas jam uzataj. Alinomi ilin sube aŭ lasi la nomokampojn malplenaj por preterpasi:",
-	"fcp_ename": "{0} aĵoj ne povas esti kopiitaj, ĉar iliaj nomoj estas jam uzataj. Alinomi ilin sube aŭ lasi la nomokampojn malplenaj por preterpasi:",
+	"fp_ename": "{0} aĵoj ne povas esti movitaj, ĉar iliaj nomoj estas jam uzataj. Alinomi ilin sube aŭ lasi la nomokampojn malplenaj (\"preterpasi konfliktojn\") por preterpasi:", //m
+	"fcp_ename": "{0} aĵoj ne povas esti kopiitaj, ĉar iliaj nomoj estas jam uzataj. Alinomi ilin sube aŭ lasi la nomokampojn malplenaj (\"preterpasi konfliktojn\") por preterpasi:", //m
 	"fp_emore": "ankoraŭ restas koincidoj de dosiernomoj, kiuj bezonas solvon",
 	"fp_ok": "movado sukcesis",
 	"fcp_ok": "kopiado sukcesis",

@@ -419,9 +419,10 @@ Ls.fra = {
 	"fcc_warn": 'copié {0} éléments dans le presse-papiers\n\nmais : seul <b>cet</b> onglet peut les coller\n(puisque la sélection est si absolument massive)',
 
 	"fp_apply": "utiliser ces noms",
+	"fp_skip": "ignorer les conflits", //m
 	"fp_ecut": "en premier, coupez ou copiez quelques fichiers / dossiers à coller / déplacer\n\nnote: vous pouvez couper / coller a travers different onglets",
-	"fp_ename": "{0} éléments ne peuvent pas être déplacés ici parceque leurs noms sont déjà pris. Donnez leurs un nouveau nom ci-dessous pour continuer, ou laissez les vides pour les sauter:",
-	"fcp_ename": "{0} éléments ne peuvent pas être copiés ici parce que les noms sont déjà pris. Donnez-leur un nouveau nom ci-dessous pour continuer, ou laissez-les vides pour les sauter :",
+	"fp_ename": "{0} éléments ne peuvent pas être déplacés ici parce que leurs noms sont déjà pris. Donnez-leur un nouveau nom ci-dessous pour continuer, ou laissez le nom vide (\"ignorer les conflits\") pour les sauter :", //m
+	"fcp_ename": "{0} éléments ne peuvent pas être copiés ici parce que les noms sont déjà pris. Donnez-leur un nouveau nom ci-dessous pour continuer, ou laissez le nom vide (\"ignorer les conflits\") pour les sauter :", //m
 	"fp_emore": "il reste encore des collisions de noms de fichiers à corriger",
 	"fp_ok": "déplacement OK",
 	"fcp_ok": "copie OK",

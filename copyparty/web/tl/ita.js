@@ -419,9 +419,10 @@ Ls.ita = {
 	"fcc_warn": 'copiati {0} elementi negli appunti\n\nma: solo <b>questa</b> scheda-browser può incollarli\n(dato che la selezione è così assolutamente massiva)',
 
 	"fp_apply": "usa questi nomi",
+	"fp_skip": "salta conflitti", //m
 	"fp_ecut": "prima taglia o copia alcuni file / cartelle da incollare / spostare\n\nnota: puoi tagliare / incollare attraverso diverse schede del browser",
-	"fp_ename": "{0} elementi non possono essere spostati qui perché i nomi sono già presi. Dai loro nuovi nomi qui sotto per continuare, o lascia vuoto il nome per saltarli:",
-	"fcp_ename": "{0} elementi non possono essere copiati qui perché i nomi sono già presi. Dai loro nuovi nomi qui sotto per continuare, o lascia vuoto il nome per saltarli:",
+	"fp_ename": "{0} elementi non possono essere spostati qui perché i nomi sono già presi. Dai loro nuovi nomi qui sotto per continuare, o lascia vuoto il nome (\"salta conflitti\") per saltarli:", //m
+	"fcp_ename": "{0} elementi non possono essere copiati qui perché i nomi sono già presi. Dai loro nuovi nomi qui sotto per continuare, o lascia vuoto il nome (\"salta conflitti\") per saltarli:", //m
 	"fp_emore": "ci sono ancora alcune collisioni di nomi file rimaste da risolvere",
 	"fp_ok": "spostamento OK",
 	"fcp_ok": "copia OK",

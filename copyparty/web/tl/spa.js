@@ -418,9 +418,10 @@ Ls.spa = {
 	"fcc_warn": "copiados {0} elementos al portapapeles\n\npero: solo <b>esta</b> pestaña del navegador puede pegarlos\n(dado que la selección es absolutamente masiva)",
 
 	"fp_apply": "usar estos nombres",
+	"fp_skip": "omitir conflictos", //m
 	"fp_ecut": "primero corta o copia algunos archivos / carpetas para pegar / mover\n\nnota: puedes cortar / pegar entre diferentes pestañas del navegador",
-	"fp_ename": "{0} elementos no se pueden mover aquí porque los nombres ya existen. Dales nuevos nombres abajo para continuar, o deja el nombre en blanco para omitirlos:",
-	"fcp_ename": "{0} elementos no se pueden copiar aquí porque los nombres ya existen. Dales nuevos nombres abajo para continuar, o deja el nombre en blanco para omitirlos:",
+	"fp_ename": "{0} elementos no se pueden mover aquí porque los nombres ya existen. Dales nuevos nombres abajo para continuar, o deja el nombre en blanco (\"omitir conflictos\") para omitirlos:", //m
+	"fcp_ename": "{0} elementos no se pueden copiar aquí porque los nombres ya existen. Dales nuevos nombres abajo para continuar, o deja el nombre en blanco (\"omitir conflictos\") para omitirlos:", //m
 	"fp_emore": "todavía quedan algunas colisiones de nombres por resolver",
 	"fp_ok": "movimiento correcto",
 	"fcp_ok": "copia correcta",

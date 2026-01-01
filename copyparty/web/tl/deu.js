@@ -419,9 +419,10 @@ Ls.deu = {
 	"fcc_warn": '{0} Elemente in die Zwischenablage kopiert\n\nAber: nur <b>dieses</b> Browsertab kann sie einfügen\n(da deine Auswahl so abartig riesig war)',
 
 	"fp_apply": "Diese Namen verwenden",
+	"fp_skip": "Konflikte überspringen", //m
 	"fp_ecut": "Kopiere erst ein paar Dateien / Ordner, um sie einzufügen\n\nTipp: Ausschneiden und Kopieren funktioniert über Browsertabs hinweg",
-	"fp_ename": "{0} Elemente konnten nicht verschoben werden, weil bereits andere Dateien mit diesen Namen existieren. Gib ihnen unten neue Namen um fortzufahren, oder lass das Feld leer zum Überspringen:",
-	"fcp_ename": "{0} Elemente konnten nicht kopiert werden, weil bereits andere Dateien mit diesen Namen existieren. Gib ihnen unten neue Namen um fortzufahren, oder lass das Feld leer zum Überspringen:",
+	"fp_ename": "{0} Elemente konnten nicht verschoben werden, weil bereits andere Dateien mit diesen Namen existieren. Gib ihnen unten neue Namen um fortzufahren, oder lass das Feld leer (\"konflikte überspringen\") zum Überspringen:", //m
+	"fcp_ename": "{0} Elemente konnten nicht kopiert werden, weil bereits andere Dateien mit diesen Namen existieren. Gib ihnen unten neue Namen um fortzufahren, oder lass das Feld leer (\"konflikte überspringen\") zum Überspringen:", //m
 	"fp_emore": "Es gibt noch ein paar Dateinamen, die geändert werden müssen",
 	"fp_ok": "Verschieben OK",
 	"fcp_ok": "Kopieren OK",

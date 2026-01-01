@@ -422,9 +422,10 @@ Ls.pol = {
 	"fcc_warn": 'skopiowano {0} elementów,\n\nlecz można je wkleić tylko w <b>tej</b> karcie\n(ze względu na ogromną ilość wybranych elementów)',
 
 	"fp_apply": "zastosuj te nazwy",
+	"fp_skip": "pomiń konflikty", //m
 	"fp_ecut": "najpierw wytnij lub skopiuj pliki / foldery, aby je wkleić / przenieść\n\nuwaga: można wycinać / wklejać pomiędzy różnymi kartami przeglądarki",
-	"fp_ename": "Nie udało się przenieść {0} elementów, gdyż ich nazwy już istnieją w tym folderze. Nadaj im nowe nazwy poniżej, bądź zostaw pole nazwy puste, aby je pominąć:",
-	"fcp_ename": "Nie udało się przekopiować {0} elementów, gdyż ich nazwy już istnieją w tym folderze. Nadaj im nowe nazwy poniżej, bądź zostaw pole nazwy puste, aby je pominąć:",
+	"fp_ename": "Nie udało się przenieść {0} elementów, gdyż ich nazwy już istnieją w tym folderze. Nadaj im nowe nazwy poniżej, bądź zostaw pole nazwy puste (\"pomiń konflikty\"), aby je pominąć:", //m
+	"fcp_ename": "Nie udało się przekopiować {0} elementów, gdyż ich nazwy już istnieją w tym folderze. Nadaj im nowe nazwy poniżej, bądź zostaw pole nazwy puste (\"pomiń konflikty\"), aby je pominąć:", //m
 	"fp_emore": "pozostało jeszcze kilka kolizji nazw plików do poprawy",
 	"fp_ok": "przeniesiono",
 	"fcp_ok": "przekopiowano",

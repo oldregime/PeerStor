@@ -423,9 +423,10 @@ Ls.cze = {
 	"fcc_warn": 'zkopírováno {0} položek do schránky\n\nale: pouze <b>tato</b> karta prohlížeče je může vložit\n(protože výběr je tak absolutně masivní)',
 
 	"fp_apply": "použít tyto názvy",
+	"fp_skip": "přeskočit konflikty", //m
 	"fp_ecut": "nejprve vyjměte nebo zkopírujte nějaké soubory / složky k vložení / přesunutí\n\npoznámka: můžete vyjmout / vložit přes různé karty prohlížeče",
-	"fp_ename": "{0} položek sem nelze přesunout protože názvy jsou již obsazené. Dejte jim nové názvy níže pro pokračování, nebo název nechte prázdný pro přeskočení:",
-	"fcp_ename": "{0} položek sem nelze zkopírovat protože názvy jsou již obsazené. Dejte jim nové názvy níže pro pokračování, nebo název nechte prázdný pro přeskočení:",
+	"fp_ename": "{0} položek sem nelze přesunout protože názvy jsou již obsazené. Dejte jim nové názvy níže pro pokračování, nebo název nechte prázdný (\"přeskočit konflikty\") pro přeskočení:", //m
+	"fcp_ename": "{0} položek sem nelze zkopírovat protože názvy jsou již obsazené. Dejte jim nové názvy níže pro pokračování, nebo název nechte prázdný (\"přeskočit konflikty\") pro přeskočení:", //m
 	"fp_emore": "stále jsou některé kolize názvů souborů k opravě",
 	"fp_ok": "přesun OK",
 	"fcp_ok": "kopírování OK",

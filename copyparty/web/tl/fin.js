@@ -419,9 +419,10 @@ Ls.fin = {
 	"fcc_warn": 'kopioitiin {0} kohdetta leikepöydälle\n\nmutta: vain <b>tämä</b> selain-välilehti voi liittää ne\n(koska valinta on niin valtavan suuri)',
 
 	"fp_apply": "käytä näitä nimiä",
+	"fp_skip": "ohita ristiriidat", //m
 	"fp_ecut": "leikkaa tai kopioi ensin joitakin tiedostoja / hakemistoja liitettäväksi / siirrettäväksi\n\nhuom: voit leikata / liittää eri selain-välilehtien välillä",
-	"fp_ename": "{0} kohdetta ei voida siirtää tänne koska nimet ovat jo käytössä. Anna niille uudet nimet alla jatkaaksesi, tai tyhjennä nimi ohittaaksesi ne:",
-	"fcp_ename": "{0} kohdetta ei voida kopioida tänne koska nimet ovat jo käytössä. Anna niille uudet nimet alla jatkaaksesi, tai tyhjennä nimi ohittaaksesi ne:",
+	"fp_ename": "{0} kohdetta ei voida siirtää tänne koska nimet ovat jo käytössä. Anna niille uudet nimet alla jatkaaksesi, tai tyhjennä nimi (\"ohita ristiriidat\") ohittaaksesi ne:", //m
+	"fcp_ename": "{0} kohdetta ei voida kopioida tänne koska nimet ovat jo käytössä. Anna niille uudet nimet alla jatkaaksesi, tai tyhjennä nimi (\"ohita ristiriidat\") ohittaaksesi ne:", //m
 	"fp_emore": "tiedostonimien törmäyksiä on vielä korjaamatta",
 	"fp_ok": "siirto OK",
 	"fcp_ok": "kopiointi OK",

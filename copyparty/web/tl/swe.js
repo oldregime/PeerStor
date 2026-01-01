@@ -419,9 +419,10 @@ Ls.swe = {
 	"fcc_warn": 'kopierade {0} objekt till urklippet, men:\n\nendast <b>denna</b> webbläsarflik kan klistra in dem\n(eftersom urvalet är så enormt stort)',
 
 	"fp_apply": "använd dessa namn",
+	"fp_skip": "skippa upptagna", //m
 	"fp_ecut": "klipp eller kopiera filer / mappar först för att klistra / flytta dem\n\nobs.: du kan klippa och klistra mellan webbläsarflikar",
-	"fp_ename": "{0} objekt kan ej flyttas hit eftersom filnamnen redan är tagna. Ge dem nya namn nedan för att fortsätta, eller lämna fältet tomt för att skippa:",
-	"fcp_ename": "{0} objekt kan ej kopieras hit eftersom filnamnen redan är tagna. Ge dem nya namn nedan för att fortsätta, eller lämna fältet tomt för att skippa:",
+	"fp_ename": "{0} objekt kan ej flyttas hit eftersom filnamnen redan är tagna. Ge dem nya namn nedan för att fortsätta, eller lämna fältet tomt (\"skippa upptagna\") för att skippa:", //m
+	"fcp_ename": "{0} objekt kan ej kopieras hit eftersom filnamnen redan är tagna. Ge dem nya namn nedan för att fortsätta, eller lämna fältet tomt (\"skippa upptagna\") för att skippa:", //m
 	"fp_emore": "det finns fortfarande filnamnskrockar att fixa",
 	"fp_ok": "flytt lyckades",
 	"fcp_ok": "kopiering lyckades",

@@ -433,9 +433,10 @@ Ls.vie = {
 	"fcc_warn": "đã sao chép {0} mục vào bảng nhớ tạm\n\nnhưng: chỉ <b>tab trình duyệt này</b> có thể dán\n(vì lựa chọn quá lớn)",
 
 	"fp_apply": "dùng các tên này",
+	"fp_skip": "bỏ qua xung đột", //m
 	"fp_ecut": "hãy cắt hoặc sao chép một số tệp / thư mục trước khi dán / di chuyển\n\nlưu ý: bạn có thể cắt / dán giữa các tab trình duyệt khác nhau",
-	"fp_ename": "{0} mục không thể được di chuyển vào đây vì tên đã tồn tại. Hãy đặt tên mới bên dưới để tiếp tục, hoặc để trống để bỏ qua:",
-	"fcp_ename": "{0} mục không thể được sao chép vào đây vì tên đã tồn tại. Hãy đặt tên mới bên dưới để tiếp tục, hoặc để trống để bỏ qua:",
+	"fp_ename": "{0} mục không thể được di chuyển vào đây vì tên đã tồn tại. Hãy đặt tên mới bên dưới để tiếp tục, hoặc để trống (\"bỏ qua xung đột\") để bỏ qua:", //m
+	"fcp_ename": "{0} mục không thể được sao chép vào đây vì tên đã tồn tại. Hãy đặt tên mới bên dưới để tiếp tục, hoặc để trống (\"bỏ qua xung đột\") để bỏ qua:", //m
 	"fp_emore": "vẫn còn xung đột tên tệp cần xử lý",
 	"fp_ok": "di chuyển OK",
 	"fcp_ok": "sao chép OK",

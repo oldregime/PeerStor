@@ -419,9 +419,10 @@ Ls.por = {
 	"fcc_warn": 'copiado {0} itens para a área de transferência\n\nmas: apenas <b>esta</b> aba do navegador pode colá-los\n(já que a seleção é tão absolutamente massiva)',
 
 	"fp_apply": "usar estes nomes",
+	"fp_skip": "pular conflitos", //m
 	"fp_ecut": "primeiro recorte ou copie alguns arquivos / pastas para colar / mover\n\nnota: você pode recortar / colar entre abas diferentes do navegador",
-	"fp_ename": "{0} itens não podem ser movidos para cá porque os nomes já estão em uso. Dê a eles novos nomes abaixo para continuar, ou deixe o nome em branco para pular:",
-	"fcp_ename": "{0} itens não podem ser copiados para cá porque os nomes já estão em uso. Dê a eles novos nomes abaixo para continuar, ou deixe o nome em branco para pular:",
+	"fp_ename": "{0} itens não podem ser movidos para cá porque os nomes já estão em uso. Dê a eles novos nomes abaixo para continuar, ou deixe o nome em branco (\"pular conflitos\") para pular:", //m
+	"fcp_ename": "{0} itens não podem ser copiados para cá porque os nomes já estão em uso. Dê a eles novos nomes abaixo para continuar, ou deixe o nome em branco (\"pular conflitos\") para pular:", //m
 	"fp_emore": "ainda há algumas colisões de nome de arquivo para consertar",
 	"fp_ok": "movimento OK",
 	"fcp_ok": "cópia OK",

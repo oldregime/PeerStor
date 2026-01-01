@@ -416,9 +416,10 @@ Ls.nno = {
 	"fcc_warn": 'kopierte {0} filer åt utklippstavla\n\nmen: kun <b>denne</b> nettlesarfana har muligheit åt å lime dei inn ein annan plass, sidan antallet filer er heilt på hi sida',
 
 	"fp_apply": "bekreft og lim inn no",
+	"fp_skip": "berre ledige",
 	"fp_ecut": "du må klippe ut eller kopiere nokre filer / mapper først\n\nmerk: du kan gjerne jobbe på kryss av nettlesarfaner; klippe ut i éi fane, lime inn i ei anna",
-	"fp_ename": "{0} filer kan ikkje flyttast åt målmappa fordi det allereie finnast filer med same namn. Gi dei nye namn nedanfor, eller gje dei eit blankt namn for å hoppe over dei:",
-	"fcp_ename": "{0} filer kan ikkje kopierast åt målmappa fordi det allereie finnast filer med same namn. Gi dei nye namn nedanfor, eller gje dei eit blankt namn for å hoppe over dei:",
+	"fp_ename": "{0} filer kan ikkje flyttast åt målmappa fordi det allereie finnast filer med same namn. Gi dei nye namn nedanfor, eller gje dei eit blankt namn (\"berre ledige\") for å hoppe over dei:",
+	"fcp_ename": "{0} filer kan ikkje kopierast åt målmappa fordi det allereie finnast filer med same namn. Gi dei nye namn nedanfor, eller gje dei eit blankt namn (\"berre ledige\") for å hoppe over dei:",
 	"fp_emore": "det er fortsatt fleire namn som må endrast",
 	"fp_ok": "flytting OK",
 	"fcp_ok": "kopiering OK",

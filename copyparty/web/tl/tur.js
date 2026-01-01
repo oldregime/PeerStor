@@ -419,9 +419,10 @@ Ls.tur = {
 	"fcc_warn": '{0} öge panoya kopyalandı\n\namma velakin: sadece <b>bu</b> tarayıcı penceresine yapıştırılabilirler\n(çünkü seçiminin boyutu hayvan gibi)',
 
 	"fp_apply": "bu adları kullan",
+	"fp_skip": "çakışmaları atla", //m
 	"fp_ecut": "önce bazı dosyaları / klasörleri kes veya kopyala, sonra yapıştır / taşı\n\nnot: farklı tarayıcı sekmeleri arasında kes / yapıştır yapabilirsiniz",
-	"fp_ename": "{0} öğe buraya taşınamaz çünkü adlar zaten alınmış. Devam etmek için aşağıda yeni adlar verin veya atlamak için adları boş bırakın:",
-	"fcp_ename": "{0} öğe buraya kopyalanamaz çünkü adlar zaten alınmış. Devam etmek için aşağıda yeni adlar verin veya atlamak için adları boş bırakın:",
+	"fp_ename": "{0} öğe buraya taşınamaz çünkü adlar zaten alınmış. Devam etmek için aşağıda yeni adlar verin veya atlamak için adları boş bırakın (\"çakışmaları atla\"):", //m
+	"fcp_ename": "{0} öğe buraya kopyalanamaz çünkü adlar zaten alınmış. Devam etmek için aşağıda yeni adlar verin veya atlamak için adları boş bırakın (\"çakışmaları atla\"):", //m
 	"fp_emore": "hâlâ düzeltilmesi gereken bazı dosya adı çakışmaları var",
 	"fp_ok": "taşıma tamam",
 	"fcp_ok": "kopyalama tamam",

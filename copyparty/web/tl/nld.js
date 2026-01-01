@@ -419,9 +419,10 @@ Ls.nld = {
 	"fcc_warn": '{0} items naar klembord gekopieerd\n\maar: alleen <b>deze</b> browser-tabblad kan weer plakken\n(omdat de selectie zo enorm is)',
 
 	"fp_apply": "Gebruik deze namen",
+	"fp_skip": "Conflicten overslaan", //m
 	"fp_ecut": "Knip of kopieer eerst enkele bestanden/mappen om te verplaatsen/plakken\n\nnotitie: je kunt knippen/plakken in verschillende browsertabbladen",
-	"fp_ename": "{0} items kunnen hier niet worden verplaatst omdat de namen al in gebruik zijn. Geef ze hieronder een nieuwe naam om verder te gaan, of verwijder de naam om ze over te slaan:",
-	"fcp_ename": "{0} items kunnen hier niet worden gekopieerd omdat de namen al in gebruik zijn. Geef ze hieronder een nieuwe naam om verder te gaan, of verwijder de naam om ze over te slaan:",
+	"fp_ename": "{0} items kunnen hier niet worden verplaatst omdat de namen al in gebruik zijn. Geef ze hieronder een nieuwe naam om verder te gaan, of verwijder de naam (\"conflicten overslaan\") om ze over te slaan:", //m
+	"fcp_ename": "{0} items kunnen hier niet worden gekopieerd omdat de namen al in gebruik zijn. Geef ze hieronder een nieuwe naam om verder te gaan, of verwijder de naam (\"conflicten overslaan\") om ze over te slaan:", //m
 	"fp_emore": "Er zijn nog enkele bestandsnaambotsingen die moeten worden opgelost",
 	"fp_ok": "Verplaatsen OK",
 	"fcp_ok": "Kopiëren OK",
