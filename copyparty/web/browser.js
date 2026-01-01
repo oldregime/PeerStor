@@ -5418,7 +5418,8 @@ var thegrid = (function () {
 
 	function gclick(e, dbl) {
 		var oth = ebi(this.getAttribute('ref')),
-			href = noq_href(this),
+			qhref = this.getAttribute('href'),
+			href = qhref.split('?')[0],
 			fid = oth.getAttribute('id'),
 			aplay = ebi('a' + fid),
 			atext = ebi('t' + fid),
@@ -5447,13 +5448,13 @@ var thegrid = (function () {
 			aplay.click();
 
 		else if (is_dir && !have_sel)
-			treectl.reqls(href, true);
+			treectl.reqls(qhref, true);
 
 		else if (is_txt && !has(['md', 'htm', 'html'], is_txt))
 			atext.click();
 
 		else if (!is_img && have_sel)
-			window.open(href, '_blank');
+			window.open(qhref, '_blank');
 
 		else {
 			if (!dbl)
