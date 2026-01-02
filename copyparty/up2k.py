@@ -3471,12 +3471,12 @@ class Up2k(object):
         if ow:
             replace_arg = str(job["replace"]).lower()
 
-        if ow and "skip" in replace_arg:
+        if ow and "skip" in replace_arg:  # type: ignore
             self.log("skipping upload, filename already exists: %r" % fp)
             err = "upload rejected, a file with that name already exists"
             raise Pebkac(409, err)
 
-        if ow and "mt" in replace_arg:
+        if ow and "mt" in replace_arg:  # type: ignore
             mts = bos.stat(fp).st_mtime
             mtc = job["lmod"]
             if mtc < mts:

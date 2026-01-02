@@ -110,7 +110,7 @@ class MDNS(MCast):
         self.ttl = 300
 
         if not self.args.zm_nwa_1 and DNS_VND:
-            set_avahi_379()
+            set_avahi_379()  # type: ignore
 
         zs = self.args.zm_fqdn or (self.args.name + ".local")
         zs = zs.replace("--name", self.args.name).rstrip(".") + "."

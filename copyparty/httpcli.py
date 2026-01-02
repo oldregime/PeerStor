@@ -812,6 +812,7 @@ class HttpCli(object):
             return self.tx_404() and False
 
         try:
+            assert avn  # type: ignore  # !rm
             (
                 self.can_read,
                 self.can_write,
@@ -1522,7 +1523,7 @@ class HttpCli(object):
                 uv.append(ext)
             uq += " and ( %s )" % (" or ".join(zsl),)
 
-        zs1 = self.uparam.get("sort", self.args.rss_sort)
+        zs1 = self.uparam.get("sort") or self.args.rss_sort
         zs2 = zs1.lower()
         zs = RSS_SORT.get(zs2)
         if not zs:
@@ -1846,6 +1847,7 @@ class HttpCli(object):
             bfree, btot, _ = get_df(vn.realpath, False)
             if btot:
                 if "vmaxb" in vn.flags:
+                    assert vn.lim  # type: ignore  # !rm
                     btot = vn.lim.vbmax
                     if bfree == vn.lim.c_vb_r:
                         bfree = min(bfree, max(0, vn.lim.vbmax - vn.lim.c_vb_v))
@@ -5392,7 +5394,7 @@ class HttpCli(object):
                 "dbwt": None,
             }
 
-        assert vstate.items and vs  # type: ignore  # !rm
+        assert vstate and vstate.items and vs  # type: ignore  # !rm
 
         dls = dl_list = []
         if self.conn.hsrv.tdls:
@@ -5943,7 +5945,7 @@ class HttpCli(object):
         if shr_dbv:
             # translate vpaths from share-target to share-url
             # to satisfy access checks
-            assert shr_vrem.split  # type: ignore  # !rm
+            assert shr_vrem and shr_vrem.split  # type: ignore  # !rm
             vp_shr, vp_vfs = vroots(self.vpath, vjoin(shr_dbv.vpath, shr_vrem))
             for v in ret:
                 vp = v["vp"]
@@ -6777,6 +6779,7 @@ class HttpCli(object):
             free, total, zs = get_df(abspath, False)
             if total:
                 if "vmaxb" in vn.flags:
+                    assert vn.lim  # type: ignore  # !rm
                     total = vn.lim.vbmax
                     if free == vn.lim.c_vb_r:
                         free = min(free, max(0, vn.lim.vbmax - vn.lim.c_vb_v))
@@ -7374,6 +7377,7 @@ class HttpCli(object):
                     ogh["og:site_name"] = zs
 
                 try:
+                    assert file  # type: ignore  # !rm
                     zs1, zs2 = file["tags"]["res"].split("x")
                     file["tags"][".resw"] = zs1
                     file["tags"][".resh"] = zs2
@@ -7413,6 +7417,7 @@ class HttpCli(object):
                     }
 
                 try:
+                    assert file  # type: ignore  # !rm
                     for k, v in file["tags"].items():
                         zs = "{{ %s }}" % (k,)
                         title = title.replace(zs, str(v))
@@ -7429,6 +7434,7 @@ class HttpCli(object):
 
                 for tag, hname in tagmap.items():
                     try:
+                        assert file  # type: ignore  # !rm
                         v = file["tags"][tag]
                         if not v:
                             continue

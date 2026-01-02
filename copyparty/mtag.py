@@ -385,7 +385,7 @@ def get_cover_from_epub(log: "NamedLogger", abspath: str) -> Optional[IO[bytes]]
     from .dxml import parse_xml
 
     try:
-        from urlparse import urljoin  # Python2
+        from urlparse import urljoin  # type: ignore  # Python2
     except ImportError:
         from urllib.parse import urljoin  # Python3
 
