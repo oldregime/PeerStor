@@ -436,6 +436,7 @@ class VFS(object):
         self.js_htm = ""
         self.all_vols: dict[str, VFS] = {}  # flattened recursive
         self.all_nodes: dict[str, VFS] = {}  # also jumpvols/shares
+        self.all_fvols: dict[str, VFS] = {}  # volumes which are files
 
         if realpath:
             rp = realpath + ("" if realpath.endswith(os.sep) else os.sep)
@@ -2689,6 +2690,10 @@ class AuthSrv(object):
             up_q = [UP_MTE_MAP[x] for x in up_m]
             zs = "select %s from up where rd=? and fn=?" % (", ".join(up_q),)
             vol.flags["ls_q_m"] = (zs if up_m else "", up_m)
+
+        vfs.all_fvols = {
+            zs: vol for zs, vol in vfs.all_vols.items() if "is_file" in vol.flags
+        }
 
         for vol in vfs.all_nodes.values():
             if not vol.flags.get("is_file"):

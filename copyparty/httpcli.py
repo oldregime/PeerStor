@@ -5359,6 +5359,13 @@ class HttpCli(object):
             [("/" + x).rstrip("/") + "/" for x in y]
             for y in [self.rvol, self.wvol, self.avol]
         ]
+        for zs in self.asrv.vfs.all_fvols:
+            if not zs:
+                continue  # webroot
+            zs2 = ("/" + zs).rstrip("/") + "/"
+            for zsl in (rvol, wvol, avol):
+                if zs2 in zsl:
+                    zsl[zsl.index(zs2)] = zs2[:-1]
 
         ups = []
         now = time.time()
