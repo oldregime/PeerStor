@@ -1467,7 +1467,10 @@ class AuthSrv(object):
                     t = "group [%s] = " % (gn,)
                     t += ", ".join("user [%s]" % (x,) for x in uns)
                     self._l(ln, 5, t)
-                    grps[gn] = uns
+                    if gn in grps:
+                        grps[gn].extend(uns)
+                    else:
+                        grps[gn] = uns
                 except:
                     t = 'lines inside the [groups] section must be "groupname: user1, user2, user..."'
                     raise Exception(t + SBADCFG)
