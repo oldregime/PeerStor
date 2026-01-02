@@ -7008,6 +7008,8 @@ var treectl = (function () {
 	};
 
 	r.prunetree = function (res) {
+		if (r.dots)
+			return;
 		var ptn = new RegExp(res.unlist);
 		var els = QSA('#treeul li>a+a');
 		for (var a = els.length - 1; a >= 0; a--)
@@ -7407,7 +7409,7 @@ var treectl = (function () {
 			memo_dk(top, m[1]);
 
 		r.lsc = res;
-		if (res.unlist) {
+		if (res.unlist && !r.dots) {
 			var ptn = new RegExp(res.unlist);
 			for (var a = nodes.length - 1; a >= 0; a--)
 				if (ptn.exec(uricom_dec(nodes[a].href.split('?')[0])))
