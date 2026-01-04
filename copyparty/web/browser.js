@@ -9570,11 +9570,15 @@ var rcm = (function () {
 		};
 	}
 
-	function show(x, y, target) {
+	function show(x, y, target, isGrid) {
 		selFile.elem = selFile.type = selFile.path = selFile.id = selFile.relpath = null;
 		selFile.no_dsel = false;
 		if (target) {
 			var file = target.closest("#files tbody tr");
+			if (isGrid && target.matches && target.matches('#ggrid > a')) {
+				var ref = ebi(target.getAttribute('ref'));
+				file = ref && ref.closest('#files tbody tr');
+			}
 			if (file) {
 				selFile.no_dsel = clgot(file, "sel");
 				clmod(file, "sel", true);
@@ -9621,23 +9625,24 @@ var rcm = (function () {
 	r.hide = function (force) {
 		if (!menu.style.display || (!force && menu.contains(document.activeElement)))
 			return;
-		if (selFile.elem && !selFile.no_dsel)
+		if (selFile.elem && !selFile.no_dsel) {
 			clmod(selFile.elem, "sel", false);
+			msel.selui();
+		}
 		selFile.elem = selFile.type = selFile.path = selFile.id = selFile.relpath = null;
 		selFile.no_dsel = false;
 		menu.style.display = '';
 	}
 
 	ebi('wrap').oncontextmenu = function(e) {
-		if (thegrid.en || !r.enabled || e.shiftKey || menu.style.display) {
+		if (!r.enabled || e.shiftKey || menu.style.display) {
 			r.hide(true);
 			return true;
 		}
-		else {
-			ev(e);
-			show(xscroll() + e.clientX, yscroll() + e.clientY, e.target);
-			return false;
-		}
+		ev(e);
+		var gfile = thegrid.en && e.target && e.target.closest('#ggrid > a');
+		show(xscroll() + e.clientX, yscroll() + e.clientY, gfile || e.target, gfile);
+		return false;
 	};
 	menu.onblur = function() {setTimeout(r.hide)};
 
