@@ -3172,6 +3172,9 @@ and then copypaste the following command into `a-Shell`:
 curl -L https://github.com/9001/copyparty/raw/refs/heads/hovudstraum/contrib/setup-ashell.sh | sh
 ```
 
+> if you want the latest copyparty beta, then do this instead:  
+> `curl -L https://copyparty.eu/beta/setup-ashell.sh | sh`
+
 what this does:
 * creates a basic [config file](#accounts-and-volumes) named `cpc` which you can edit with `vim cpc`
 * adds the command `cpp` to launch copyparty with that config file
