@@ -420,16 +420,23 @@ class SFTP_Srv(paramiko.SFTPServerInterface):
 
     def _stat(self, vp: str) -> SATTR | int:
         try:
-            ap = self.v2a(vp, r=True)[0]
+            ap, vn, _ = self.v2a(vp)
+            if (
+                self.uname not in vn.axs.uread
+                and self.uname not in vn.axs.uwrite
+                and self.uname not in vn.axs.uget
+            ):
+                self.log("stat(%s): EPERM" % (vp,))
+                return SFTP_PERMISSION_DENIED
             st = bos.stat(ap)
+            self.log("stat(%s): %s" % (vp, st))
         except:
             if vp.strip("/") or self.asrv.vfs.realpath:
-                try:
-                    self.v2a(vp, w=True)[0]
-                except:
-                    return SFTP_PERMISSION_DENIED
+                self.log("stat(%s): ENOENT" % (vp,))
+                return SFTP_NO_SUCH_FILE
             zi = int(time.time())
             st = os.stat_result((16877, -1, -1, 1, 1000, 1000, 8, zi, zi, zi))
+            self.log("stat(%s): vfs-root")
         return SATTR.from_stat(st)
 
     def open(self, path: str, flags: int, attr: SATTR) -> paramiko.SFTPHandle | int:
