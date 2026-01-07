@@ -734,7 +734,7 @@ class Sftpd(object):
         self.bound: list[str] = []
         self.sessions = {}
 
-        ips = args.i
+        ips = args.sftp_i
         if "::" in ips:
             ips.append("0.0.0.0")
 
@@ -780,7 +780,7 @@ class Sftpd(object):
         for ip in ips:
             self._bind(ip)
 
-        self.log("listening on %s port %s" % (self.bound, args.sftp))
+        self.log("listening @ %s port %s" % (self.bound, args.sftp))
 
     def log(self, msg: str, c: Union[int, str] = 0) -> None:
         self.hub.log("sftp", msg, c)
