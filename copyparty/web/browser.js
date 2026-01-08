@@ -9479,14 +9479,16 @@ var rcm = (function () {
 	bcfg_bind(r, 'enabled', 'ren', true);
 
 	var menu = ebi('rcm');
-	var selFile = {
+	var nsFile = {
 		elem: null,
 		type: null,
 		path: null,
+		url: null,
 		id: null,
 		relpath: null,
 		no_dsel: false
 	};
+	var selFile = jcp(nsFile);
 
 	function mktemp(is_dir) {
 		var row = mknod('tr', 'temp',
@@ -9541,7 +9543,7 @@ var rcm = (function () {
 			switch(e.target.id.slice(1)) {
 				case 'opn':
 					var a = mknod('a');
-					a.href = selFile.path;
+					a.href = selFile.url;
 					a.target = selFile.type == "dir" ? '' : '_blank';
 					a.click();
 					break;
@@ -9549,7 +9551,7 @@ var rcm = (function () {
 				case 'pla': play('f-' + selFile.id); break;
 				case 'txt': location = '?doc=' + selFile.relpath; break;
 				case 'md': location = selFile.path + '?v'; break;
-				case 'cpl': cliptxt(location.protocol + '//' + location.host + selFile.path, function() {toast.ok(2, L.clipped)}); break;
+				case 'cpl': cliptxt(selFile.url, function() {toast.ok(2, L.clipped)}); break;
 				case 'dl': ebi('seldl').click(); break;
 				case 'zip': ebi('selzip').click(); break;
 				case 'del': fileman.delete(); break;
@@ -9572,8 +9574,7 @@ var rcm = (function () {
 	}
 
 	function show(x, y, target, isGrid) {
-		selFile.elem = selFile.type = selFile.path = selFile.id = selFile.relpath = null;
-		selFile.no_dsel = false;
+		selFile = jcp(nsFile);
 		if (target) {
 			var file = target.closest("#files tbody tr");
 			if (isGrid && target.matches && target.matches('#ggrid > a')) {
@@ -9585,7 +9586,8 @@ var rcm = (function () {
 				clmod(file, "sel", true);
 				selFile.elem = file;
 
-				selFile.path = basenames(file.children[1].firstChild.href).split('?')[0];
+				selFile.url = file.children[1].firstChild.href;
+				selFile.path = basenames(selFile.url).split('?')[0];
 				selFile.relpath = selFile.path.split('/').slice(-1)[0];
 				if (noq_href(file.children[1].firstChild).endsWith("/"))
 					selFile.type = "dir";
@@ -9630,8 +9632,7 @@ var rcm = (function () {
 			clmod(selFile.elem, "sel", false);
 			msel.selui();
 		}
-		selFile.elem = selFile.type = selFile.path = selFile.id = selFile.relpath = null;
-		selFile.no_dsel = false;
+		selFile = jcp(nsFile);
 		menu.style.display = '';
 	}
 
