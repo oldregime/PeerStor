@@ -3656,7 +3656,11 @@ def retchk(
 
     t = "error {} from [{}]".format(t, c)
     if serr:
-        t += "\n" + serr
+        if len(serr) > 8192:
+            zs = "%s\n[ ...TRUNCATED... ]\n%s\n[ NOTE: full msg was %d chars ]"
+            serr = zs % (serr[:4096], serr[-4096:].rstrip(), len(serr))
+        serr = serr.replace("\n", "\nstderr: ")
+        t += "\nstderr: " + serr
 
     if logger:
         logger(t, color)
