@@ -334,6 +334,7 @@ Ls.tur = {
 	"mm_eunk": "Bilinmeyen Hata",
 	"mm_e404": "Ses oynatılamadı; hata 404: Dosya bulunamadı.",
 	"mm_e403": "Ses oynatılamadı; hata 403: Erişim reddedildi.\n\nYeniden yüklemek için F5 tuşuna basın, oturumunuz kapanmış olabilir.",
+	"mm_e415": "Ses oynatılamadı; hata 415: Dosya dönüştürme başarısız oldu; sunucu günlüklerini kontrol edin.", //m
 	"mm_e500": "Ses oynatılamadı; hata 500: Sunucu günlüklerini kontrol edin.",
 	"mm_e5xx": "Ses oynatılamadı; sunucu hatası ",
 	"mm_nof": "yakınlarda başka ses dosyası bulunamadı",

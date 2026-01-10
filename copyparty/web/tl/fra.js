@@ -334,6 +334,7 @@ Ls.fra = {
 	"mm_eunk": "Erreur inconnue",
 	"mm_e404": "Impossible de lire l'audio ; erreur 404 : fichier introuvable.",
 	"mm_e403": "Impossible de lire l'audio ; erreur 403 : accès refusé.\n\nEssayez d'appuyer sur F5 pour recharger, peut-être que vous avez été déconnecté",
+	"mm_e415": "Impossible de lire l'audio ; erreur 415 : échec de la conversion du fichier ; vérifiez les journaux du serveur.", //m
 	"mm_e500": "Impossible de lire l'audio ; erreur 500 : vérifiez les journaux du serveur.",
 	"mm_e5xx": "Impossible de lire l'audio ; erreur serveur ",
 	"mm_nof": "Pas d'autres fichiers audio trouvés par ici",

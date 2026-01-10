@@ -334,6 +334,7 @@ Ls.swe = {
 	"mm_eunk": "Okänt Fel",
 	"mm_e404": "Kunde inte spela upp ljudfil; fel 404: Filen hittades inte.",
 	"mm_e403": "Kunde inte spela upp ljudfil; fel 403: Åtkomst nekad.\n\nProva att ladda om sidan med F5, du kanske blev utloggad",
+	"mm_e415": "Kunde inte spela upp ljudfil; fel 415: Filkonvertering misslyckades; kolla serverloggen.", //m
 	"mm_e500": "Kunde inte spela upp ljudfil; fel 500: Kolla serverloggen.",
 	"mm_e5xx": "Kunde inte spela upp ljudfil; serverfel ",
 	"mm_nof": "hittade inga fler låtar i närheten",

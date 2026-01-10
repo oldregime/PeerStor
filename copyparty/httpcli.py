@@ -160,6 +160,7 @@ H_CONN_KEEPALIVE = "Connection: Keep-Alive"
 H_CONN_CLOSE = "Connection: Close"
 
 RSS_SORT = {"m": "mt", "u": "at", "n": "fn", "s": "sz"}
+ACODE2_FMT = set(["opus", "owa", "caf", "mp3", "flac", "wav"])
 
 A_FILE = os.stat_result(
     (0o644, -1, -1, 1, 1000, 1000, 8, 0x39230101, 0x39230101, 0x39230101)
@@ -6686,6 +6687,8 @@ class HttpCli(object):
 
                 if th_fmt == "p":
                     raise Pebkac(404)
+                elif th_fmt in ACODE2_FMT:
+                    raise Pebkac(415)
 
                 return self.tx_ico(rem)
 

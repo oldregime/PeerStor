@@ -331,6 +331,7 @@ Ls.nno = {
 	"mm_eunk": "Ukjent feil",
 	"mm_e404": "Avspeling feilet: Fil ikkje funnet.",
 	"mm_e403": "Avspeling feilet: Høve nekta.\n\nKanskje du blei logget ut?\nPrøv å trykk F5 for å laste sida på nytt.",
+	"mm_e415": "Avspeling feilet: Kunne ikkje konvertere fila, sjekk serverloggen.",
 	"mm_e500": "Avspeling feilet: Rusk i maskineriet, sjekk serverloggen.",
 	"mm_e5xx": "Avspeling feilet: ",
 	"mm_nof": "finn ikkje flere songer i nærheita",

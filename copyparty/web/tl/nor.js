@@ -331,6 +331,7 @@ Ls.nor = {
 	"mm_eunk": "Ukjent feil",
 	"mm_e404": "Avspilling feilet: Fil ikke funnet.",
 	"mm_e403": "Avspilling feilet: Tilgang nektet.\n\nKanskje du ble logget ut?\nPrøv å trykk F5 for å laste siden på nytt.",
+	"mm_e415": "Avspilling feilet: Kunne ikke konvertere filen, sjekk serverloggen.",
 	"mm_e500": "Avspilling feilet: Rusk i maskineriet, sjekk serverloggen.",
 	"mm_e5xx": "Avspilling feilet: ",
 	"mm_nof": "finner ikke flere sanger i nærheten",

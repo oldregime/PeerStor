@@ -337,6 +337,7 @@ Ls.pol = {
 	"mm_eunk": "Nieznany błąd",
 	"mm_e404": "Nie można odtworzyć; błąd 404: Nie znaleziono pliku.",
 	"mm_e403": "Nie można odtworzyć; błąd 403: Odmowa dostępu.\n\nSpróbuj przeładować stronę (F5), może cię wylogowało",
+	"mm_e415": "Nie można odtworzyć; błąd 415: Konwersja pliku nie powiodła się; sprawdź logi serwera.", //m
 	"mm_e500": "Nie można odtworzyć; błąd 500: Sprawdź logi serwera.",
 	"mm_e5xx": "Nie można odtworzyć; błąd serwera",
 	"mm_nof": "nie znaleziono więcej plików audio",

@@ -334,6 +334,7 @@ Ls.por = {
 	"mm_eunk": "Erro Desconhecido",
 	"mm_e404": "Não foi possível reproduzir áudio; erro 404: Arquivo não encontrado.",
 	"mm_e403": "Não foi possível reproduzir áudio; erro 403: Acesso negado.\n\nTente pressionar F5 para recarregar, talvez você tenha saído da conta",
+	"mm_e415": "Não foi possível reproduzir áudio; erro 415: Falha na conversão do ficheiro; verifique os logs do servidor.", //m
 	"mm_e500": "Não foi possível reproduzir áudio; erro 500: Verifique os logs do servidor.",
 	"mm_e5xx": "Não foi possível reproduzir áudio; erro do servidor ",
 	"mm_nof": "não encontrando mais arquivos de áudio por perto",

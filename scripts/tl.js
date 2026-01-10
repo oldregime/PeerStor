@@ -363,6 +363,7 @@ Ls.hmn = {
 	"mm_eunk": "Unknown Errol",
 	"mm_e404": "Could not play audio; error 404: File not found.",
 	"mm_e403": "Could not play audio; error 403: Access denied.\n\nTry pressing F5 to reload, maybe you got logged out",
+	"mm_e415": "Could not play audio; error 415: File transcoding failed; check server logs.",
 	"mm_e500": "Could not play audio; error 500: Check server logs.",
 	"mm_e5xx": "Could not play audio; server error ",
 	"mm_nof": "not finding any more audio files nearby",

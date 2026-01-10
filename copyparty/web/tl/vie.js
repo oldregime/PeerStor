@@ -112,7 +112,6 @@ Ls.vie = {
 
 	"ot_search": "tìm kiếm các tệp theo thuộc tính, đường dẫn / tên, tag nhạc hoặc bất kỳ sự kết hợp nào của chúng$N$N&lt;code&gt;foo bar&lt;/code&gt; = phải chứa cả «foo» và «bar»,$N&lt;code&gt;foo -bar&lt;/code&gt; = phải chứa «foo» nhưng không chứa «bar»,$N&lt;code&gt;^yana .opus$&lt;/code&gt; = bắt đầu bằng «yana» và là tệp «opus»$N&lt;code&gt;&quot;try unite&quot;&lt;/code&gt; = chứa chính xác «try unite»$N$Nđịnh dạng ngày là iso-8601, như$N&lt;code&gt;2009-12-31&lt;/code&gt; hoặc &lt;code&gt;2020-09-12 23:30:00&lt;/code&gt;",
 
-
 	"ot_unpost": "unpost: xoá các tệp đã tải lên gần đây hoặc huỷ những tệp đang tải dở",
 	"ot_bup": "bup: trình tải lên cơ bản, hỗ trợ cả Netscape 4.0",
 	"ot_mkdir": "mkdir: tạo thư mục mới",
@@ -198,12 +197,9 @@ Ls.vie = {
 	"ul_flagblk": "tệp đã được thêm vào hàng chờ</b><br>tuy vậy đang có một tiến trình up2k đang chạy ở một tab khác<br>vui lòng đợi cho đến khi tiến trình đó hoàn tất hoặc bị hủy",
 	"ul_btnlk": "cài đặt của máy chủ đã khóa tùy chọn ở trạng thái này",
 
-
 	"udt_up": "Tải lên",
 	"udt_srch": "Tìm kiếm",
 	"udt_drop": "thả vào đây",
-
-
 
 	"u_nav_m": '<h6>chọn phương thức tải lên</h6><code>Enter</code> = Tệp (một hoặc nhiều)\n<code>ESC</code> = Một thư mục (kèm thư mục con)',
 	"u_nav_b": '<a href="#" id="modal-ok">Tệp</a><a href="#" id="modal-ng">Một thư mục</a>',
@@ -347,6 +343,7 @@ Ls.vie = {
 	"mm_eunk": "Lỗi không xác định",
 	"mm_e404": "Không thể phát âm thanh; lỗi 404: Không tìm thấy tệp.",
 	"mm_e403": "Không thể phát âm thanh; lỗi 403: Từ chối truy cập.\n\nThử nhấn F5 để tải lại, có thể bạn đã đăng xuất",
+	"mm_e415": "Không thể phát âm thanh; lỗi 415: Chuyển đổi tệp thất bại; kiểm tra nhật ký máy chủ.", //m
 	"mm_e500": "Không thể phát âm thanh; lỗi 500: Kiểm tra nhật ký máy chủ.",
 	"mm_e5xx": "Không thể phát âm thanh; lỗi máy chủ ",
 	"mm_nof": "không tìm thấy thêm tệp âm thanh nào gần đó",
@@ -354,6 +351,7 @@ Ls.vie = {
 	"mm_scank": "Đã tìm thấy bài nhạc tiếp theo:",
 	"mm_uncache": "đã xoá bộ nhớ đệm; tất cả bài nhạc sẽ được tải lại khi phát tiếp",
 	"mm_hnf": "bài nhạc này không còn tồn tại nữa",
+
 	"im_hnf": "hình ảnh này không còn tồn tại nữa",
 
 	"f_empty": 'thư mục này trống',
@@ -377,7 +375,6 @@ Ls.vie = {
 	"fd_emore": "hãy chọn ít nhất một mục để xóa",
 	"fc_emore": "hãy chọn ít nhất một mục để cắt",
 	"fcp_emore": "hãy chọn ít nhất một mục để sao chép vào bảng nhớ tạm",
-
 
 	"fs_sc": "chia sẻ thư mục hiện tại",
 	"fs_ss": "chia sẻ các tệp đã chọn",
@@ -420,7 +417,6 @@ Ls.vie = {
 	"fr_efail": "đổi tên thất bại:\n",
 	"fr_nchg": "{0} tên mới đã bị chỉnh sửa do <code>win</code> và/hoặc <code>no /</code>\n\nTiếp tục với các tên đã chỉnh sửa?",
 
-
 	"fd_ok": "hoàn tất xoá",
 	"fd_err": "xoá gặp lỗi:\n",
 	"fd_none": "không xóa được mục nào; có thể bị chặn bởi cấu hình máy chủ (xbd)?",
@@ -460,7 +456,6 @@ Ls.vie = {
 	"nmd_i1": "hãy thêm cả phần mở rộng tệp bạn muốn, ví dụ <code>.md</code>",
 	"nmd_i2": "bạn chỉ có thể tạo tệp <code>.md</code> vì bạn không có quyền xóa",
 
-
 	"tv_load": "Đang tải tài liệu văn bản:\n\n{0}\n\n{1}% ({2} / {3} MiB)",
 	"tv_xe1": "không thể tải tệp văn bản:\n\nlỗi ",
 	"tv_xe2": "404, không tìm thấy tệp",
@@ -477,9 +472,6 @@ Ls.vie = {
 	"tvt_atail": "khóa cuộn ở cuối trang\">⚓",
 	"tvt_ctail": "giải mã màu terminal (ansi escape codes)\">🌈",
 	"tvt_ntail": "giới hạn scrollback (số byte văn bản được giữ trong bộ nhớ)",
-
-
-
 
 	"m3u_add1": "đã thêm 1 bài vào danh sách phát m3u",
 	"m3u_addn": "đã thêm {0} bài vào danh sách phát m3u",
@@ -523,7 +515,6 @@ Ls.vie = {
 	"s_f1": "tên chứa &nbsp; (thêm -nope để phủ định)",
 	"s_t1": "tag chứa &nbsp; (^=bắt đầu, kết thúc=$)",
 	"s_a1": "thuộc tính metadata cụ thể",
-
 
 	"md_eshow": "không thể tải",
 	"md_off": "[📜<em>readme</em>] đã tắt trong [⚙️] -- tài liệu bị ẩn",
@@ -575,7 +566,6 @@ Ls.vie = {
 	"un_m3": "đang tải danh sách tải lên gần đây...",
 	"un_busy": "đang xóa {0} tệp...",
 	"un_clip": "{0} liên kết đã chép vào bảng nhớ tạm",
-
 
 	"u_https1": "bạn nên",
 	"u_https2": "chuyển sang https",

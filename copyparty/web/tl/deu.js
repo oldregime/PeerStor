@@ -334,6 +334,7 @@ Ls.deu = {
 	"mm_eunk": "Unbekannter Fehler",
 	"mm_e404": "Konnte Datei nicht abspielen; Fehler 404: Datei nicht gefunden.",
 	"mm_e403": "Konnte Datei nicht abspielen; Fehler 403: Zugriff verweigert.\n\nDrücke F5 zum Neuladen, vielleicht wurdest du abgemeldet",
+	"mm_e415": "Konnte Datei nicht abspielen; Fehler 415: Umwandlung der Datei fehlgeschlagen; Serverlogs prüfen.", //m
 	"mm_e500": "Konnte Datei nicht abspielen; Fehler 500: Prüfe die Serverlogs.",
 	"mm_e5xx": "Konnte Datei nicht abspielen; Server Fehler ",
 	"mm_nof": "finde keine weiteren Audiodateien in der Nähe",

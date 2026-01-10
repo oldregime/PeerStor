@@ -334,6 +334,7 @@ Ls.epo = {
 	"mm_eunk": "Nekonata eraro",
 	"mm_e404": "Ne povas ludi aŭdiaĵon; eraro 404: Dosiero ne trovita.",
 	"mm_e403": "Ne povas ludi aŭdiaĵon; eraro 403: Atingo malpermesita.\n\nKlopodu reŝargi paĝon per klavo F5, eble via seanco senvalidiĝis",
+	"mm_e415": "Ne povas ludi aŭdiaĵon; eraro 415: Transkodigo de dosiero malsukcesis; rigardu la protokolojn de servilo.", //m
 	"mm_e500": "Ne povas ludi aŭdiaĵon; eraro 500: Rigardu la protokolojn de servilo.",
 	"mm_e5xx": "Ne povas ludi aŭdiaĵon; servila eraro ",
 	"mm_nof": "neniuj aŭdio-dosieroj trovitaj proksime",

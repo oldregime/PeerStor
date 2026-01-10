@@ -333,6 +333,7 @@ Ls.spa = {
 	"mm_eunk": "Error desconocido",
 	"mm_e404": "No se pudo reproducir el audio; error 404: Archivo no encontrado.",
 	"mm_e403": "No se pudo reproducir el audio; error 403: Acceso denegado.\n\nIntenta pulsar F5 para recargar, quizás se cerró tu sesión",
+	"mm_e415": "No se pudo reproducir el audio; error 415: Falló la conversión del archivo; revisa los registros del servidor.", //m
 	"mm_e500": "No se pudo reproducir el audio; error 500: Revisa los registros del servidor.",
 	"mm_e5xx": "No se pudo reproducir el audio; error del servidor ",
 	"mm_nof": "no se encuentran más archivos de audio cerca",

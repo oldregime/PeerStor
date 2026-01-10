@@ -334,6 +334,7 @@ Ls.ita = {
 	"mm_eunk": "Errore Sconosciuto",
 	"mm_e404": "Non è stato possibile riprodurre audio; errore 404: File non trovato.",
 	"mm_e403": "Non è stato possibile riprodurre audio; errore 403: Accesso negato.\n\nProva a premere F5 per ricaricare, forse sei stato disconnesso",
+	"mm_e415": "Non è stato possibile riprodurre audio; errore 415: Conversione del file non riuscita; controlla i log del server.", //m
 	"mm_e500": "Non è stato possibile riprodurre audio; errore 500: Controlla i log del server.",
 	"mm_e5xx": "Non è stato possibile riprodurre audio; errore server ",
 	"mm_nof": "non trovo altri file audio nelle vicinanze",

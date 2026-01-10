@@ -339,6 +339,7 @@ if (1)
 		"mm_eunk": "Unknown Errol",
 		"mm_e404": "Could not play audio; error 404: File not found.",
 		"mm_e403": "Could not play audio; error 403: Access denied.\n\nTry pressing F5 to reload, maybe you got logged out",
+		"mm_e415": "Could not play audio; error 415: File transcoding failed; check server logs.",
 		"mm_e500": "Could not play audio; error 500: Check server logs.",
 		"mm_e5xx": "Could not play audio; server error ",
 		"mm_nof": "not finding any more audio files nearby",
@@ -3281,6 +3282,7 @@ function evau_error(e) {
 	var em = '' + eplaya.error.message,
 		mfile = '\n\nFile: «' + uricom_dec(eplaya.src.split('/').pop()) + '»',
 		e500 = L.mm_e500,
+		e415 = L.mm_e415,
 		e404 = L.mm_e404,
 		e403 = L.mm_e403;
 
@@ -3292,6 +3294,9 @@ function evau_error(e) {
 
 	if (em.startsWith('404: '))
 		err = e404;
+
+	if (em.startsWith('415: '))
+		err = e415;
 
 	if (em.startsWith('500: '))
 		err = e500;
@@ -3309,6 +3314,7 @@ function evau_error(e) {
 
 			err = this.status == 403 ? e403 :
 				this.status == 404 ? e404 :
+				this.status == 415 ? e415 :
 				this.status == 500 ? e500 :
 				L.mm_e5xx + this.status;
 

@@ -334,6 +334,7 @@ Ls.nld = {
 	"mm_eunk": "Onbekende fout",
 	"mm_e404": "Kan audio niet afspelen; fout 404: Bestand niet gevonden..",
 	"mm_e403": "Kan audio niet afspelen; fout 403: Toegang geweigerd.\n\nProbeer op F5 te drukken om opnieuw te laden, misschien ben je uitgelogd",
+	"mm_e415": "Kan geen audio afspelen; fout 415: Bestandsconversie mislukt; controleer serverlogs.", //m
 	"mm_e500": "Kan geen audio afspelen; fout 500: Controleer serverlogs.",
 	"mm_e5xx": "Kan geen audio afspelen; serverfout ",
 	"mm_nof": "Geen audiobestanden meer vinden in de buurt",

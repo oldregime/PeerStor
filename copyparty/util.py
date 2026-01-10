@@ -352,6 +352,7 @@ HTTPCODE = {
     411: "Length Required",
     412: "Precondition Failed",
     413: "Payload Too Large",
+    415: "Unsupported Media Type",
     416: "Requested Range Not Satisfiable",
     422: "Unprocessable Entity",
     423: "Locked",

@@ -338,6 +338,7 @@ Ls.cze = {
 	"mm_eunk": "Neznámá chyba",
 	"mm_e404": "Nelze přehrát audio; chyba 404: Soubor nenalezen.",
 	"mm_e403": "Nelze přehrát audio; chyba 403: Přístup odepřen.\n\nZkuste stisknout F5 pro obnovení, možná jste se odhlásili",
+	"mm_e415": "Nelze přehrát audio; chyba 415: Převod souboru selhal; zkontrolujte logy serveru.", //m
 	"mm_e500": "Nelze přehrát audio; chyba 500: Zkontrolujte logy serveru.",
 	"mm_e5xx": "Nelze přehrát audio; chyba serveru ",
 	"mm_nof": "žádné další audio soubory v okolí nenalezeny",
