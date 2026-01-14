@@ -6450,11 +6450,12 @@ class HttpCli(object):
         if self.args.have_unlistc:
             rvol = [x for x in rvol if "unlistcr" not in allvols[x].flags]
             wvol = [x for x in wvol if "unlistcw" not in allvols[x].flags]
-        vols = list(set(rvol + wvol))
+        vols = [(x, allvols[x]) for x in list(set(rvol + wvol))]
         if self.vpath:
             zs = "%s/" % (self.vpath,)
-            vols = [x[len(zs) :] for x in vols if x.startswith(zs)]
-        vols = [x.split("/", 1)[0] for x in vols if x]
+            vols = [(x[len(zs) :], y) for x, y in vols if x.startswith(zs)]
+        vols = [(x.split("/", 1)[0], y) for x, y in vols]
+        vols = [x for x in vols if x[0]]
         if not vols and self.vpath:
             return self.tx_404(True)
         dirs = [
@@ -6467,9 +6468,9 @@ class HttpCli(object):
                 "tags": e_d,
                 "dt": 0,
                 "name": 0,
-                "perms": allvols[x].get_perms("", self.uname),
+                "perms": vn.get_perms("", self.uname),
             }
-            for x in sorted(vols)
+            for x, vn in sorted(vols)
         ]
         ls = {
             "dirs": dirs,
