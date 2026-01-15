@@ -2721,6 +2721,14 @@ def set_fperms(f: Union[typing.BinaryIO, typing.IO[Any]], vf: dict[str, Any]) ->
         os.fchown(fno, vf["uid"], vf["gid"])
 
 
+def set_ap_perms(ap: str, vf: dict[str, Any]) -> None:
+    zb = fsenc(ap)
+    if "chmod_f" in vf:
+        os.chmod(zb, vf["chmod_f"])
+    if "chown" in vf:
+        os.chown(zb, vf["uid"], vf["gid"])
+
+
 def trystat_shutil_copy2(log: "NamedLogger", src: bytes, dst: bytes) -> bytes:
     try:
         return shutil.copy2(src, dst)

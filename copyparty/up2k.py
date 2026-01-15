@@ -61,6 +61,8 @@ from .util import (
     s3dec,
     s3enc,
     sanitize_fn,
+    set_ap_perms,
+    set_fperms,
     sfsenc,
     spack,
     statdir,
@@ -3546,7 +3548,7 @@ class Up2k(object):
         if self.args.nw:
             return
 
-        linked = False
+        linked = 0
         try:
             if rm and bos.path.exists(dst):
                 wunlink(self.log, dst, flags)
@@ -3560,6 +3562,8 @@ class Up2k(object):
                 try:
                     with open(fsenc(src), "rb") as fi, open(fsenc(dst), "wb") as fo:
                         fcntl.ioctl(fo.fileno(), fcntl.FICLONE, fi.fileno())
+                        if "fperms" in flags:
+                            set_fperms(fo, flags)
                 except:
                     if bos.path.exists(dst):
                         wunlink(self.log, dst, flags)
@@ -3597,7 +3601,7 @@ class Up2k(object):
             try:
                 if "hardlink" in flags:
                     os.link(fsenc(absreal(src)), fsenc(dst))
-                    linked = True
+                    linked = 2
             except Exception as ex:
                 self.log("cannot hardlink: " + repr(ex))
                 if "hardlinkonly" in flags:
@@ -3616,7 +3620,7 @@ class Up2k(object):
                 else:
                     os.symlink(fsenc(lsrc), fsenc(ldst))
 
-                linked = True
+                linked = 1
         except Exception as ex:
             if str(ex) != "reflink":
                 self.log("cannot link; creating copy: " + repr(ex))
@@ -3630,8 +3634,11 @@ class Up2k(object):
                 raise Exception(t % (src, fsrc, dst))
             trystat_shutil_copy2(self.log, fsenc(csrc), fsenc(dst))
 
-        if lmod and (not linked or SYMTIME):
-            bos.utime_c(self.log, dst, int(lmod), False)
+        if linked < 2 and (linked < 1 or SYMTIME):
+            if lmod:
+                bos.utime_c(self.log, dst, int(lmod), False)
+            if "fperms" in flags:
+                set_ap_perms(dst, flags)
 
     def handle_chunks(
         self, ptop: str, wark: str, chashes: list[str]
@@ -4507,6 +4514,8 @@ class Up2k(object):
                     bos.utime(dabs, times, False)
                 except:
                     pass
+            if "fperms" in dvn.flags:
+                set_ap_perms(dabs, dvn.flags)
 
         if xac:
             runhook(
@@ -4792,6 +4801,8 @@ class Up2k(object):
                 wunlink(self.log, sabs, svn.flags)
             else:
                 atomic_move(self.log, sabs, dabs, svn.flags)
+                if svn != dvn and "fperms" in dvn.flags:
+                    set_ap_perms(dabs, dvn.flags)
 
         except OSError as ex:
             if ex.errno != errno.EXDEV:
@@ -4825,6 +4836,8 @@ class Up2k(object):
                     bos.utime(dabs, times, False)
                 except:
                     pass
+            if "fperms" in dvn.flags:
+                set_ap_perms(dabs, dvn.flags)
 
             wunlink(self.log, sabs, svn.flags)
 
