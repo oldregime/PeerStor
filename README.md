@@ -2250,7 +2250,7 @@ example webserver / reverse-proxy configs:
 * [lighttpd subdomain](contrib/lighttpd/subdomain.conf) -- entire domain/subdomain
 * [lighttpd subpath](contrib/lighttpd/subpath.conf) -- location-based (not optimal, but in case you need it)
 * [nginx config](contrib/nginx/copyparty.conf) -- recommended
-* [traefik config](contrib/traefik/copyparty.yaml)
+* [traefik config](contrib/traefik/copyparty.yaml) -- only use v3.6.7 or newer [due to CVE-2025-66490](https://github.com/9001/copyparty/issues/1205)
 
 
 ### real-ip
