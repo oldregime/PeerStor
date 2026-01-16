@@ -226,6 +226,7 @@ Ls.fin = {
 	"ct_ttips": '◔ ◡ ◔">ℹ️ vihjelaatikot',
 	"ct_thumb": 'valitse kuvakkeiden / pienoiskuvien välillä kuvanäkymässä $NPikanäppäin: T">🖼️ pienoiskuvat',
 	"ct_csel": 'käytä CTRL ja SHIFT tiedostojen valintaan kuvanäkymässä">valitse',
+	"ct_dsel": 'käytä aluevalintaa tiedostojen valintaan kuvanäkymässä">aluevalinta',
 	"ct_dl": 'pakota lataus (älä näytä upotettuna), kun tiedostoa napsautetaan">dl', //m
 	"ct_ihop": 'kun kuvakatselin suljetaan, vieritä alas viimeksi katsottuun tiedostoon">g⮯',
 	"ct_dots": 'näytä piilotetut tiedostot (jos palvelin sallii)">piilotiedostot',

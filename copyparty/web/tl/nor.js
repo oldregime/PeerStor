@@ -223,6 +223,7 @@ Ls.nor = {
 	"ct_ttips": 'vis hjelpetekst ved å holde musen over ting">ℹ️ tips',
 	"ct_thumb": 'vis miniatyrbilder istedenfor ikoner$NSnarvei: T">🖼️ bilder',
 	"ct_csel": 'bruk tastene CTRL og SHIFT for markering av filer i ikonvisning">merk',
+	"ct_dsel": 'marker filer med klikk-og-dra i ikonvisning">dsel',
 	"ct_dl": 'last ned filer (ikke vis i nettleseren)">dl',
 	"ct_ihop": 'bla ned til sist viste bilde når bildeviseren lukkes">g⮯',
 	"ct_dots": 'vis skjulte filer (gitt at serveren tillater det)">.synlig',

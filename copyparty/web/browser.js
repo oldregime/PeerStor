@@ -231,7 +231,7 @@ if (1)
 		"ct_ttips": '◔ ◡ ◔">ℹ️ tooltips',
 		"ct_thumb": 'in grid-view, toggle icons or thumbnails$NHotkey: T">🖼️ thumbs',
 		"ct_csel": 'use CTRL and SHIFT for file selection in grid-view">sel',
-		"ct_dsel": 'use drag selection in grid-view">dsel',
+		"ct_dsel": 'use drag-selection in grid-view">dsel',
 		"ct_dl": 'force download (don\'t display inline) when a file is clicked">dl',
 		"ct_ihop": 'when the image viewer is closed, scroll down to the last viewed file">g⮯',
 		"ct_dots": 'show hidden files (if server permits)">dotfiles',
@@ -6747,7 +6747,7 @@ var treectl = (function () {
 	bcfg_bind(r, 'idxh', 'idxh', idxh, setidxh);
 	bcfg_bind(r, 'dyn', 'dyntree', true, onresize);
 	bcfg_bind(r, 'csel', 'csel', dgsel);
-	bcfg_bind(r, 'dsel', 'dsel', false);
+	bcfg_bind(r, 'dsel', 'dsel', !MOBILE);
 	bcfg_bind(r, 'dlni', 'dlni', dlni, resort);
 	bcfg_bind(r, 'dots', 'dotfiles', see_dots, function (v) {
 		r.goto();
@@ -9763,16 +9763,13 @@ function reload_browser() {
     var is_drag = false;
     var startx, starty;
     var selbox = null;
-    
+
     var ttimer = null;
     var lpdelay = 400; 
     var mvthresh = 10;
 
     function unbox() {
-        var boxes = QSA('.selbox');
-		for (var el of boxes) {
-			el.remove();
-		}
+        qsr('.selbox');
         selbox = null;
         is_drag = false;
         is_selma = false;
@@ -9847,8 +9844,8 @@ function reload_browser() {
         }
 
         if (!is_drag || !selbox) return;
-        
-        if (e.cancelable) e.preventDefault();
+
+        ev(e);
 
         var width = Math.abs(pos.x - startx);
         var height = Math.abs(pos.y - starty);
@@ -9859,6 +9856,9 @@ function reload_browser() {
         selbox.style.height = height + 'px';
         selbox.style.left = left + 'px';
         selbox.style.top = top + 'px';
+
+        if (IE && window.getSelection)
+            window.getSelection().removeAllRanges();
     }
 
     function sel_end(e) {
@@ -9871,15 +9871,13 @@ function reload_browser() {
             var sbrect = selbox.getBoundingClientRect();
             var faf = QSA('#ggrid a');
 
-            for (var el of faf) {
-                if (bob(sbrect, el.getBoundingClientRect())) {
-                    sel_toggle(el);
-                }
-            };
+            for (var a = 0, aa = faf.length; a < aa; a++)
+                if (bob(sbrect, faf[a].getBoundingClientRect()))
+                    sel_toggle(faf[a]);
 
 			msel.selui();
         }
-        
+
         unbox();
         document.body.style.userSelect = 'auto';
     }
@@ -9899,7 +9897,7 @@ function reload_browser() {
             }
         });
     }
-    
+
 	dsel_init();
 })();
 
