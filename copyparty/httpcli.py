@@ -855,7 +855,7 @@ class HttpCli(object):
                 guess = "modifying" if (origin and host) else "stripping"
                 t = "cors-reject %s because request-header Origin=%r does not match request-protocol %r and host %r based on request-header Host=%r (note: if this request is not malicious, check if your reverse-proxy is accidentally %s request headers, in particular 'Origin', for example by running copyparty with --ihead='*' to show all request headers)"
                 self.log(t % (self.mode, origin, proto, self.host, host, guess), 3)
-                raise Pebkac(403, "rejected by cors-check (see serverlog)")
+                raise Pebkac(403, "rejected by cors-check (see fileserver log)")
 
             # getattr(self.mode) is not yet faster than this
             if self.mode == "POST":
@@ -3230,7 +3230,7 @@ class HttpCli(object):
         if num_left < 0:
             if bail1:
                 return False
-            raise Pebkac(500, "unconfirmed; see serverlog")
+            raise Pebkac(500, "unconfirmed; see fileserver log")
 
         if not num_left and fpool:
             with self.u2mutex:
