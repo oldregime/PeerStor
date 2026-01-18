@@ -1637,6 +1637,7 @@ def add_logging(ap):
     ap2 = ap.add_argument_group("logging options")
     ap2.add_argument("-q", action="store_true", help="quiet; disable most STDOUT messages")
     ap2.add_argument("-lo", metavar="PATH", type=u, default="", help="logfile; use .txt for plaintext or .xz for compressed. Example: \033[32mcpp-%%Y-%%m%%d-%%H%%M%%S.txt.xz\033[0m (NB: some errors may appear on STDOUT only)")
+    ap2.add_argument("--flo", metavar="N", type=int, default=1, help="log format for \033[33m-lo\033[0m; [\033[32m1\033[0m]=classic/colors, [\033[32m2\033[0m]=no-color")
     ap2.add_argument("--no-ansi", action="store_true", default=not VT100, help="disable colors; same as environment-variable NO_COLOR")
     ap2.add_argument("--ansi", action="store_true", help="force colors; overrides environment-variable NO_COLOR")
     ap2.add_argument("--no-logflush", action="store_true", help="don't flush the logfile after each write; tiny bit faster")
