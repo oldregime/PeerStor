@@ -399,6 +399,8 @@ same order here too
 
 * [Firefox issue 1790500](https://bugzilla.mozilla.org/show_bug.cgi?id=1790500) -- entire browser can crash after uploading ~4000 small files
 
+* Windows: Uploading from a webbrowser may fail with "directory iterator got stuck" due to the [max path length](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry); try moving the files somewhere shorter before uploading
+
 * Android: music playback randomly stops due to [battery usage settings](#fix-unreliable-playback-on-android)
 
 * iPhones: the volume control doesn't work because [apple doesn't want it to](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html#//apple_ref/doc/uid/TP40009523-CH5-SW11)
