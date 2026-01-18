@@ -45,7 +45,6 @@ from .util import (
     BITNESS,
     DAV_ALLPROPS,
     E_SCK_WR,
-    FN_EMB,
     HAVE_SQLITE3,
     HTTPCODE,
     UTC,
@@ -2922,7 +2921,7 @@ class HttpCli(object):
         if (
             not self.can_read
             and self.can_write
-            and name.lower() in FN_EMB
+            and name.lower() in dbv.flags["emb_all"]
             and "wo_up_readme" not in dbv.flags
         ):
             name = "_wo_" + name

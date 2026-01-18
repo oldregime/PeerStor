@@ -1070,6 +1070,7 @@ class AuthSrv(object):
             "tcolor": self.args.tcolor,
             "du_iwho": self.args.du_iwho,
             "shr_who": self.args.shr_who if self.args.shr else "no",
+            "emb_all": FN_EMB,
             "ls_q_m": ("", ""),
         }
         self._vf0 = self._vf0b.copy()
@@ -2573,16 +2574,22 @@ class AuthSrv(object):
                 t = "WARNING: volume [/%s]: invalid value specified for ext-th: %s"
                 self.log(t % (vol.vpath, etv), 3)
 
+            emb_all = vol.flags["emb_all"] = set()
+
             zsl1 = [x for x in vol.flags["preadmes"].split(",") if x]
             zsl2 = [x for x in vol.flags["readmes"].split(",") if x]
             zsl3 = list(set([x.lower() for x in zsl1]))
             zsl4 = list(set([x.lower() for x in zsl2]))
+            emb_all.update(zsl3)
+            emb_all.update(zsl4)
             vol.flags["emb_mds"] = [[0, zsl1, zsl3], [1, zsl2, zsl4]]
 
             zsl1 = [x for x in vol.flags["prologues"].split(",") if x]
             zsl2 = [x for x in vol.flags["epilogues"].split(",") if x]
             zsl3 = list(set([x.lower() for x in zsl1]))
             zsl4 = list(set([x.lower() for x in zsl2]))
+            emb_all.update(zsl3)
+            emb_all.update(zsl4)
             vol.flags["emb_lgs"] = [[0, zsl1, zsl3], [1, zsl2, zsl4]]
 
             zs = str(vol.flags.get("html_head") or "")
