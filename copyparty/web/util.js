@@ -766,9 +766,9 @@ function assert_vp(path) {
 }
 
 
-function linksplit(rp, id) {
+function linksplit(rp, base, id) {
     var ret = [],
-        apath = '/',
+        apath = base || '/',
         q = null;
 
     if (rp && rp.indexOf('?') + 1) {

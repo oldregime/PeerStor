@@ -2684,11 +2684,20 @@ class HttpCli(object):
         vpath = "/".join([x for x in [vfs.vpath, rem, fn] if x])
         vpath = quotep(vpath)
 
-        url = "{}://{}/{}".format(
-            "https" if self.is_https else "http",
-            self.host,
-            self.args.RS + vpath + vsuf,
-        )
+        if self.args.up_site:
+            url = "%s%s%s" % (
+                self.args.up_site,
+                vpath,
+                vsuf,
+            )
+        else:
+            url = "%s://%s/%s%s%s" % (
+                "https" if self.is_https else "http",
+                self.host,
+                self.args.RS,
+                vpath,
+                vsuf,
+            )
 
         return post_sz, halg, sha_hex, sha_b64, remains, path, url
 
@@ -2962,7 +2971,7 @@ class HttpCli(object):
                 raise Pebkac(500, t % zt)
             ret["purl"] = vp_req + ret["purl"][len(vp_vfs) :]
 
-        if self.is_vproxied:
+        if self.is_vproxied and not self.args.up_site:
             if "purl" in ret:
                 ret["purl"] = self.args.SR + ret["purl"]
 
@@ -3840,9 +3849,9 @@ class HttpCli(object):
             errmsg = "ERROR: " + errmsg
 
         if halg:
-            file_fmt = '{0}: {1} // {2} // {3} bytes // <a href="/{4}">{5}</a> {6}\n'
+            file_fmt = '{0}: {1} // {2} // {3} bytes // <a href="{4}">{5}</a> {6}\n'
         else:
-            file_fmt = '{3} bytes // <a href="/{4}">{5}</a> {6}\n'
+            file_fmt = '{3} bytes // <a href="{4}">{5}</a> {6}\n'
 
         for sz, sha_hex, sha_b64, ofn, lfn, ap in files:
             vsuf = ""
@@ -3860,25 +3869,31 @@ class HttpCli(object):
             if "media" in self.uparam or "medialinks" in vfs.flags:
                 vsuf += "&v" if vsuf else "?v"
 
-            vpath = "{}/{}".format(upload_vpath, lfn).strip("/")
-            rel_url = quotep(self.args.RS + vpath) + vsuf
+            vpath = vjoin(upload_vpath, lfn)
+            if self.args.up_site:
+                ah_url = j_url = self.args.up_site + quotep(vpath) + vsuf
+                rel_url = "/" + j_url.split("//", 1)[-1].split("/", 1)[-1]
+            else:
+                ah_url = rel_url = "/%s%s%s" % (self.args.RS, quotep(vpath), vsuf)
+                j_url = "%s://%s%s" % (
+                    "https" if self.is_https else "http",
+                    self.host,
+                    rel_url,
+                )
+
             msg += file_fmt.format(
                 halg,
                 sha_hex[:56],
                 sha_b64,
                 sz,
-                rel_url,
+                ah_url,
                 html_escape(ofn, crlf=True),
                 vsuf,
             )
             # truncated SHA-512 prevents length extension attacks;
             # using SHA-512/224, optionally SHA-512/256 = :64
             jpart = {
-                "url": "{}://{}/{}".format(
-                    "https" if self.is_https else "http",
-                    self.host,
-                    rel_url,
-                ),
+                "url": j_url,
                 "sz": sz,
                 "fn": lfn,
                 "fn_orig": ofn,

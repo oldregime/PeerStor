@@ -1229,6 +1229,7 @@ def add_upload(ap):
     ap2 = ap.add_argument_group("upload options")
     ap2.add_argument("--dotpart", action="store_true", help="dotfile incomplete uploads, hiding them from clients unless \033[33m-ed\033[0m")
     ap2.add_argument("--plain-ip", action="store_true", help="when avoiding filename collisions by appending the uploader's ip to the filename: append the plaintext ip instead of salting and hashing the ip")
+    ap2.add_argument("--up-site", metavar="URL", type=u, default="--site", help="public URL to assume when creating links to uploaded files; example: [\033[32mhttps://example.com/\033[0m]")
     ap2.add_argument("--put-name", metavar="TXT", type=u, default="put-{now.6f}-{cip}.bin", help="filename for nameless uploads (when uploader doesn't provide a name); default is [\033[32mput-UNIXTIME-IP.bin\033[0m] (the \033[32m.6f\033[0m means six decimal places) (volflag=put_name)")
     ap2.add_argument("--put-ck", metavar="ALG", type=u, default="sha512", help="default checksum-hasher for PUT/WebDAV uploads: no / md5 / sha1 / sha256 / sha512 / b2 / blake2 / b2s / blake2s (volflag=put_ck)")
     ap2.add_argument("--bup-ck", metavar="ALG", type=u, default="sha512", help="default checksum-hasher for bup/basic-uploader: no / md5 / sha1 / sha256 / sha512 / b2 / blake2 / b2s / blake2s (volflag=bup_ck)")

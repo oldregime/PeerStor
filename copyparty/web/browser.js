@@ -6525,7 +6525,7 @@ var search_ui = (function () {
 			if (ext.length > 8)
 				ext = '%';
 
-			var links = linksplit(r.rp + '', id).join('<span>/</span>'),
+			var links = linksplit(r.rp + '', null, id).join('<span>/</span>'),
 				nodes = ['<tr><td>-</td><td><div>' + links +
 					'</div></td><td sortv="' + sz + '">' + hsz];
 
