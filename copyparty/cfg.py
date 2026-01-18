@@ -27,6 +27,8 @@ def vf_bmap() -> dict[str, str]:
         "no_thumb": "dthumb",
         "no_vthumb": "dvthumb",
         "no_athumb": "dathumb",
+        "vol_nospawn": "nospawn",
+        "vol_or_crash": "assert_root",
     }
     for k in (
         "dedup",
@@ -427,6 +429,8 @@ flagcats = {
         "cachectl=no-cache": "controls caching in webbrowsers",
         "mv_retry": "ms-windows: timeout for renaming busy files",
         "rm_retry": "ms-windows: timeout for deleting busy files",
+        "nospawn": "don't create volume's folder if not exist",
+        "assert_root": "crash on startup if volume's folder not exist",
         "davauth": "ask webdav clients to login for all folders",
         "davrt": "show lastmod time of symlink destination, not the link itself\n(note: this option is always enabled for recursive listings)",
     },

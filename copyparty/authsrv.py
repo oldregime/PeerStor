@@ -2090,6 +2090,41 @@ class AuthSrv(object):
                     t = "WARNING: the account [%s] is not mentioned in any volume definitions and thus has the same access-level and privileges that guests have; please see --help-accounts for details.  For example, if you intended to give that user full access to the current directory, you could do this:  -v .::A,%s"
                     self.log(t % (usr, usr), 1)
 
+        dropvols = []
+        errors = False
+        for vol in vfs.all_vols.values():
+            if (
+                not vol.realpath
+                or (
+                    "assert_root" not in vol.flags
+                    and "nospawn" not in vol.flags
+                    and not self.args.vol_or_crash
+                    and not self.args.vol_nospawn
+                )
+                or bos.path.exists(vol.realpath)
+            ):
+                pass
+            elif "assert_root" in vol.flags or self.args.vol_or_crash:
+                t = "ERROR: volume [/%s] root folder %r does not exist on server HDD; will now crash due to volflag 'assert_root'"
+                self.log(t % (vol.vpath, vol.realpath), 1)
+                errors = True
+            else:
+                t = "WARNING: volume [/%s] root folder %r does not exist on server HDD; volume will be unavailable due to volflag 'nospawn'"
+                self.log(t % (vol.vpath, vol.realpath), 3)
+                dropvols.append(vol)
+        if errors:
+            sys.exit(1)
+        for vol in dropvols:
+            vol.realpath = ""
+            vol.axs = AXS()
+            vol.uaxs = {}
+            vfs.all_vols.pop(vol.vpath, None)
+            vfs.all_nodes.pop(vol.vpath, None)
+            for zv in vfs.all_nodes.values():
+                zs = next((x for x, y in zv.nodes.items() if y == vol), "")
+                if zs:
+                    zv.nodes.pop(zs)
+
         promote = []
         demote = []
         for vol in vfs.all_vols.values():
