@@ -1,4 +1,37 @@
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
+# 2026-0109-0052  `v1.20.1`  sftp fixes
+
+## 🧪 new features
+
+* #1174 add Japanese translation (thx @tkymmm!) b918b592
+* #1164 rightclick-menu now works in the gridview too (thx @Foox-dev!) feabbf3e
+* #1176 IP to bind can be specified per protocol 87a5c22a
+
+## 🩹 bugfixes
+
+* various SFTP fixes (i blame the single [tschunk](https://germanfoods.org/tschunk/) on day 3):
+  * #1170 be more lenient regarding `stat` permissions 90308284
+  * #1170 deletes could return EPERM when ENOENT was more appropriate 8c9e1016
+  * #1170 files would be created with an extremely restrictive chmod 2f4a30b6
+    * certified octal moment
+  * write-only folders could return ENOENT 6c41bac6
+* #1177 disk-usage quotas became incompatible with shares in v1.20.0 038af507
+* appending to existing files with `?apnd` was possible in volumes with non-reflink dedup, where it could propagate to deduped copies of the file 738a419b
+  * (was only possible for users with write+delete perms, so at least it couldn't be used for nefarious purposes)
+* rightclick-menu: "copy link" would strip filekeys 3a16d346
+
+## 🔧 other changes
+
+* copyparty.exe: updated pillow to 12.1.0 a9ae6d51
+
+## 🌠 fun facts
+
+* [tschunk](https://germanfoods.org/tschunk/) is the sound a hacker makes as they faceplant onto the table after having one too many
+  * also see the funfacts in [the previous release](https://github.com/9001/copyparty/releases/tag/v1.20.0) for more CCC hijinks :p
+
+
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀  
 # 2026-0102-0007  `v1.20.0`  sftp is fine too
 
 ## 🧪 new features

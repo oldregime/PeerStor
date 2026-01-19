@@ -2117,15 +2117,23 @@ class AuthSrv(object):
         if errors:
             sys.exit(1)
         for vol in dropvols:
-            vol.realpath = ""
             vol.axs = AXS()
             vol.uaxs = {}
             vfs.all_vols.pop(vol.vpath, None)
             vfs.all_nodes.pop(vol.vpath, None)
             for zv in vfs.all_nodes.values():
+                try:
+                    zv.all_aps.remove(vol.realpath)
+                    zv.all_vps.remove(vol.vpath)
+                    # pointless but might as well:
+                    zv.all_vols.pop(vol.vpath)
+                    zv.all_nodes.pop(vol.vpath)
+                except:
+                    pass
                 zs = next((x for x, y in zv.nodes.items() if y == vol), "")
                 if zs:
                     zv.nodes.pop(zs)
+            vol.realpath = ""
 
         promote = []
         demote = []

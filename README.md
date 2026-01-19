@@ -1882,7 +1882,7 @@ see the beautiful mess of a dictionary in [mtag.py](https://github.com/9001/copy
 
 ### metadata from xattrs
 
-unix extended file attributes  can be indexed into the db and made searchable;
+unix extended file attributes  (Linux-only) can be indexed into the db and made searchable;
 
 * `--db-xattr user.foo,user.bar` will index the xattrs `user.foo` and `user.bar`,
 * `--db-xattr user.foo=foo,user.bar=bar` will index them with the names `foo` and `bar`,
@@ -1892,6 +1892,9 @@ unix extended file attributes  can be indexed into the db and made searchable;
 however note that the tags must also be enabled with `-mte` so here are some complete examples:
 * `-e2ts --db-xattr user.foo,user.bar -mte +user.foo,user.bar`
 * `-e2ts --db-xattr user.foo=foo,user.bar=bar -mte +foo,bar`
+
+as for actually adding the xattr `user.foo` to a file in the first place,
+* `setfattr -n user.foo -v 'utsikt fra fløytoppen' photo.jpg`
 
 
 ## file parser plugins

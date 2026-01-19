@@ -167,7 +167,7 @@ class Cfg(Namespace):
         ex = "ah_alg bname chdir chmod_f chpw_db db_xattr doctitle df epilogues exit favico ipa ipar html_head html_head_d html_head_s idp_login idp_logout lg_sba lg_sbf log_date log_fk md_sba md_sbf name og_desc og_site og_th og_title og_title_a og_title_v og_title_i opds_exts preadmes prologues readmes shr shr_site site tcolor textfiles txt_eol ufavico ufavico_h unlist up_site vname xff_src zipmaxt R RS SR"
         ka.update(**{k: "" for k in ex.split()})
 
-        ex = "apnd_who ban_403 ban_404 ban_422 ban_pw ban_pwc ban_url dont_ban cachectl http_vary rss_fmt_d rss_fmt_t spinner"
+        ex = "apnd_who ban_403 ban_404 ban_422 ban_pw ban_pwc ban_url dont_ban cachectl http_vary rcm rss_fmt_d rss_fmt_t spinner"
         ka.update(**{k: "no" for k in ex.split()})
 
         ex = "ext_th grp idp_h_usr idp_hm_usr ipr on403 on404 qr_file xac xad xar xau xban xbc xbd xbr xbu xiu xm"

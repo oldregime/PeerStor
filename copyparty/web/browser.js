@@ -2,6 +2,8 @@
 
 var J_BRW = 1;
 
+if (!window.drcm) alert('FATAL ERROR: receiving stale data from the server; this may be due to a broken reverse-proxy (stuck cache). Try restarting copyparty and press CTRL-SHIFT-R in the browser');
+
 var XHR = XMLHttpRequest,
 	img_re = /\.(a?png|avif|bmp|gif|heif|jpe?g|jfif|svg|webp|webm|mkv|mp4|m4v|mov)(\?|$)/i;
 
