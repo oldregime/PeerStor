@@ -1118,6 +1118,12 @@ class SvcHub(object):
             vsa = [x.lower() for x in vsa if x]
             setattr(al, k + "_set", set(vsa))
 
+        for k in "smsg".split(" "):
+            vs = getattr(al, k)
+            vsa = [x.strip() for x in vs.split(",")]
+            vsa = [x.upper() for x in vsa if x]
+            setattr(al, k + "_set", set(vsa))
+
         zs = "dav_ua1 sus_urls nonsus_urls ua_nodav ua_nodoc ua_nozip"
         for k in zs.split(" "):
             vs = getattr(al, k)

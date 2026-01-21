@@ -1562,6 +1562,7 @@ def add_optouts(ap):
     ap2.add_argument("-nih", action="store_true", help="no info hostname -- don't show in UI")
     ap2.add_argument("-nid", action="store_true", help="no info disk-usage -- don't show in UI. This is the same as --du-who no")
     ap2.add_argument("-nb", action="store_true", help="no powered-by-copyparty branding in UI")
+    ap2.add_argument("--smsg", metavar="T,T", type=u, default="POST", help="HTTP-methods to allow ?smsg for; will execute xm hooks like urlform / message-to-serverlog; dangerous example: [\033[32mGET,POST\033[0m]. \033[1;31mWARNING:\033[0m The default (POST) is safe, but GET is dangerous; security/CSRF hazard")
     ap2.add_argument("--zipmaxn", metavar="N", type=u, default="0", help="reject download-as-zip if more than \033[33mN\033[0m files in total; optionally takes a unit suffix: [\033[32m256\033[0m], [\033[32m9K\033[0m], [\033[32m4G\033[0m] (volflag=zipmaxn)")
     ap2.add_argument("--zipmaxs", metavar="SZ", type=u, default="0", help="reject download-as-zip if total download size exceeds \033[33mSZ\033[0m bytes; optionally takes a unit suffix: [\033[32m256M\033[0m], [\033[32m4G\033[0m], [\033[32m2T\033[0m] (volflag=zipmaxs)")
     ap2.add_argument("--zipmaxt", metavar="TXT", type=u, default="", help="custom errormessage when download size exceeds max (volflag=zipmaxt)")

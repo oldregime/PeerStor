@@ -1434,6 +1434,9 @@ class HttpCli(object):
 
                 self.uparam["h"] = ""
 
+        if "smsg" in self.uparam:
+            return self.handle_smsg()
+
         if "tree" in self.uparam:
             return self.tx_tree()
 
@@ -2246,6 +2249,9 @@ class HttpCli(object):
         ):
             return self.handle_post_json()
 
+        if "smsg" in self.uparam:
+            return self.handle_smsg()
+
         if "move" in self.uparam:
             return self.handle_mv()
 
@@ -2331,6 +2337,37 @@ class HttpCli(object):
             raise Pebkac(405, "POST(%r) is disabled in server config" % (ctype,))
 
         raise Pebkac(405, "don't know how to handle POST(%r)" % (ctype,))
+
+    def handle_smsg(self) -> bool:
+        if self.mode not in self.args.smsg_set:
+            raise Pebkac(403, "smsg is disabled for this http-method in server config")
+
+        msg = self.uparam["smsg"]
+        self.log("smsg %d @ %r\n  %r\n" % (len(msg), "/" + self.vpath, msg))
+
+        xm = self.vn.flags.get("xm")
+        if xm:
+            xm_rsp = runhook(
+                self.log,
+                self.conn.hsrv.broker,
+                None,
+                "xm",
+                xm,
+                self.vn.canonical(self.rem),
+                self.vpath,
+                self.host,
+                self.uname,
+                self.asrv.vfs.get_perms(self.vpath, self.uname),
+                time.time(),
+                len(msg),
+                self.ip,
+                time.time(),
+                [msg, msg],
+            )
+            self.loud_reply(xm_rsp.get("stdout") or "", status=202)
+        else:
+            self.loud_reply("k", status=202)
+        return True
 
     def get_xml_enc(self, txt: str) -> str:
         ofs = txt[:512].find(' encoding="')
