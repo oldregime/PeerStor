@@ -997,8 +997,8 @@ class HttpCli(object):
 
         rt = bans[ip] - time.time()
         if rt < 0:
-            self.log("client unbanned", 3)
             del bans[ip]
+            self.log("client unbanned", 3)
             return False
 
         self.log("banned for {:.0f} sec".format(rt), 6)
