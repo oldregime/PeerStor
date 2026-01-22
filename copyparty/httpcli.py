@@ -285,12 +285,6 @@ class HttpCli(object):
         uname = self.asrv.iacct.get(b) or self.asrv.sesa.get(b)
         return "%s\033[7m %s \033[27m%s" % (a, uname, c)
 
-    def _check_nonfatal(self, ex: Pebkac, post: bool) -> bool:
-        if post:
-            return ex.code < 300
-
-        return ex.code < 400 or ex.code in [404, 429]
-
     def _assert_safe_rem(self, rem: str) -> None:
         # sanity check to prevent any disasters
         # (this function hopefully serves no purpose; validation has already happened at this point, this only exists as a last-ditch effort just in case)
@@ -403,6 +397,7 @@ class HttpCli(object):
         trusted_xff = False
         n = self.args.rproxy
         if n:
+            self.keepalive = False
             zso = self.headers.get(self.args.xff_hdr)
             if zso:
                 if n > 0:
@@ -889,8 +884,8 @@ class HttpCli(object):
                     self.terse_reply(b"", 500)
                     return False
 
-                post = self.mode in ["POST", "PUT"] or "content-length" in self.headers
-                if not self._check_nonfatal(pex, post):
+                post = self.mode in ("POST", "PUT") or "content-length" in self.headers
+                if pex.code >= (300 if post else 400):
                     self.keepalive = False
 
                 em = str(ex)
@@ -2213,7 +2208,7 @@ class HttpCli(object):
             raise Pebkac(403 if self.pw else 401, t % (self.uname, self.vn.vpath))
 
         if not self.args.no_dav and self._applesan():
-            return self.headers.get("content-length") == "0"
+            return False
 
         if self.headers.get("expect", "").lower() == "100-continue":
             try:
