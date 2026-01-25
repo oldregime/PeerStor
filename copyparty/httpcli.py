@@ -342,11 +342,6 @@ class HttpCli(object):
             if not headerlines:
                 return False
 
-            if not headerlines[0]:
-                # seen after login with IE6.0.2900.5512.xpsp.080413-2111 (xp-sp3)
-                self.log("BUG: trailing newline from previous request", c="1;31")
-                headerlines.pop(0)
-
             try:
                 self.mode, self.req, self.http_ver = headerlines[0].split(" ")
 
@@ -355,6 +350,8 @@ class HttpCli(object):
                 for header_line in headerlines[1:]:
                     k, zs = header_line.split(":", 1)
                     self.headers[k.lower()] = zs.strip()
+                    if zs.endswith(" HTTP/1.1"):
+                        raise Exception()
             except:
                 headerlines = [repr(x) for x in headerlines]
                 msg = "#[ " + " ]\n#[ ".join(headerlines) + " ]"
