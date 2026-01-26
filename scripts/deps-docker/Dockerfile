@@ -56,9 +56,9 @@ RUN     mkdir -p /z/dist/no-pk \
         && tar --no-same-owner -xf zopfli.tgz
 
 
-COPY    busy-mp3.sh /z/
-RUN     /z/busy-mp3.sh \
-        && mv -v /dev/shm/busy.mp3.gz /z/dist
+#COPY    busy-mp3.sh /z/
+#RUN     /z/busy-mp3.sh \
+#        && mv -v /dev/shm/busy.mp3.gz /z/dist
 
 
 # build fonttools (which needs zopfli)
