@@ -4182,15 +4182,17 @@ html.e #detree {
 
 /* PeerStor Customizations */
 #peerstor-logo {
-	position: fixed;
-	top: 0.5em;
-	left: 0.5em;
-	font-size: 1.5em;
+	position: absolute;
+	top: 1.8em;
+	left: 2em;
+	font-size: 1.4em;
 	font-weight: bold;
 	color: var(--a);
 	z-index: 1000;
 	text-shadow: 0 0 10px var(--a-dark);
 	letter-spacing: 0.05em;
+	background: var(--bg);
+	padding: 0 0.3em;
 }
 
 /* Hide media player button and panel */
