@@ -4179,3 +4179,33 @@ html.e #detree {
     pointer-events: none;
 	z-index: 99;
 }
+
+/* PeerStor Customizations */
+#peerstor-logo {
+	position: fixed;
+	top: 0.5em;
+	left: 0.5em;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: var(--a);
+	z-index: 1000;
+	text-shadow: 0 0 10px var(--a-dark);
+	letter-spacing: 0.05em;
+}
+
+/* Hide media player button and panel */
+#opa_auc,
+#op_player {
+	display: none !important;
+}
+
+/* Hide configuration button and panel */
+#opa_cfg,
+#op_cfg {
+	display: none !important;
+}
+
+/* Hide Read-Write access and Login display */
+#acc_info {
+	display: none !important;
+}
