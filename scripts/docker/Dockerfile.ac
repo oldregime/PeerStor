@@ -1,0 +1,22 @@
+FROM    alpine:latest
+WORKDIR /z
+LABEL   org.opencontainers.image.url="https://github.com/9001/copyparty" \
+        org.opencontainers.image.source="https://github.com/9001/copyparty" \
+        org.opencontainers.image.licenses="MIT" \
+        org.opencontainers.image.title="copyparty-ac" \
+        org.opencontainers.image.description="copyparty with Pillow and FFmpeg (image/audio/video thumbnails, audio transcoding, media tags)"
+ENV     XDG_CONFIG_HOME=/cfg
+
+RUN     apk --no-cache add !pyc \
+            tzdata wget mimalloc2 mimalloc2-insecure \
+            py3-jinja2 py3-argon2-cffi py3-pyzmq \
+            py3-openssl py3-paramiko py3-pillow \
+            ffmpeg
+
+COPY    i/dist/copyparty-sfx.py innvikler.sh ./
+ADD     base ./base
+RUN     ash innvikler.sh ac
+
+WORKDIR /state
+EXPOSE  3923
+ENTRYPOINT ["python3", "-m", "copyparty", "-c", "/z/initcfg"]

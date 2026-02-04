@@ -1,0 +1,5 @@
+FROM    alpine:latest
+WORKDIR /z
+
+RUN     apk add py3-pip make gcc musl-dev python3-dev
+RUN     pip wheel https://files.pythonhosted.org/packages/c4/a7/0b7673be5945071e99364a3ac1987b02fc1d416617e97f3e8816d275174e/zlib_ng-0.5.1.tar.gz

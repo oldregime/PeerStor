@@ -1,0 +1,18 @@
+FROM    alpine:latest
+WORKDIR /z
+LABEL   org.opencontainers.image.url="https://github.com/9001/copyparty" \
+        org.opencontainers.image.source="https://github.com/9001/copyparty" \
+        org.opencontainers.image.licenses="MIT" \
+        org.opencontainers.image.title="copyparty-min" \
+        org.opencontainers.image.description="just copyparty, no thumbnails / media tags / audio transcoding"
+ENV     XDG_CONFIG_HOME=/cfg
+
+RUN     apk --no-cache add !pyc \
+            py3-jinja2
+
+COPY    i/dist/copyparty-sfx.py innvikler.sh ./
+RUN     ash innvikler.sh min
+
+WORKDIR /state
+EXPOSE  3923
+ENTRYPOINT ["python3", "-m", "copyparty", "--no-thumb", "-c", "/z/initcfg"]
