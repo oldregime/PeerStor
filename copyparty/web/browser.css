@@ -4215,6 +4215,12 @@ html.e #detree {
 	display: none !important;
 }
 
+/* Hide message button and panel (technical feature) */
+#opa_msg,
+#op_msg {
+	display: none !important;
+}
+
 /* Hide Read-Write access and Login display */
 #acc_info {
 	display: none !important;
