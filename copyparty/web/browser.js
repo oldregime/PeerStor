@@ -155,6 +155,7 @@ if (1)
 		"wt_m3ua": "Add to playlist",
 		"wt_m3uc": "Copy playlist",
 		"wt_grid": "Switch to thumbnail view",
+		"wt_qr": "View QR code for this page",
 		"wt_prev": "Previous track",
 		"wt_play": "Play or pause",
 		"wt_next": "Next track",
@@ -780,6 +781,7 @@ ebi('widget').innerHTML = (
 	' href="#" id="m3uc" tt="' + L.wt_m3uc + '">📻<span>copy</span></a>' +
 	'</span><a' +
 	'	href="#" id="wtgrid" tt="' + L.wt_grid + '">田</a><a' +
+	'	href="#" id="wtqr" tt="' + L.wt_qr + '">⊞</a><a' +
 	'	href="#" id="wtico">♫</a>' +
 	'</div>' +
 	'<div id="widgeti">' +
@@ -5848,6 +5850,14 @@ var thegrid = (function () {
 		vbar.onresize();
 	});
 	ebi('wtgrid').onclick = ebi('griden').onclick;
+
+	ebi('wtqr').onclick = function(e) {
+		ev(e);
+		var url = location.href.split('#')[0];
+		var qrUrl = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'qr';
+		var txt = '<div style="text-align:center;"><img src="' + esc(qrUrl) + '" style="max-width:200px;image-rendering:pixelated;" /><br><a href="' + esc(url) + '" style="word-break:break-all;">' + esc(url) + '</a></div>';
+		modal.alert(txt);
+	};
 
 	return r;
 })();
