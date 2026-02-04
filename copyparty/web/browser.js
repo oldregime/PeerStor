@@ -8705,11 +8705,15 @@ var msel = (function () {
 	};
 	r.render = function () {
 		var tds = QSA('#files tbody td+td+td'),
+			tds1 = QSA('#files tbody td:first-child'),
 			is_srch = !!ebi('unsearch');
 
-		if (!is_srch)
+		if (!is_srch) {
 			for (var a = 0, aa = tds.length; a < aa; a++)
 				tds[a].onclick = r.seltgl;
+			for (var a = 0, aa = tds1.length; a < aa; a++)
+				tds1[a].onclick = r.seltgl;
+		}
 
 		r.selui(true);
 		arcfmt.render();

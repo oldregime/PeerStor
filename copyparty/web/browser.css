@@ -4237,3 +4237,49 @@ html.e #detree {
 #wtico {
 	display: none !important;
 }
+
+/* Checkbox column for file selection */
+#files tbody td:first-child {
+	cursor: pointer;
+	user-select: none;
+	position: relative;
+	width: 2em;
+	min-width: 2em;
+}
+
+#files tbody td:first-child::before {
+	content: '';
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	border: 2px solid var(--fg-weak);
+	border-radius: 0.2em;
+	background: transparent;
+	vertical-align: middle;
+	transition: all 0.15s ease;
+}
+
+#files tbody tr.sel td:first-child::before {
+	background: var(--a);
+	border-color: var(--a);
+}
+
+#files tbody tr.sel td:first-child::after {
+	content: '✓';
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--bg-d1);
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+#files tbody td:first-child:hover::before {
+	border-color: var(--a);
+}
+
+/* Hide the original lead content when showing checkboxes */
+#files tbody td:first-child > * {
+	display: none;
+}
