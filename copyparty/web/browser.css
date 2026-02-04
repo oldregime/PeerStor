@@ -4182,17 +4182,18 @@ html.e #detree {
 
 /* PeerStor Customizations */
 #peerstor-logo {
-	position: absolute;
-	top: 1.8em;
-	left: 2em;
-	font-size: 1.4em;
+	position: fixed;
+	top: 0.3em;
+	left: 0.5em;
+	font-size: 1.3em;
 	font-weight: bold;
 	color: var(--a);
-	z-index: 1000;
+	z-index: 1001;
 	text-shadow: 0 0 10px var(--a-dark);
 	letter-spacing: 0.05em;
 	background: var(--bg);
-	padding: 0 0.3em;
+	padding: 0.1em 0.4em;
+	border-radius: 0.2em;
 }
 
 /* Hide media player button and panel */
@@ -4209,5 +4210,12 @@ html.e #detree {
 
 /* Hide Read-Write access and Login display */
 #acc_info {
+	display: none !important;
+}
+
+/* Hide all error toasts and notifications */
+#toast,
+#toast.vis,
+#toast.err {
 	display: none !important;
 }
