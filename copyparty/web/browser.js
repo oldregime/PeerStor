@@ -781,7 +781,7 @@ ebi('widget').innerHTML = (
 	' href="#" id="m3uc" tt="' + L.wt_m3uc + '">📻<span>copy</span></a>' +
 	'</span><a' +
 	'	href="#" id="wtgrid" tt="' + L.wt_grid + '">田</a><a' +
-	'	href="#" id="wtqr" tt="' + L.wt_qr + '">🔳</a><a' +
+	'	href="#" id="wtqr" tt="' + L.wt_qr + '">�</a><a' +
 	'	href="#" id="wtico">♫</a>' +
 	'</div>' +
 	'<div id="widgeti">' +

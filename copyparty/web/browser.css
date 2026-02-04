@@ -4232,3 +4232,8 @@ html.e #detree {
 #toast.err {
 	display: none !important;
 }
+
+/* Hide music toggle button in bottom-right toolbar */
+#wtico {
+	display: none !important;
+}
