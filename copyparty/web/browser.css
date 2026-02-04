@@ -4209,6 +4209,12 @@ html.e #detree {
 	display: none !important;
 }
 
+/* Hide delete/unpost button and panel */
+#opa_del,
+#op_unpost {
+	display: none !important;
+}
+
 /* Hide Read-Write access and Login display */
 #acc_info {
 	display: none !important;
